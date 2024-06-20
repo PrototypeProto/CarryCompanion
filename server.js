@@ -117,8 +117,9 @@ var cardList = 
 
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
-const url = process.env.MONGODB_URI;
-// const MongoClient = require('mongodb').MongoClient;//  you might already have this.
+//Added MongoDB client url to the current database with Users and Arsenal
+const url = 'mongodb+srv://root:COP4331iscool@cluster0.f9xcqli.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+//const MongoClient = require('mongodb').MongoClient;//  you might already have this.
 const client = new MongoClient(url);
 client.connect();
 
