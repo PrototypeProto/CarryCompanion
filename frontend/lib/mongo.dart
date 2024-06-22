@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart';
 
-const url = "mongodb+srv://root:COP4331iscool@cluster0.f9xcqli.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const url = "mongodb+srv://root:COP4331iscool@cluster0.f9xcqli.mongodb.net/Team9LargeProject";
 
 class MongoDatabase {
   static Db? _db;
