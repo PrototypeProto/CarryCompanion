@@ -51,13 +51,15 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState?.validate() == true) {
                       //TODO add the api here to log in 
-                      // var db = MongoDatabase();
-                      // var user = db.loginUser(_usernameController, _passwordController);
+                       var db = MongoDatabase();
+                       var user = await db.loginUser(_usernameController.text, _passwordController.text);
+                       if(user != 'User not found'){
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => HomeScreen()));
+                       } //TODO errro message for incorrect login
                     }
                   },
                   child: const Text('Login'),
