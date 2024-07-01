@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ViewMap extends StatefulWidget {
+  const ViewMap({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ViewMap> createState() => _ViewMapState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ViewMapState extends State<ViewMap> {
   late MapShapeSource _shapeSource;
   late List<MapModel> _mapData;
 
@@ -41,11 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SfMaps(
                   layers: [
                     MapShapeLayer(
-                        source: _shapeSource,
-                        showDataLabels: true,
-                        zoomPanBehavior: MapZoomPanBehavior(
-                            focalLatLng: MapLatLng(37.0902, -95.7129),
-                            zoomLevel: 6)),
+                      source: _shapeSource,
+                      showDataLabels: true,
+                      zoomPanBehavior: MapZoomPanBehavior(
+                          focalLatLng: MapLatLng(37.0902, -95.7129),
+                          zoomLevel: 6),
+                    ),
                   ],
                 ),
               ),

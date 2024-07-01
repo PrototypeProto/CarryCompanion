@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'mongo.dart';
-import 'home.dart';
+import 'NavBar.dart';
 import 'signup.dart';
 
 class Login extends StatefulWidget {
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
                        var user = await db.loginUser(_usernameController.text, _passwordController.text);
                        if(user != 'User not found'){
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => HomeScreen()));
+                          builder: (context) => NavScreen()));
                        } //TODO errro message for incorrect login
                     }
                   },

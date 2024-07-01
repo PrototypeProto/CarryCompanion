@@ -21,3 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Other
+/windows
+/web
+/test
+/macos
+/linux
+/ios
+/build
+/android
