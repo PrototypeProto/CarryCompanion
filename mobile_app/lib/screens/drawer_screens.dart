@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gun/navigation.dart';
+import 'navigation.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

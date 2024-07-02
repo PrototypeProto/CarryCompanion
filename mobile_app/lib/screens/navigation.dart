@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gun/drawer_pages.dart';
+import 'drawer_screens.dart';
 import 'home.dart';
 import 'map.dart';
 import 'armory.dart';

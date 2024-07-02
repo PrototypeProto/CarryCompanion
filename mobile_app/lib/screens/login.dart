@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gun/navigation.dart';
+import 'navigation.dart';
 //import 'mongo.dart';
 import 'signup.dart';
 
