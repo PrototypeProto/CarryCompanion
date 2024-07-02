@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'mongo.dart';
-import 'NavBar.dart';
+import 'package:gun/navigation.dart';
+//import 'mongo.dart';
 import 'signup.dart';
 
 class Login extends StatefulWidget {
@@ -53,13 +53,13 @@ class _LoginState extends State<Login> {
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState?.validate() == true) {
-                      //TODO add the api here to log in 
-                       var db = MongoDatabase();
-                       var user = await db.loginUser(_usernameController.text, _passwordController.text);
-                       if(user != 'User not found'){
+                      //TODO add the api here to log in w/ verification
+                       //var db = MongoDatabase();
+                      // var user = await db.loginUser(_usernameController.text, _passwordController.text);
+                      // if(user != 'User not found'){
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => NavScreen()));
-                       } //TODO errro message for incorrect login
+                          builder: (context) => NavigationPage()));
+                       //} //TODO errro message for incorrect login
                     }
                   },
                   child: const Text('Login'),
