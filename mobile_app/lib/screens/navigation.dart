@@ -15,7 +15,7 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   int index = 0;
-  final screens = [HomePage(), MapPage(), ArmoryPage()];
+  final screens = [HomePage(), MapPage(), Armory()];
   final titles = ['Home', 'Map', 'Armory'];
   @override
   Widget build(BuildContext context) {
