@@ -34,9 +34,6 @@ class _ArmoryState extends State<Armory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Armory'),
-      ),
       body: GridView.builder(
         padding: const EdgeInsets.all(8.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
