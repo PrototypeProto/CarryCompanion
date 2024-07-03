@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'drawer_screens.dart';
-import 'home.dart';
+import 'package:flutter/material.dart'
+import 'package:gun/drawer_screens.dart';
+import 'landing_page.dart';
 import 'map.dart';
 import 'armory.dart';
 
@@ -15,8 +13,8 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   int index = 0;
-  final screens = [HomePage(), MapPage(), Armory()];
-  final titles = ['Home', 'Map', 'Armory'];
+  final screens = [ MapPage(), Armory()];
+  final titles = ['Map', 'Armory'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +33,6 @@ class _NavigationPageState extends State<NavigationPage> {
           selectedIndex: index,
           onDestinationSelected: (index) => setState(() => this.index = index),
           destinations: const [
-            NavigationDestination(
-              icon: Icon(
-                Icons.home_outlined,
-                color: Colors.white,
-              ),
-              selectedIcon: Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
-              label: 'Home',
-            ),
             NavigationDestination(
               icon: Icon(
                 Icons.map_outlined,
@@ -77,6 +64,14 @@ class MyDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           ListTile(
+            leading: Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              Scaffold.of(context).closeDrawer();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => LandingPage()));
+            },
+          ),ListTile(
             leading: Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
