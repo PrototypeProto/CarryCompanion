@@ -1,0 +1,169 @@
+Open carry, concealed carry, and shotgun/rifle transportation laws are a 'triple-boolean' int value ranging
+from 0 to 2, 0 being a traditional boolean 'false', 2 being a traditional boolean 'true', and 1 being the
+'yellow' status, where one may carry/transport that type with restrictions and/or exceptions.
+
+blank
+-Pistol-
+	open_carry: 
+	open_carry_text: 
+	concealed_carry: 
+	concealed_carry_text: 
+	pistol_in_vehicle: 
+	pistol_in_vehicle_text: 
+-Rifle-
+	transport: 
+	transport_text: 
+-Shotgun-
+	transport: 
+	transport_text: 
+
+---Alabama---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Alabama allows open carry without a permit. Any person who is at least 19 years old and legally entitled to possess a firearm can open carry. Some areas are off-limits, including schools and courthouses.
+	concealed_carry: 2
+	concealed_carry_text: Beginning on January 1, 2023, any law-abiding Alabama resident or other law-abiding citizen (regardless of the state in which he or she resides) who is at least 19 years old or older and legally permitted to carry a firearm will no longer be required to obtain a permit in order to carry a concealed pistol.
+	pistol_in_vehicle: 2
+	pistol_in_vehicle_text: As of January 1, 2023, Alabama does not require a permit or license to carry a loaded handgun in any vehicle.
+-Rifle-
+	transport: 1
+	transport_text: Alabama generally allows the transportation of any rifle with a barrel of 16 inches or longer and an overall length of 26 inches or longer if the firearm is placed in a secure container out of reach of observers and of the driver and any passengers. No permit is required to carry in this manner.
+-Shotgun-
+	transport: 1
+	transport_text: Alabama generally allows the transportation of any shotgun with a barrel of 18 inches or longer and an overall length of 26 inches or longer if the firearm is placed in a secure container out of reach of observers and of the driver and any passengers. No permit is required to carry in this manner.
+
+---Alaska---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Alaska's laws do not prohibit anyone 21 or older who may legally possess a firearm from carrying it concealed or open. A firearms permit is not required. There are general restrictions on where a firearm may be carried.
+	concealed_carry: 2
+	concealed_carry_text: Alaska's laws do not prohibit anyone 21 or older who may legally possess a firearm from carrying it concealed or open. A firearms permit is not required. There are general restrictions on where a firearm may be carried.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: No state permit is required to possess a pistol. An individual may lawfully possess and store a pistol that is locked in his or her private vehicle given that person may legally possess a firearm under state and federal law.
+-Rifle-
+	transport: 1
+	transport_text: No state permit is required to possess a rifle. An individual may lawfully possess and store a rifle that is locked in his or her private vehicle given that person may legally possess a firearm under state and federal law.
+-Shotgun-
+	transport: 1
+	transport_text: No state permit is required to possess a shotgun. An individual may lawfully possess and store a shotgun that is locked in his or her private vehicle given that person may legally possess a firearm under state and federal law.
+
+---Arizona---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Arizona respects the right of all U.S. citizens to carry a concealed handgun with or without a permit, or to carry openly while in this state.
+	concealed_carry: 2
+	concealed_carry_text: Arizona respects the right of all U.S. citizens to carry a concealed handgun with or without a permit, or to carry openly while in this state.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: No state permit is required to possess a shotgun, rifle or handgun. It is unlawful for a “prohibited possessor” to possess a firearm. Firearms carried in a vehicle shall be transported in a case, a holster or scabbard, a storage compartment, trunk, pack, luggage, or glove compartment of a means of transportation.
+-Rifle-
+	transport: 1
+	transport_text: No state permit is required to possess a shotgun, rifle or handgun. It is unlawful for a “prohibited possessor” to possess a firearm. Firearms carried in a vehicle shall be transported in a case, a holster or scabbard, a storage compartment, trunk, pack, luggage, or glove compartment of a means of transportation.
+-Shotgun-
+	transport: 1
+	transport_text: No state permit is required to possess a shotgun, rifle or handgun. It is unlawful for a “prohibited possessor” to possess a firearm. Firearms carried in a vehicle shall be transported in a case, a holster or scabbard, a storage compartment, trunk, pack, luggage, or glove compartment of a means of transportation.
+
+---Arkansas---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Arkansas is a constitutional carry state, “with no permit required to carry a handgun, either unconcealed or concealed”
+	concealed_carry: 2
+	concealed_carry_text: Arkansas is a constitutional carry state, “with no permit required to carry a handgun, either unconcealed or concealed”
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: Ark. Code § 5-73-120(a) makes it a crime to carry a handgun, knife, or club on or about the person or in a vehicle or “otherwise readily available for use with a purpose to attempt to unlawfully employ the handgun, knife, or club as a weapon against a person.”
+-Rifle-
+	transport: 2
+	transport_text: No state permit is required for the purchase or possession of a rifle, shotgun, or handgun. There are no restrictions on transporting or openly carrying a rifle, excepting the places where they are typically prohibited, such as courhouses, sheriff's department, schools, etc.
+-Shotgun-
+	transport: 2
+	transport_text: No state permit is required for the purchase or possession of a rifle, shotgun, or handgun.There are no restrictions on transporting or openly carrying a shotgun, excepting the places where they are typically prohibited, such as courhouses, sheriff's department, schools, etc.
+
+---California---
+-Pistol-
+	open_carry: 0
+	open_carry_text:  ...the open carry of any handgun, loaded or unloaded in an incorporated area has now been banned. Limited exceptions apply, such as for "a person who reasonably believes that he or his property is in immediate danger and the weapon must be carried for “preservation.”"
+	concealed_carry: 1
+	concealed_carry_text: Carrying a handgun concealed is prohibited without a license.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: A license is required to carry a handgun concealed within a vehicle unless it is placed locked in a container in a place besides the utility or glove compartment.
+-Rifle-
+	transport: 1
+	transport_text: Nonconcealable firearms (shotguns and rifles) are not generally covered within the provisions of California Penal Code section 25400 and therefore are not required to be transported in a locked container. However, as with any firearm, nonconcealable firearms must be unloaded while they are being transported. 
+-Shotgun-
+	transport: 1
+	transport_text: Nonconcealable firearms (shotguns and rifles) are not generally covered within the provisions of California Penal Code section 25400 and therefore are not required to be transported in a locked container. However, as with any firearm, nonconcealable firearms must be unloaded while they are being transported. 
+
+---Colorado---
+-Pistol-
+	open_carry: 2
+	open_carry_text: A permit is not required to carry a handgun where carrying firearms is legal, if the handgun is not concealed.
+	concealed_carry: 1
+	concealed_carry_text: It is unlawful to carry a firearm concealed on or about one's person without a permit, except for a person in his or her own dwelling, place of business, or on property owned or controlled by him or her.
+	pistol_in_vehicle: 2
+	pistol_in_vehicle_text: A handgun is not considered concealed if it is in the possession of a person who is in a private automobile or other private means of conveyance who is carrying it for a legal use, or the handgun is in the possession of a person who is legally engaged in hunting activities within the state.
+-Rifle-
+	transport: 1
+	transport_text: It is unlawful to have a firearm other than a handgun in or on any motor vehicle unless the chamber is unloaded.
+-Shotgun-
+	transport: 1
+	transport_text: It is unlawful to have a firearm other than a handgun in or on any motor vehicle unless the chamber is unloaded.
+
+---Connecticut---
+-Pistol-
+	open_carry: 1
+	open_carry_text: A permit to carry a pistol or revolver is required to carry a handgun on or about one’s person, either openly or concealed, or in a vehicle.
+	concealed_carry: 1
+	concealed_carry_text: A permit to carry a pistol or revolver is required to carry a handgun on or about one’s person, either openly or concealed, or in a vehicle.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: A permit to carry a pistol or revolver is required to carry a handgun on or about one’s person, either openly or concealed, or in a vehicle.
+-Rifle-
+	transport: 1
+	transport_text: A person may transport a firearm in a motor vehicle without a permit if it is unloaded, not readily accessible or directly accessible from the passenger compartment of the vehicle...
+-Shotgun-
+	transport: 1
+	transport_text: A person may transport a firearm in a motor vehicle without a permit if it is unloaded, not readily accessible or directly accessible from the passenger compartment of the vehicle...
+
+---Delaware---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Handguns may be carried in open view, or in an inaccessible area like the trunk of an automobile.
+	concealed_carry: 1
+	concealed_carry_text: It is unlawful for any person...to carry any loaded or unloaded firearm concealed upon or about his person without a license to carry.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: Handguns may be carried in open view, or in an inaccessible area like the trunk of an automobile.
+-Rifle-
+	transport: 1
+	transport_text: Rifles and shotguns must be unloaded while being carried in or on any vehicle...
+-Shotgun-
+	transport: 1
+	transport_text: Rifles and shotguns must be unloaded while being carried in or on any vehicle...
+
+---Florida---
+-Pistol-
+	open_carry: 0
+	open_carry_text: It is unlawful for any person to openly carry on or about his or her person any firearm or electric weapon or device.
+	concealed_carry: 2
+	concealed_carry_text: Permitless concealed carry is legal for anyone 21 years old or older and not prohibited by law to carry a firearm.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: It is lawful to possess a concealed firearm for self-defense or other lawful purposes within the interior of a private conveyance (personal vehicle), without a license, if the firearm is securely encased or is otherwise not readily accessible for immediate use.
+-Rifle-
+	transport: 2
+	transport_text: A firearm other than a handgun may be carried anywhere in a private conveyance when such firearm is being carried for a lawful use. 
+-Shotgun-
+	transport: 2
+	transport_text: A firearm other than a handgun may be carried anywhere in a private conveyance when such firearm is being carried for a lawful use. 
+
+---Georgia---
+-Pistol-
+	open_carry: 1
+	open_carry_text: Open carry is legal in Georgia only with a Georgia Weapons Carry License (WCL) or a concealed carry permit from a state Georgia honors.
+	concealed_carry: 2
+	concealed_carry_text: Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a weapon or long gun on his or her property or inside his or her home, motor vehicle, or place of business without a valid weapons carry license. 
+	pistol_in_vehicle: 2
+	pistol_in_vehicle_text: Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a weapon or long gun on his or her property or inside his or her home, motor vehicle, or place of business without a valid weapons carry license. 
+-Rifle-
+	transport: 2
+	transport_text: Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a weapon or long gun on his or her property or inside his or her home, motor vehicle, or place of business without a valid weapons carry license. Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a long gun without a valid weapons carry license, provided that if the long gun is loaded, it shall only be carried in an open and fully exposed manner.
+-Shotgun-
+	transport: 2
+	transport_text: Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a weapon or long gun on his or her property or inside his or her home, motor vehicle, or place of business without a valid weapons carry license. Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a long gun without a valid weapons carry license, provided that if the long gun is loaded, it shall only be carried in an open and fully exposed manner.
+
