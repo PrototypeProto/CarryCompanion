@@ -167,3 +167,258 @@ blank
 	transport: 2
 	transport_text: Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a weapon or long gun on his or her property or inside his or her home, motor vehicle, or place of business without a valid weapons carry license. Any person who is not prohibited by law from possessing a handgun or long gun may have or carry on his or her person a long gun without a valid weapons carry license, provided that if the long gun is loaded, it shall only be carried in an open and fully exposed manner.
 
+---Hawaii---
+-Pistol-
+	open_carry: 0
+	open_carry_text: Open carrying is generally only allowed in extreme circumstances, and as designated personally by the respective chief of police.
+	concealed_carry: 1
+	concealed_carry_text: Hawaii is now a shall-issue state since the Supreme Court’s ruling on the NYSRPA v Bruen on June 23rd, 2022. Permits are issued by the Chief of Police at the county level. Permits are only valid in the county from which it was issued.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: It is unlawful to possess or carry a loaded firearm on any public highway without a permit to carry. it is lawful to carry firearms and ammunition in an enclosed container or other suitable container from the place of purchase to the purchaser’s home, place of business or place of sojourn; or between these places when moving...
+-Rifle-
+	transport: 1
+	transport_text: It is unlawful to possess or carry a loaded firearm on any public highway without a permit to carry. it is lawful to carry firearms and ammunition in an enclosed container or other suitable container from the place of purchase to the purchaser’s home, place of business or place of sojourn; or between these places when moving...
+-Shotgun-
+	transport: 1
+	transport_text: It is unlawful to possess or carry a loaded firearm on any public highway without a permit to carry. it is lawful to carry firearms and ammunition in an enclosed container or other suitable container from the place of purchase to the purchaser’s home, place of business or place of sojourn; or between these places when moving...
+
+---Idaho---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Idaho permits the open carrying of firearms.
+	concealed_carry: 2
+	concealed_carry_text: State law allows any resident of The United States to carry a concealed handgun without a license to carry, provided the person is over 18 years old and not disqualified from being issued a license to carry concealed weapons under state law. 
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: The restrictions on carrying a concealed weapon without a license also do not apply to weapons located in plain view; a firearm that is not loaded and is concealed in a motor vehicle; a firearm that is not loaded and is secured in a case;
+-Rifle-
+	transport: 1
+	transport_text: The restrictions on carrying a concealed weapon without a license also do not apply to weapons located in plain view; any lawfully possessed shotgun or rifle; a firearm that is not loaded and is concealed in a motor vehicle; a firearm that is not loaded and is secured in a case;
+-Shotgun-
+	transport: 1
+	transport_text: The restrictions on carrying a concealed weapon without a license also do not apply to weapons located in plain view; any lawfully possessed shotgun or rifle; a firearm that is not loaded and is concealed in a motor vehicle; a firearm that is not loaded and is secured in a case;
+
+---Illinois---
+-Pistol-
+	open_carry: 0
+	open_carry_text: Open carry of a handgun on your person or in a vehicle is illegal.
+	concealed_carry: 1
+	concealed_carry_text: It is unlawful to carry or possess any firearm in any vehicle or concealed on or about the person, except on one’s land or in one’s abode or fixed place of business, without a license. Also, it is unlawful to possess any firearm or ammunition without a valid FOID (Firearms Owner Identification Card).
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: ...it is unlawful to have or carry any firearm in or on any vehicle or conveyance unless unloaded and enclosed in a case.
+-Rifle-
+	transport: 1
+	transport_text: it is unlawful to have or carry any firearm in or on any vehicle or conveyance unless unloaded and enclosed in a case. Also, it is unlawful to possess any firearm or ammunition without a valid FOID (Firearms Owner Identification Card). 
+-Shotgun-
+	transport: 1
+	transport_text: it is unlawful to have or carry any firearm in or on any vehicle or conveyance unless unloaded and enclosed in a case. Also, it is unlawful to possess any firearm or ammunition without a valid FOID (Firearms Owner Identification Card).
+
+---Indiana---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Open carry and concealed carry are legal without a permit. Individuals 18 years old or older not prohibited from carrying or possessing a handgun are no longer required to obtain a license to carry a handgun as of July 1, 2022.
+	concealed_carry: 2
+	concealed_carry_text: Open carry and concealed carry are legal without a permit. Individuals 18 years old or older not prohibited from carrying or possessing a handgun are no longer required to obtain a license to carry a handgun as of July 1, 2022.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: No person shall carry a handgun in any vehicle or on or about his person without a license being in his possession.
+-Rifle-
+	transport: 1
+	transport_text: With the exceptions of limitations on carrying during game seasons, state law is silent on the issue of carrying rifles and shotguns.
+-Shotgun-
+	transport: 1
+	transport_text: With the exceptions of limitations on carrying during game seasons, state law is silent on the issue of carrying rifles and shotguns.
+
+---Iowa---
+-Pistol-
+	open_carry: 2
+	open_carry_text: As of July 1, 2021, Iowa is a permitless carry state for both open carry and concealed carry for anyone at least 21 years old that may lawfully possess a handgun.
+	concealed_carry: 2
+	concealed_carry_text: As of July 1, 2021, Iowa is a permitless carry state for both open carry and concealed carry for anyone at least 21 years old that may lawfully possess a handgun.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: Iowa prohibits any person from knowingly carrying or transporting a handgun in a vehicle. This prohibition does not apply if the person transports an unloaded handgun inside a closed and fastened container or other secure package that cannot be concealed on the person, or in a cargo or luggage compartment where the handgun cannot be readily accessible to any person in the vehicle or common carrier. This prohibition also does not apply to a person with a valid permit to carry, provided his or her conduct is within the limits of that permit.
+
+-Rifle-
+	transport: 1
+	transport_text: It is unlawful to have or carry any long gun in or on a vehicle on a public highway, unless the gun is taken down or totally contained in a securely fastened case, and its barrels and magazines are unloaded.
+-Shotgun-
+	transport: 1
+	transport_text: It is unlawful to have or carry any long gun in or on a vehicle on a public highway, unless the gun is taken down or totally contained in a securely fastened case, and its barrels and magazines are unloaded.
+
+---Kansas---
+-Pistol-
+	open_carry: 2
+	open_carry_text: State law does not generally prohibit the open carrying of a handgun.
+	concealed_carry: 2
+	concealed_carry_text: Any person who can legally own a firearm may concealed carry if they are 21 or over.  No permit/license is required.
+	pistol_in_vehicle: 2
+	pistol_in_vehicle_text: Firearms may be openly carried in cars without any license except where localities have made open carry illegal.
+-Rifle-
+	transport: 2
+	transport_text: Firearms may be openly carried in cars without any license except where localities have made open carry illegal.
+-Shotgun-
+	transport: 2
+	transport_text: Firearms may be openly carried in cars without any license except where localities have made open carry illegal.
+
+---Kentucky---
+-Pistol-
+	open_carry: 2
+	open_carry_text: A permit is not required to carry openly or concealed in Kentucky.
+	concealed_carry: 2
+	concealed_carry_text: A permit is not required to carry openly or concealed in Kentucky.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: Kentucky will allow a loaded handgun to be carried in a motor vehicle provided that the firearm is stored in any container, compartment, or storage space originally installed in the motor vehicle by its manufacturer.
+-Rifle-
+	transport: 1
+	transport_text: Kentucky allows any person not prohibited from possessing a firearm to carry a loaded or unloaded firearm in a vehicle in any closed container, compartment, or storage space installed as original equipment in a motor vehicle by its manufacturer, including but not limited to a glove compartment, center console, or seat pocket, regardless of whether the enclosed container, storage space, or compartment is locked, unlocked or does not have a locking mechanism.
+-Shotgun-
+	transport: 1
+	transport_text: Kentucky allows any person not prohibited from possessing a firearm to carry a loaded or unloaded firearm in a vehicle in any closed container, compartment, or storage space installed as original equipment in a motor vehicle by its manufacturer, including but not limited to a glove compartment, center console, or seat pocket, regardless of whether the enclosed container, storage space, or compartment is locked, unlocked or does not have a locking mechanism.
+
+---Louisiana---
+-Pistol-
+	open_carry: 2
+	open_carry_text: The state of Louisiana recognizes open carry.
+	concealed_carry: 1
+	concealed_carry_text: No person shall carry a concealed firearm intentionally without a permit unless one is a peace officer in performance of his or her official duties. 
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: Lawfully possessed firearms may be transported or stored in a locked, privately owned motor vehicle in any parking lot, parking garage, or other designated parking area.
+-Rifle-
+	transport: 1
+	transport_text: Lawfully possessed firearms may be transported or stored in a locked, privately owned motor vehicle in any parking lot, parking garage, or other designated parking area.
+-Shotgun-
+	transport: 1
+	transport_text: Lawfully possessed firearms may be transported or stored in a locked, privately owned motor vehicle in any parking lot, parking garage, or other designated parking area.
+
+---Maine---
+-Pistol-
+	open_carry: 2
+	open_carry_text: It is not unlawful to carry a firearm openly. In 2015, Maine enacted a permitless carry law.
+	concealed_carry: 2
+	concealed_carry_text: No carry permit is necessary to carry a concealed handgun if the person is at least 21 years old and is not otherwise prohibited by state or federal law from carrying a firearm.
+	pistol_in_vehicle: 2
+	pistol_in_vehicle_text: The exceptions [to laws restricting transportation of loaded firearms in vehicles] include a loaded handgun carried in or on a vehicle by a person at least 21 years old who is not otherwise prohibited by law from carrying a firearm.
+-Rifle-
+	transport: 1
+	transport_text: It is unlawful for a person, while in or on a motor vehicle or trailer or other type of vehicle being hauled by a motor vehicle, to have a loaded crossbow or a loaded firearm (one with a cartridge or shell in the chamber or in an attached magazine, clip or cylinder, or a muzzle-loading firearm charged with powder, lead and a primed ignition device or mechanism).
+-Shotgun-
+	transport: 1
+	transport_text: It is unlawful for a person, while in or on a motor vehicle or trailer or other type of vehicle being hauled by a motor vehicle, to have a loaded crossbow or a loaded firearm (one with a cartridge or shell in the chamber or in an attached magazine, clip or cylinder, or a muzzle-loading firearm charged with powder, lead and a primed ignition device or mechanism).
+
+---Maryland---
+-Pistol-
+	open_carry: 1
+	open_carry_text: It is unlawful for any person without a permit to wear or carry a handgun, openly or concealed, upon or about his person.
+	concealed_carry: 1
+	concealed_carry_text: It is unlawful for any person without a permit to wear or carry a handgun, openly or concealed, upon or about his person.
+	pistol_in_vehicle: 0
+	pistol_in_vehicle_text: It is also unlawful for any person to knowingly transport a handgun in any vehicle traveling on public roads, highways, waterways or airways, or upon roads or parking lots generally used by the public.
+-Rifle-
+	transport: 1
+	transport_text: Rifles and shotguns being transported in motor vehicles must be unloaded.
+-Shotgun-
+	transport: 1
+	transport_text: Rifles and shotguns being transported in motor vehicles must be unloaded.
+
+---Massachusetts---
+-Pistol-
+	open_carry: 1
+	open_carry_text: A license authorizes carrying of handguns, including large capacity handguns, for all lawful purposes, subject to such restrictions relative to the possession, use or carrying of handguns as the licensing authority deems proper. There is no Statute in Massachusetts law that prohibits a Massachusetts license holder from carrying a handgun openly.
+	concealed_carry: 1
+	concealed_carry_text: 
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: A license holder may carry a loaded handgun in a vehicle, if it is under his direct control. It is unlawful for any person licensed to carry a handgun to leave the firearm in a vehicle unattended.
+-Rifle-
+	transport: 1
+	transport_text: A license holder may carry a loaded handgun in a vehicle, if it is under his direct control.  However, this does not apply to large capacity rifles or shotguns.  Such firearms must be carried unloaded, in the locked trunk or in a locked case or other secure container. 
+-Shotgun-
+	transport: 1
+	transport_text: A license holder may carry a loaded handgun in a vehicle, if it is under his direct control.  However, this does not apply to large capacity rifles or shotguns.  Such firearms must be carried unloaded, in the locked trunk or in a locked case or other secure container. 
+
+---Michigan---
+-Pistol-
+	open_carry: 1
+	open_carry_text: Open carry is legal in Michigan only for residents that are at least 18 years old and who can legally possess a firearm, provided the gun is registered in their name. Non-residents must have a valid concealed carry license from their home state in order to conceal or open carry.
+	concealed_carry: 1
+	concealed_carry_text: It is unlawful to carry a handgun concealed on or about one’s person or concealed or openly in a vehicle without a license to carry a concealed pistol.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: It is unlawful to carry a handgun concealed on or about one’s person or concealed or openly in a vehicle without a license to carry a concealed pistol.
+-Rifle-
+	transport: 1
+	transport_text: In order to transport or possess rifles and shotguns in a motor vehicle, Michigan law requires that they be unloaded and be one or more of the following: broken down, enclosed in a case, carried in the trunk of the vehicle, or inaccessible from the interior of the vehicle.
+-Shotgun-
+	transport: 1
+	transport_text: In order to transport or possess rifles and shotguns in a motor vehicle, Michigan law requires that they be unloaded and be one or more of the following: broken down, enclosed in a case, carried in the trunk of the vehicle, or inaccessible from the interior of the vehicle.
+
+---Minnesota---
+-Pistol-
+	open_carry: 1
+	open_carry_text: A person, other than a peace officer, as defined in section 626.84, subdivision 1, who carries, holds, or possesses a pistol in a motor vehicle, snowmobile, or boat, or on or about the person's clothes or the person, or otherwise in possession or control in a public place without first having obtained a permit to carry the pistol is guilty of a gross misdemeanor.
+	concealed_carry: 1
+	concealed_carry_text: A person, other than a peace officer, as defined in section 626.84, subdivision 1, who carries, holds, or possesses a pistol in a motor vehicle, snowmobile, or boat, or on or about the person's clothes or the person, or otherwise in possession or control in a public place without first having obtained a permit to carry the pistol is guilty of a gross misdemeanor.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: A person, other than a peace officer, as defined in section 626.84, subdivision 1, who carries, holds, or possesses a pistol in a motor vehicle, snowmobile, or boat, or on or about the person's clothes or the person, or otherwise in possession or control in a public place without first having obtained a permit to carry the pistol is guilty of a gross misdemeanor. However, generally a permit to carry is not required of a person a permit to carry is not required of a person...to transport in a motor vehicle, snowmobile or boat if the firearm is unloaded and in a closed and fastened case, gun box or securely tied package.
+-Rifle-
+	transport: 1
+	transport_text: Generally, a permit to carry is not required of a person...to transport in a motor vehicle, snowmobile or boat if the firearm is unloaded and in a closed and fastened case, gun box or securely tied package.
+-Shotgun-
+	transport: 1
+	transport_text: Generally, a permit to carry is not required of a person...to transport in a motor vehicle, snowmobile or boat if the firearm is unloaded and in a closed and fastened case, gun box or securely tied package.
+
+---Mississippi---
+-Pistol-
+	open_carry: 2
+	open_carry_text: A permit to carry is available, but it is not required to carry a handgun either openly or concealed. For persons without a permit, a prohibition does not generally apply to a person lawfully carrying a pistol or revolver in a belt or shoulder holster or in a purse, bag, or other case.
+	concealed_carry: 2
+	concealed_carry_text: A permit to carry is available, but it is not required to carry a handgun either openly or concealed. For persons without a permit, a prohibition does not generally apply to a person lawfully carrying a pistol or revolver in a belt or shoulder holster or in a purse, bag, or other case.
+	pistol_in_vehicle: 
+	pistol_in_vehicle_text: 
+-Rifle-
+	transport: 2
+	transport_text: Mississippi permits the open carrying of a long gun in a motor vehicle without a permit or license.
+-Shotgun-
+	transport: 2
+	transport_text: Mississippi permits the open carrying of a long gun in a motor vehicle without a permit or license.
+
+---Missouri---
+-Pistol-
+	open_carry: 2
+	open_carry_text: Open carry and concealed carry are legal in Missouri without a Concealed Carry Permit (CCP) for anyone 19 years or older who can legally possess a firearm. State law does not prohibit the open carrying of firearms, but does prohibit exhibiting “any weapon readily capable of lethal use” in an angry or threatening manner in the presence of one or more persons.
+	concealed_carry: 2
+	concealed_carry_text: Open carry and concealed carry are legal in Missouri without a Concealed Carry Permit (CCP) for anyone 19 years or older who can legally possess a firearm. State law does not prohibit the open carrying of firearms, but does prohibit exhibiting “any weapon readily capable of lethal use” in an angry or threatening manner in the presence of one or more persons.
+	pistol_in_vehicle: 1
+	pistol_in_vehicle_text: A concealed carry permit authorizes the carrying of a concealed firearm on or about the applicant’s person or within a vehicle.
+-Rifle-
+	transport: 1
+	transport_text: A concealed carry permit authorizes the carrying of a concealed firearm on or about the applicant’s person or within a vehicle. Carrying a concealed firearm (or any other weapon readily capable of lethal use) into any area where firearms are restricted under Mo. Rev. Stat. § 571.107. This does not apply to any person at least 19 years old (18 or older and a member of the US Armed Forces, or honorably discharged) transporting a lawfully possessed concealable firearm in the passenger compartment of a motor vehicle. It does not apply to possession of an exposed firearm or projectile weapon for the lawful pursuit of game, or possession in a person’s dwelling unit or other premises owned or controlled by the person, or anyone traveling in a continuous journey peaceably through the state.
+-Shotgun-
+	transport: 1
+	transport_text: A concealed carry permit authorizes the carrying of a concealed firearm on or about the applicant’s person or within a vehicle. Carrying a concealed firearm (or any other weapon readily capable of lethal use) into any area where firearms are restricted under Mo. Rev. Stat. § 571.107. This does not apply to any person at least 19 years old (18 or older and a member of the US Armed Forces, or honorably discharged) transporting a lawfully possessed concealable firearm in the passenger compartment of a motor vehicle. It does not apply to possession of an exposed firearm or projectile weapon for the lawful pursuit of game, or possession in a person’s dwelling unit or other premises owned or controlled by the person, or anyone traveling in a continuous journey peaceably through the state.
+
+---Montana---
+-Pistol-
+	open_carry: 2
+	open_carry_text: The open carry of a weapon is generally allowed by any person who is not otherwise prohibited from doing so under federal or state law. A person carrying openly may communicate to another person the fact that the person has a weapon.
+	concealed_carry: 2
+	concealed_carry_text: Montana amended its law in 2021 to allow permitless concealed carry. “Concealed” is defined as a firearm that is wholly or partially covered by the clothing or wearing apparel of the person carrying or bearing the weapon.
+	pistol_in_vehicle: 2
+	pistol_in_vehicle_text:  Montana permits open carrying of firearms in a vehicle with no permit or license required.
+-Rifle-
+	transport: 2
+	transport_text:  Montana permits open carrying of firearms in a vehicle with no permit or license required.
+-Shotgun-
+	transport: 2
+	transport_text:  Montana permits open carrying of firearms in a vehicle with no permit or license required.
+
+---Nebraska---
+-Pistol-
+	open_carry: 
+	open_carry_text: 
+	concealed_carry: 
+	concealed_carry_text: 
+	pistol_in_vehicle: 
+	pistol_in_vehicle_text: 
+-Rifle-
+	transport: 
+	transport_text: 
+-Shotgun-
+	transport: 
+	transport_text: 
