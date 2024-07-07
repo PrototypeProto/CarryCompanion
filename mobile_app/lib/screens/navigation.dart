@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart'
-import 'package:gun/drawer_screens.dart';
-import 'landing_page.dart';
+import 'package:flutter/material.dart';
+import 'drawer_screens.dart';
+// import 'landing_page.dart';
 import 'map.dart';
 import 'armory.dart';
+import '../main.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -61,7 +62,7 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.fromLTRB(0, 40, 0, 0), /* Fixed padding from overlaping with stuff at top, time, etc */
         children: [
           ListTile(
             leading: Icon(Icons.logout),
@@ -69,7 +70,7 @@ class MyDrawer extends StatelessWidget {
             onTap: () {
               Scaffold.of(context).closeDrawer();
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => LandingPage()));
+                          builder: (context) => MainPage()));
             },
           ),ListTile(
             leading: Icon(Icons.settings),

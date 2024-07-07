@@ -67,7 +67,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - assets/gz_2010_us_040_00_20m.json
+    - assets/
     - lib/img/
 
 
