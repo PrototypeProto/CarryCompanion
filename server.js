@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const authRoutes = require('./routes/auth');
+const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
+const resetRoutes = require('./routes/reset');
+const verificationRoutes = require('./routes/verification');
+const mobileRoutes = require('./routes/mobile');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,8 +18,13 @@ mongoose.connect('mongodb+srv://geno:chungus@cluster0.8xrrp47.mongodb.net/Team9L
 });
 
 app.use(bodyParser.json());
-app.use('/api/auth', authRoutes);
-app.use('/api/auth', loginRoutes);
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/api', signupRoutes);
+app.use('/api', loginRoutes);
+app.use('/api', resetRoutes);
+app.use('/api', verificationRoutes);
+app.use('/api', mobileRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
