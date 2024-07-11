@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const Users = require('../models/Users');
+const JWT_SECRET = 'bazinga'; // Replace with your JWT secret
 
-const JWT_SECRET = 'bazinga';
-
+// User login
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     console.log('Login request body:', req.body);
