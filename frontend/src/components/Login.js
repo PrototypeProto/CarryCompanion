@@ -1,58 +1,59 @@
 import React, { useState } from 'react';
 
-function Login()
-{
+function Login() {
     var loginName;
     var loginPassword;
-    const [message,setMessage] = useState('');
+    const [message, setMessage] = useState('');
 
-    const app_name = 'carry-companion'
-    function buildPath(route)
-    {
-        if (process.env.NODE_ENV === 'production')
-        {
+    const app_name = 'carry-companion';
+
+    function buildPath(route) {
+        if (process.env.NODE_ENV === 'production') {
             return 'https://' + app_name + '.herokuapp.com/' + route;
-        }
-        else
-        {
+        } else {
             return 'http://localhost:5000/' + route;
         }
     }
 
-    const doLogin = async event =>
-    {
+    const doLogin = async (event) => {
         event.preventDefault();
-        var obj = {login:loginName.value,password:loginPassword.value};
+        var obj = { username: loginName.value, password: loginPassword.value }; // Ensure the field names match what the backend expects
         var js = JSON.stringify(obj);
-        
-        try
-        {
-            // const response = await fetch('http://localhost:5000/api/login',
-            const response = await fetch(buildPath("api/login"), 
-                {method:'POST',body:js,headers:{'Content-Type':'application/json'}});
-        
-            var res = JSON.parse(await response.text());
 
-            if( res.id <= 0 )
-            {
-                setMessage('User/Password combination incorrect');
+        try {
+            const response = await fetch(buildPath('api/login'), {
+                method: 'POST',
+                body: js,
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (!response.ok) {
+                // Check if the response status code is not OK (i.e., not 200)
+                const errorData = await response.json();
+                setMessage(errorData.message || 'User/Password combination incorrect');
+                return;
             }
-            else
-            {
-                var user =
-                {firstName:res.firstName,lastName:res.lastName,id:res.id}
+
+            const res = await response.json();
+
+            if (res && res.user && res.user.id) {
+                var user = {
+                    firstName: res.user.firstName,
+                    lastName: res.user.lastName,
+                    id: res.user.id,
+                };
                 localStorage.setItem('user_data', JSON.stringify(user));
                 setMessage('');
                 window.location.href = '/Home';
+            } else {
+                setMessage('User/Password combination incorrect');
             }
-        }
-        catch(e)
-        {
-            alert(e.toString());
-            return;
+        } catch (e) {
+            console.error('Error during login:', e);
+            setMessage('An error occurred during login.');
         }
     };
-
+    
     return(
         // <div className="border border-solid border-indigo-600 flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="bg-white-800 border-0 border-solid border-red-800 justify-items-center">
