@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'mongo.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -91,13 +92,15 @@ class _SignUpState extends State<SignUp> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState?.validate() == true) {
-                    //TODO add signup api
-                    //TODO change this to go to login page or sign up automatically and then go to home page
+                    var db = MongoDatabase();
+                    var user = await db.signUpUser(_usernameController.text, _emailController.text, _passwordController.text);
+                    if(user != 'User successfully signed up'){
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Signup in progress, api missing')),
+                      const SnackBar(content: Text('Failed to register user')),
                     );
+                    }
                   }
                 },
                 child: const Text('Sign Up'),

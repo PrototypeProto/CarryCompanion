@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gun/mongo.dart';
 import 'package:gun/navigation.dart';
 //import 'mongo.dart';
 import 'signup.dart';
@@ -76,12 +77,13 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       if (_formKey.currentState?.validate() == true) {
                         //TODO add the api here to log in w/ verification
-                        //var db = MongoDatabase();
-                        // var user = await db.loginUser(_usernameController.text, _passwordController.text);
-                        // if(user != 'User not found'){
+                        var db = MongoDatabase();
+                         var user = await db.loginUser(_usernameController.text, _passwordController.text);
+                         if(user != 'User not found'){
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => NavigationPage()));
-                        //} //TODO errro message for incorrect login
+                        }
+                        print('invalid login'); //TODO errro message for incorrect login
                       }
                     },
                     child: const Text('Login'),

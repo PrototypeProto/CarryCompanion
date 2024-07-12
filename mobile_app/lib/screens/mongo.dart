@@ -47,4 +47,40 @@ class MongoDatabase {
     }
     return userJson;
   }
+
+
+Future<String> signUpUser(String username, String email, String password) async {
+    String result = '';
+    try {
+      await connect();
+      var userCollection = _db!.collection('Users');
+
+      // Check if username already exists
+      var existingUser =
+          await userCollection.findOne({'username': username});
+      if (existingUser != null) {
+        result = 'Username already exists';
+      } else {
+        // Insert new user document
+        var insertResult = await userCollection.insertOne({
+          'username': username,
+          'email': email,
+          'password': password,
+        });
+
+        // Check if insertion was successful
+        if (insertResult.isSuccess) {
+          result = 'User successfully signed up';
+        } else {
+          result = 'Failed to sign up user';
+        }
+      }
+    } catch (err) {
+      print('Error in signUpUser: $err');
+      result = 'Error: $err';
+    } finally {
+      await close();
+    }
+    return result;
+  }
 }
