@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/login.dart'; // Import Login page
-import 'screens/landing_page.dart'; // Import the LandingPage
+import 'screens/on_app_launch/login.dart'; // Import Login page
+import 'screens/on_app_launch/landing_page.dart'; // Import the LandingPage
 
 void main() {
   runApp(MyApp());

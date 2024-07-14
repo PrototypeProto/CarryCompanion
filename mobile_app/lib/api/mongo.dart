@@ -27,17 +27,20 @@ class MongoDatabase {
   }
 
   //TODO: Modify to return the user object instead of a string
-  Future<String> loginUser(username, password) async {
+  Future<bool> loginUser(username, password) async {
     String userJson = '';
+    bool validLogin = false;
     try {
       await MongoDatabase.connect();
       var user = await MongoDatabase._db
           ?.collection('Users')
           .findOne({'username': username, 'password': password});
-      if (user != null) {
+      if (user != null || user != '') {
         userJson = jsonEncode(user);
+        validLogin = true;
       } else {
         userJson = 'User not found';
+        validLogin = false;
       }
     } catch (err) {
       log('Error in loginUser: $err');
@@ -45,7 +48,7 @@ class MongoDatabase {
     } finally {
       await MongoDatabase.close();
     }
-    return userJson;
+    return validLogin;
   }
 
 

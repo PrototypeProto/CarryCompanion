@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+
+/* TODO: To be fixed soon */
 class ApiService {
   final String _baseUrl = 'http://localhost:5000/api';
 

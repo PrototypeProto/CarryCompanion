@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'mongo.dart';
+import '../../api/mongo.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
