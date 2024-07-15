@@ -6,12 +6,12 @@ class AboutUsScreen extends StatelessWidget {
   
   static const List<String> developerNames = [
     'Alejandro Tejeira',
-    'Ash',
+    'Ryan Rahbari',
     'Benjamin Monroy',
     'Gabriel Rechdan',
     'Eugenio Diaz',
     'Joshua Bartz',
-    'Joshua',
+    'Joshua Jarquin',
   ];
 
   static const List<String> DeveloperResponsibilities = [

@@ -73,7 +73,7 @@ final List<String> states = [
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: DropdownButton<String>(
               value: dropdownValue,
               hint: Text('Please Select a State'),
