@@ -96,9 +96,19 @@ class _SignUpState extends State<SignUp> {
                   if (_formKey.currentState?.validate() == true) {
                     var db = MongoDatabase();
                     var user = await db.signUpUser(_usernameController.text, _emailController.text, _passwordController.text);
-                    if(user != 'User successfully signed up'){
+                    if(user == 'User successfully signed up'){
+
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Failed to register user')),
+
+                      const SnackBar(content: Text('Successfully Signed Up')),
+
+                    );
+
+                    } else{
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+
+                      const SnackBar(content: Text('Failed to Register User')),
                     );
                     }
                   }
