@@ -78,12 +78,11 @@ class _LoginState extends State<Login> {
                         //TODO add the api here to log in w/ verification
                         var db = MongoDatabase();
                         var user = await db.loginUser(_usernameController.text, _passwordController.text);
-                        if(user){
+                        if(user != 'User not found'){
                           Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => NavBar()));
                         } else {
-                          print('invalid login'); //TODO errro message for incorrect login
-                          
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to Login')),); 
                         }
                       }
                     },
