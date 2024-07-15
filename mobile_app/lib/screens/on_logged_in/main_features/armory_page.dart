@@ -1,35 +1,63 @@
 import 'package:flutter/material.dart';
+import 'armory_methods/add_gun_popup.dart';
+import 'armory_methods/delete_gun_confirmation.dart';
 
 class Armory extends StatefulWidget {
+  const Armory({super.key});
+
   @override
   _ArmoryState createState() => _ArmoryState();
 }
 
-// TODO: /* Should fetch from API */
+// TODO: /* Should fetch from API / id should be objectID from mongodb */
 class _ArmoryState extends State<Armory> {
   final List<Map<String, dynamic>> _items = [
-    {'type': 'Pistol', 'make': 'pipes', 'model': 'revvy'},
-    {'type': 'Shotgun', 'make': 'wood/metal', 'model': 'eoka'},
-    {'type': 'Rifle', 'make': 'energy', 'model': 'HaVoc'},
-    {'type': '???', 'make': 'chaotic', 'model': '???'},
+    {'type': 'Pistol', 'make': 'pipes', 'model': 'p250', "id": 1},
+    {'type': 'Shotgun', 'make': 'wood/metal', 'model': 'xm1014', "id": 2},
+    {'type': 'Rifle', 'make': 'energy', 'model': 'AWP', "id": 3},
+    {'type': '???', 'make': 'chaotic', 'model': 'Juan-perez', "id": 4},
   ];
 
-  int _hoverIndex = -1;
+  int numGuns = 0;
+  int recentDeletedItem = 0;
 
-  void _onItemTapped(String name) {
+  bool _isDeleteMode = false;
+
+  int itemSelected = -1;
+
+  void updateNumGuns() {
+    numGuns = _items.length;
+  }
+
+  void decrementGunCounter() {
+    (numGuns > 0) ? numGuns-- : numGuns = 0;
+  }
+
+  int incrementGunCounter() {
+    return ++numGuns;
+  }
+
+  void _addItem(Map<String, dynamic> newItem) {
+    setState(() {
+      _items.add(newItem);
+    });
+  }
+
+  /* Responsible for logic with deletion */
+  /* Set item selected to -1 if not in delete mode
+      upon changing from delete to nondelete, if there is a itemSelected, remove
+      Pop up a confirm delete
+   */
+  void _onItemTapped(String name, int index) {
     print('Tapped on $name');
-  }
+    print('Tapped on id: ${_items[index]['id']}');
+    itemSelected = index;
 
-  void _onHoverStart(int index) {
-    setState(() {
-      _hoverIndex = index;
-    });
-  }
-
-  void _onHoverEnd() {
-    setState(() {
-      _hoverIndex = -1;
-    });
+    if (_isDeleteMode) {
+      itemSelected = index;
+    } else {
+      itemSelected = -1;
+    }
   }
 
   String createImagePath(String type) {
@@ -44,82 +72,27 @@ class _ArmoryState extends State<Armory> {
     }
   }
 
-  void _showAddGunDialog(BuildContext context) {
-    String? newType;
-    String? newMake;
-    String? newModel;
+  void _toggleDeleteMode() async {
+    setState(() {
+      _isDeleteMode = !_isDeleteMode;
+    });
 
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Add New Gun'),
-          content: Container(
-            width: double.maxFinite,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                DropdownButtonFormField<String>(
-                  decoration: InputDecoration(labelText: 'Type'),
-                  value: newType,
-                  items: ['Pistol', 'Rifle', 'Shotgun'].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    newType = value;
-                  },
-                ),
-                TextField(
-                  decoration: InputDecoration(labelText: 'Make'),
-                  onChanged: (value) {
-                    newMake = value;
-                  },
-                ),
-                TextField(
-                  decoration: InputDecoration(labelText: 'Model'),
-                  onChanged: (value) {
-                    newModel = value;
-                  },
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (newType != null && newMake != null && newModel != null) {
-                  setState(() {
-                    _items.add({
-                      'type': newType!,
-                      'make': newMake!,
-                      'model': newModel!,
-                    });
-                  });
-                }
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
-            ),
-          ],
-        );
-      },
-    );
+    if (!_isDeleteMode && itemSelected != -1) {
+      bool? confirmDelete = await showConfirmDeleteDialog(context, _items[itemSelected]['model']);
+      if (confirmDelete == true) {
+        setState(() {
+          _items.removeAt(itemSelected);
+          decrementGunCounter();
+          itemSelected = -1;
+        });
+      } /* else do nothing*/
+    }
   }
+
   @override
   Widget build(BuildContext context) {
+    updateNumGuns();
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Armory'),
-      // ),
       backgroundColor: Colors.blue[50], // Setting background color
       body: GridView.builder(
         padding: const EdgeInsets.all(8.0),
@@ -131,13 +104,11 @@ class _ArmoryState extends State<Armory> {
         itemCount: _items.length,
         itemBuilder: (context, index) {
           return MouseRegion(
-            onEnter: (_) => _onHoverStart(index),
-            onExit: (_) => _onHoverEnd(),
             child: InkWell(
               splashColor: Color.fromARGB(255, 103, 158, 204),
-              onTap: () => _onItemTapped(_items[index]['model']),
+              onTap: () => _onItemTapped(_items[index]['model'], index),
               child: Card(
-                color: _hoverIndex == index ? Colors.blue : Color.fromARGB(255, 139, 177, 209),
+                color: Color.fromARGB(255, 139, 177, 209),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center, 
                   children: [  
@@ -155,12 +126,25 @@ class _ArmoryState extends State<Armory> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showAddGunDialog(context);
-        },
-        tooltip: 'Add Gun',
-        child: Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: _toggleDeleteMode,
+            tooltip: _isDeleteMode ? 'Cancel Delete' : 'Delete Guns',
+            backgroundColor: _isDeleteMode ? Colors.red : null,
+            child: Icon(Icons.delete),
+          ),
+          SizedBox(width: 16),
+          FloatingActionButton(
+            onPressed: () {
+              showAddGunDialog(context, _addItem, numGuns);
+              incrementGunCounter();
+            },
+            tooltip: 'Add Gun',
+            child: Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }

@@ -7,6 +7,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -38,7 +42,7 @@ class _MainPageState extends State<MainPage> {
           PageView(
             controller: _pageController,
             onPageChanged: _onPageChanged,
-            children: [
+            children: const [
               LandingPage(),
               Login(),
             ],
