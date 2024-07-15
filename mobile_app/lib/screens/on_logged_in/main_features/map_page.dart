@@ -91,6 +91,9 @@ final List<String> states = [
               }).toList(),
             ),
           ),
+          TextButton(onPressed: () => {Navigator.of(context).pushReplacement(MaterialPageRoute(
+
+                            builder: (context) => ReciprocityPage()))}, child: Text('Show Reciprocity')),
           Expanded(
             child: Container(
               //debug used to see space of expanded
