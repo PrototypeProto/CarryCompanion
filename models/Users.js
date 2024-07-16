@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 
-const UsersSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true,
     },
     password: {
         type: String,
@@ -21,12 +20,25 @@ const UsersSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
     },
     verification: {
         type: Boolean,
-        default: false,
+        required: true,
     },
+    arsenal: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Arsenal'
+        }
+    ],
+    ccPermit: {
+        type: Boolean,
+        required: false,
+    },
+    suppressorPermit: {
+        type: Boolean,
+        required: false,
+    }
 }, { collection: 'Users', versionKey: false });
 
-module.exports = mongoose.model('Users', UsersSchema);
+module.exports = mongoose.model('Users', UserSchema);
