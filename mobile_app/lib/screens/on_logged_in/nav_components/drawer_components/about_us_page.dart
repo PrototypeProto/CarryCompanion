@@ -41,7 +41,8 @@ class AboutUsScreen extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             return Card(
-              color: Color.fromARGB(255, 209, 172, 6), // Card color
+              // color: Color.fromARGB(255, 209, 172, 6), // Card color
+              color : Colors.orange.withOpacity(0.70),
               elevation: 4.0, // Card shadow
               child: Padding(
                 padding: const EdgeInsets.all(8.0), // Inner padding for card

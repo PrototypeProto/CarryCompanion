@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:gun/main.dart';
+import '../../../on_app_launch/validate_input.dart';
 
 void requestPasswordChange(
     String curPass, String newPass1, String newPass2, BuildContext context) {
   bool passwordChanged = false;
+  String? invalidPasswordMessage;
+
   /* TODO: Compare pass with JWT or smnthn
-          If true, passwordChanged=true AND update password */
+          If true, passwordChanged=true AND update password 
+          ELSE RETURN invalid password used*/
+  invalidPasswordMessage = isValidPasswordMessage(newPass1, newPass2);
+  if (newPass2.compareTo(newPass1) == 0) {
+    if (curPass.compareTo(newPass1) == 0) {
+      invalidPasswordMessage = 'Can not use your existing password as the new password';
+    } else {
+      invalidPasswordMessage == null ? passwordChanged = true : passwordChanged = false;
+    }
+  } else {
+    passwordChanged = false;
+  }
 
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Password Changed'),
+        title: Text((passwordChanged) ? 'Successfully Changed Password' : 'Failed to Change Password'),
         content: (passwordChanged)
             ? Text('Your password has been successfully changed.')
-            : Text('Invalid password. Try again.'),
+            : Text((invalidPasswordMessage == null) ? 'error' : invalidPasswordMessage),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -56,10 +70,6 @@ void verifyAccountDeletion(BuildContext context) {
     return;
   }
 }
-
-
-
-
 
 Future<bool?> requestAccountDeletion(BuildContext context) {
   return showDialog<bool>(

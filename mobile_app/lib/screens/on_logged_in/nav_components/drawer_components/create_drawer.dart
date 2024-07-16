@@ -41,7 +41,7 @@ class MyDrawer extends StatelessWidget {
               Scaffold.of(context).closeDrawer();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                MaterialPageRoute(builder: (context) => SettingsScreen()),
               );
             },
           ),

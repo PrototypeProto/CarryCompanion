@@ -14,8 +14,8 @@ class _LandingPageState extends State<LandingPage> {
   ];
 
   final List<String> imageTexts = [
-    'Introducing the carry map. \nSee where you can, can\'t or popssiply carry.',
-    'A simple armory to store your guns for ease of future lookups on carry laws.',
+    'The carry map. \nSee where you can, can\'t or possibly carry.',
+    'A tool for ease of future lookups on carry laws.',
   ];
 
   int _currentIndex = 0;
@@ -30,7 +30,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black.withOpacity(0.7), // Background color
+        color: Colors.black.withOpacity(0.85), // Background color
         child: Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(50, 0, 50, 0), // Adjusted padding
@@ -86,7 +86,7 @@ class _LandingPageState extends State<LandingPage> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.65),
+                      color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -101,6 +101,7 @@ class _LandingPageState extends State<LandingPage> {
           ),
         ),
       ),
+      
     );
   }
 }
