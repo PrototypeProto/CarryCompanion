@@ -31,6 +31,11 @@ class _ReciprocityPageState extends State<ReciprocityPage> {
       primaryValueMapper: (int index) => _mapData[index].state,
       dataLabelMapper: (int index) => '',
       shapeColorValueMapper: (int index) => _mapData[index].color,
+       shapeColorMappers: [
+        MapColorMapper(from: 0, to: 50, color: Colors.green, text: 'Permit Honored'),
+        MapColorMapper(from: 51, to: 100, color: Colors.yellow, text: 'Permit Honored w/ Restrictions'),
+        MapColorMapper(from: 101, to: 150, color: Colors.red, text: 'Permit not Honored'),
+      ],
     );
   }
 
@@ -62,8 +67,7 @@ final List<String> states = [
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Reciprocity Map'), backgroundColor: Colors.black,titleTextStyle: TextStyle(color: Colors.white, fontSize: 20), iconTheme: IconThemeData(color: Colors.white),),
-      body: Column(
+     body: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(20.0),
@@ -103,6 +107,7 @@ final List<String> states = [
                     layers: [
                       MapShapeLayer(
                         source: _shapeSource,
+                        legend: MapLegend(MapElement.shape,position: MapLegendPosition.bottom,title: Text('Permits Honored'),overflowMode: MapLegendOverflowMode.wrap,iconSize: Size(15.0, 15.0),),
                         showDataLabels: true,
                         strokeColor: Colors.white,
                         dataLabelSettings: MapDataLabelSettings(
@@ -132,7 +137,8 @@ final List<String> states = [
                 ),
               ),
             ),
-          )
+          ), 
+          SizedBox(height: 60,)
         ],
       ),
     );

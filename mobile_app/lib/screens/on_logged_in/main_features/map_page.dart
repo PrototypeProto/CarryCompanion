@@ -45,6 +45,13 @@ class _MapScreenState extends State<MapPage> {
       dataLabelMapper: (int index) =>
           (index == selectedIndex ? _mapData[index].stateCode : ''),
       shapeColorValueMapper: (int index) => _mapData[index].color,
+      shapeColorMappers: [
+  MapColorMapper(from: 0, to: 50, color: Color(0xFF0088D1), text: 'No Permit Required'),
+  MapColorMapper(from: 51, to: 100, color: Color(0xFF00245E), text: 'Permit Required'),
+  MapColorMapper(from: 101, to: 150, color: Color(0xFF922100), text: 'Rights Restricted'),
+  MapColorMapper(from: 151, to: 200, color: Color(0xFFF57F17), text: 'Discretionary Issue'),
+],
+
     );
   }
 
@@ -92,7 +99,6 @@ final List<String> states = [
               }).toList(),
             ),
           ),
-          TextButton(onPressed: () => {Navigator.of(context).push(MaterialPageRoute( builder: (context) => ReciprocityPage())),}, child: Text('Show Reciprocity')),
           Expanded(
             child: Container(
               //debug used to see space of expanded
@@ -108,6 +114,7 @@ final List<String> states = [
                     layers: [
                       MapShapeLayer(
                         source: _shapeSource,
+                        legend: MapLegend(MapElement.shape,position: MapLegendPosition.bottom,title: Text('Right To Conceal Carry Laws'),overflowMode: MapLegendOverflowMode.wrap,iconSize: Size(15.0, 15.0),),
                         showDataLabels: true,
                         strokeColor: Colors.white,
                         dataLabelSettings: MapDataLabelSettings(
@@ -139,7 +146,8 @@ final List<String> states = [
                 ),
               ),
             ),
-          )
+          ),
+          SizedBox(height: 60,) //used for whitespace to display the button
         ],
       ),
     );
@@ -196,10 +204,10 @@ class CustomDialogWidget extends StatelessWidget {
 List<MapModel> _getMapData() {
   // first is NAME from json, then 2nd is name displayed on the map
   //need variables here for colors so we can change them
-  const noPermitRequired = Color(0xFF388E3C); // Green
-  const permitRequired = Color(0xFF0D47A1); // Blue
-  const rightsRestricted = Color(0xFFD32F2F); // Red
-  const discretionaryIssue = Color(0xFFF57F17); // Yellow
+  const noPermitRequired = Color(0xFF0088D1); 
+  const permitRequired = Color(0xFF00245E); 
+  const rightsRestricted = Color(0xFF922100); 
+  const discretionaryIssue = Color(0xFFF57F17); 
   return <MapModel>[
     MapModel('Alabama', 'AL', permitRequired),
     MapModel('Alaska', 'AK', noPermitRequired),
