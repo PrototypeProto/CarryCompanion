@@ -23,20 +23,6 @@ class _ReciprocityPageState extends State<ReciprocityPage> {
     _updateShapeSource();
   }
 
-  void _updateSelectedIndex(int index) {
-    setState(() {
-      if (selectedIndex != -1) {
-        _mapData[selectedIndex].color =
-            Colors.red; // TODO make this a variable for filtering
-      }
-      selectedIndex = index;
-      _mapData[selectedIndex].color =
-          Colors.grey.shade300; // Set color of newly selected index
-      _updateShapeSource();
-      dropdownValue = states[selectedIndex+1];
-    });
-  }
-
   void _updateShapeSource() {
     _shapeSource = MapShapeSource.asset(
       "assets/usa.json",
@@ -48,10 +34,16 @@ class _ReciprocityPageState extends State<ReciprocityPage> {
     );
   }
 
+void _updateSelectedIndex(int index) {
+    setState(() {
+      selectedIndex = index;
+      dropdownValue = states[selectedIndex+1];
+    });
+  }
 
 
 final List<String> states = [
-    "Select a State", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
+    "Select a Permit State", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
     "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
     "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", 
     "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", 
@@ -64,12 +56,13 @@ final List<String> states = [
   ];
 
 //TODO this is only so it is 'invalid' index aka none selected
-  String dropdownValue = "Select a State";
+  String dropdownValue = "Select a Permit State";
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Reciprocity Map'), backgroundColor: Colors.black,titleTextStyle: TextStyle(color: Colors.white, fontSize: 20), iconTheme: IconThemeData(color: Colors.white),),
       body: Column(
         children: <Widget>[
           Padding(
@@ -122,8 +115,10 @@ final List<String> states = [
                         selectedIndex: selectedIndex,
                         onSelectionChanged: (int index) {
                           _updateSelectedIndex(index);
+                          print('SelectedIndex : $selectedIndex');
+                          dropdownValue = states[index+1];
+                          _applyPermitFilter();
                           _updateShapeSource();
-                         //TODO filtering logic probably goes here
                         },
                         selectionSettings: MapSelectionSettings(
                             // TODO what can I do with this??
@@ -164,61 +159,58 @@ final List<String> states = [
 List<MapModel> _getMapData() {
   // first is NAME from json, then 2nd is name displayed on the map
   //need variables here for colors so we can change them
-  const noPermitRequired = Color(0xFF388E3C); // Green
-  const permitRequired = Color(0xFF0D47A1); // Blue
-  const rightsRestricted = Color(0xFFD32F2F); // Red
-  const discretionaryIssue = Color(0xFFF57F17); // Yellow
+
   return <MapModel>[
-    MapModel('Alabama', 'AL', permitRequired),
-    MapModel('Alaska', 'AK', noPermitRequired),
-    MapModel('Arizona', 'AZ', noPermitRequired),
-    MapModel('Arkansas', 'AR', noPermitRequired),
-    MapModel('California', 'CA', rightsRestricted),
-    MapModel('Colorado', 'CO', permitRequired),
-    MapModel('Connecticut', 'CT', discretionaryIssue),
-    MapModel('Delaware', 'DE', rightsRestricted),
-    MapModel('Florida', 'FL', permitRequired),
-    MapModel('Georgia', 'GA', noPermitRequired),
-    MapModel('Hawaii', 'HI', rightsRestricted),
-    MapModel('Idaho', 'ID', noPermitRequired),
-    MapModel('Illinois', 'IL', permitRequired),
-    MapModel('Indiana', 'IN', permitRequired),
-    MapModel('Iowa', 'IA', noPermitRequired),
-    MapModel('Kansas', 'KS', noPermitRequired),
-    MapModel('Kentucky', 'KY', noPermitRequired),
-    MapModel('Louisiana', 'LA', permitRequired),
-    MapModel('Maine', 'ME', noPermitRequired),
-    MapModel('Maryland', 'MD', rightsRestricted),
-    MapModel('Massachusetts', 'MA', rightsRestricted),
-    MapModel('Michigan', 'MI', permitRequired),
-    MapModel('Minnesota', 'MN', permitRequired),
-    MapModel('Mississippi', 'MS', noPermitRequired),
-    MapModel('Missouri', 'MO', noPermitRequired),
-    MapModel('Montana', 'MT', noPermitRequired),
-    MapModel('Nebraska', 'NE', permitRequired),
-    MapModel('Nevada', 'NV', permitRequired),
-    MapModel('New Hampshire', 'NH', noPermitRequired),
-    MapModel('New Jersey', 'NJ', rightsRestricted),
-    MapModel('New Mexico', 'NM', permitRequired),
-    MapModel('New York', 'NY', rightsRestricted),
-    MapModel('North Carolina', 'NC', permitRequired),
-    MapModel('North Dakota', 'ND', noPermitRequired),
-    MapModel('Ohio', 'OH', permitRequired),
-    MapModel('Oklahoma', 'OK', noPermitRequired),
-    MapModel('Oregon', 'OR', permitRequired),
-    MapModel('Pennsylvania', 'PA', permitRequired),
-    MapModel('Rhode Island', 'RI', rightsRestricted),
-    MapModel('South Carolina', 'SC', permitRequired),
-    MapModel('South Dakota', 'SD', noPermitRequired),
-    MapModel('Tennessee', 'TN', noPermitRequired),
-    MapModel('Texas', 'TX', noPermitRequired),
-    MapModel('Utah', 'UT', noPermitRequired),
-    MapModel('Vermont', 'VT', noPermitRequired),
-    MapModel('Virginia', 'VA', permitRequired),
-    MapModel('Washington', 'WA', permitRequired),
-    MapModel('West Virginia', 'WV', noPermitRequired),
-    MapModel('Wisconsin', 'WI', permitRequired),
-    MapModel('Wyoming', 'WY', noPermitRequired)
+    MapModel('Alabama', 'AL', Colors.grey),
+    MapModel('Alaska', 'AK', Colors.grey),
+    MapModel('Arizona', 'AZ', Colors.grey),
+    MapModel('Arkansas', 'AR', Colors.grey),
+    MapModel('California', 'CA', Colors.grey),
+    MapModel('Colorado', 'CO', Colors.grey),
+    MapModel('Connecticut', 'CT', Colors.grey),
+    MapModel('Delaware', 'DE', Colors.grey),
+    MapModel('Florida', 'FL', Colors.grey),
+    MapModel('Georgia', 'GA', Colors.grey),
+    MapModel('Hawaii', 'HI', Colors.grey),
+    MapModel('Idaho', 'ID', Colors.grey),
+    MapModel('Illinois', 'IL', Colors.grey),
+    MapModel('Indiana', 'IN', Colors.grey),
+    MapModel('Iowa', 'IA', Colors.grey),
+    MapModel('Kansas', 'KS', Colors.grey),
+    MapModel('Kentucky', 'KY', Colors.grey),
+    MapModel('Louisiana', 'LA', Colors.grey),
+    MapModel('Maine', 'ME', Colors.grey),
+    MapModel('Maryland', 'MD', Colors.grey),
+    MapModel('Massachusetts', 'MA', Colors.grey),
+    MapModel('Michigan', 'MI', Colors.grey),
+    MapModel('Minnesota', 'MN', Colors.grey),
+    MapModel('Mississippi', 'MS', Colors.grey),
+    MapModel('Missouri', 'MO', Colors.grey),
+    MapModel('Montana', 'MT', Colors.grey),
+    MapModel('Nebraska', 'NE', Colors.grey),
+    MapModel('Nevada', 'NV', Colors.grey),
+    MapModel('New Hampshire', 'NH', Colors.grey),
+    MapModel('New Jersey', 'NJ', Colors.grey),
+    MapModel('New Mexico', 'NM', Colors.grey),
+    MapModel('New York', 'NY', Colors.grey),
+    MapModel('North Carolina', 'NC', Colors.grey),
+    MapModel('North Dakota', 'ND', Colors.grey),
+    MapModel('Ohio', 'OH', Colors.grey),
+    MapModel('Oklahoma', 'OK', Colors.grey),
+    MapModel('Oregon', 'OR', Colors.grey),
+    MapModel('Pennsylvania', 'PA', Colors.grey),
+    MapModel('Rhode Island', 'RI', Colors.grey),
+    MapModel('South Carolina', 'SC', Colors.grey),
+    MapModel('South Dakota', 'SD', Colors.grey),
+    MapModel('Tennessee', 'TN', Colors.grey),
+    MapModel('Texas', 'TX', Colors.grey),
+    MapModel('Utah', 'UT', Colors.grey),
+    MapModel('Vermont', 'VT', Colors.grey),
+    MapModel('Virginia', 'VA', Colors.grey),
+    MapModel('Washington', 'WA', Colors.grey),
+    MapModel('West Virginia', 'WV', Colors.grey),
+    MapModel('Wisconsin', 'WI', Colors.grey),
+    MapModel('Wyoming', 'WY', Colors.grey)
   ];
 }
 
