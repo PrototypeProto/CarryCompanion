@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
 
-function Login() {
+function Login()
+{
     var loginName;
     var loginPassword;
-    const [message, setMessage] = useState('');
+    const [message,setMessage] = useState('');
 
-    const app_name = 'carry-companion';
-
-    function buildPath(route) {
-        if (process.env.NODE_ENV === 'production') {
+    const app_name = 'carry-companion-02c287317f3a'
+    function buildPath(route)
+    {
+        if (process.env.NODE_ENV === 'production')
+        {
             return 'https://' + app_name + '.herokuapp.com/' + route;
-        } else {
+        }
+        else
+        {
             return 'http://localhost:5000/' + route;
         }
     }
 
-    const doLogin = async (event) => {
+    const doLogin = async event =>
+    {
         event.preventDefault();
-        var obj = { username: loginName.value, password: loginPassword.value }; // Ensure the field names match what the backend expects
+        var obj = {username:loginName.value,password:loginPassword.value};
         var js = JSON.stringify(obj);
-
-        try {
+        
+        try 
+        {
             const response = await fetch(buildPath('api/login'), {
                 method: 'POST',
                 body: js,
@@ -52,8 +58,37 @@ function Login() {
             console.error('Error during login:', e);
             setMessage('An error occurred during login.');
         }
+        
+        // try
+        // {
+        //     // const response = await fetch('http://localhost:5000/api/login',
+        //     const response = await fetch(buildPath("api/login"), 
+        //         {method:'POST',body:js,headers:{'Content-Type':'application/json'}});
+        
+        //     var res = JSON.parse(await response.text());
+
+           
+
+        //     // if( res.id <= 0 )
+        //     // {
+        //     //     setMessage('User/Password combination incorrect');
+        //     // }
+        //     // else
+        //     // {
+        //     //     var user =
+        //     //     {firstName:res.firstName,lastName:res.lastName,id:res.id}
+        //     //     localStorage.setItem('user_data', JSON.stringify(user));
+        //     //     setMessage('');
+        //     //     window.location.href = '/Home';
+        //     // }
+        // }
+        // catch(e)
+        // {
+        //     alert(e.toString());
+        //     return;
+        // }
     };
-    
+
     return(
         // <div className="border border-solid border-indigo-600 flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="bg-white-800 border-0 border-solid border-red-800 justify-items-center">
