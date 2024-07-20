@@ -15,7 +15,7 @@ router.post('/armory', verifyToken, async (req, res) => {
         // Add weapon to user's arsenal array
         await Users.findByIdAndUpdate(req.userId, { $push: { arsenal: weapon._id } });
 
-        res.status(201).json({ message: 'Weapon added', weapon });
+        res.status(200).json({ message: 'Weapon added', weapon });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
     }
