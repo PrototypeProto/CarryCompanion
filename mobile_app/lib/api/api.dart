@@ -48,7 +48,8 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> resetEmail(Map<String, dynamic> emailData) async {
+  Future<Map<String, dynamic>> resetEmail(
+      Map<String, dynamic> emailData) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/reset-email'),
       headers: {'Content-Type': 'application/json'},
@@ -75,10 +76,14 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> resetPassword(Map<String, dynamic> passwordData) async {
+  Future<Map<String, dynamic>> resetPassword(
+      Map<String, dynamic> passwordData, String token) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/reset-password'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: jsonEncode(passwordData),
     );
 
@@ -89,10 +94,14 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> addWeapon(Map<String, dynamic> weaponData) async {
+  Future<Map<String, dynamic>> addWeapon(
+      Map<String, dynamic> weaponData, String token) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/armory'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: jsonEncode(weaponData),
     );
 
@@ -103,10 +112,14 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> editWeapon(String id, Map<String, dynamic> weaponData) async {
+  Future<Map<String, dynamic>> editWeapon(
+      String id, Map<String, dynamic> weaponData, String token) async {
     final response = await http.put(
       Uri.parse('$baseUrl/api/mobile/armory/$id'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: jsonEncode(weaponData),
     );
 
@@ -117,10 +130,13 @@ class ApiService {
     }
   }
 
-  Future<void> deleteWeapon(String id) async {
+  Future<void> deleteWeapon(String id, String token) async {
     final response = await http.delete(
       Uri.parse('$baseUrl/api/mobile/armory/$id'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
     );
 
     if (response.statusCode != 200) {
@@ -128,10 +144,13 @@ class ApiService {
     }
   }
 
-  Future<List<dynamic>> searchWeapons(String query) async {
+  Future<List<dynamic>> searchWeapons(String query, String token) async {
     final response = await http.get(
       Uri.parse('$baseUrl/api/mobile/armory/search?query=$query'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
     );
 
     if (response.statusCode == 200) {
@@ -141,10 +160,14 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> editFirstName(Map<String, dynamic> firstNameData) async {
+  Future<Map<String, dynamic>> editFirstName(
+      Map<String, dynamic> firstNameData, String token) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/edit/firstName'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: jsonEncode(firstNameData),
     );
 
@@ -155,10 +178,14 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> editLastName(Map<String, dynamic> lastNameData) async {
+  Future<Map<String, dynamic>> editLastName(
+      Map<String, dynamic> lastNameData, String token) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/edit/lastName'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: jsonEncode(lastNameData),
     );
 
@@ -169,10 +196,14 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> editProfilePicture(Map<String, dynamic> profilePictureData) async {
+  Future<Map<String, dynamic>> editProfilePicture(
+      Map<String, dynamic> profilePictureData, String token) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/edit/profilePicture'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: jsonEncode(profilePictureData),
     );
 
