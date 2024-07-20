@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/* responsible for opening drawer / creates button to open drawer*/
 class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PageAppBar({required this.title, super.key});
   final String title;
@@ -17,6 +16,17 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
       title: Text(title),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: Image.asset(
+            'assets/bear.png', 
+            width: 45, 
+            height: 45, 
+            fit: BoxFit.contain, 
+          ),
+        ),
+      ],
     );
   }
 
