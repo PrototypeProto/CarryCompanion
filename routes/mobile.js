@@ -1,3 +1,4 @@
+// routes/mobile.js
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -32,7 +33,7 @@ router.post('/mobile/login', (req, res) => {
     forwardRequest(req, res, 'login');
 });
 
-// Forward password reset requests
+// Forward forgot password requests
 router.post('/mobile/request-password-reset', (req, res) => {
     forwardRequest(req, res, 'request-password-reset');
 });
@@ -50,6 +51,36 @@ router.get('/mobile/verify-email', (req, res) => {
 // Forward password reset form submission
 router.post('/mobile/reset-password', (req, res) => {
     forwardRequest(req, res, 'reset-password');
+});
+
+// Forward armory CRUD operations
+router.post('/mobile/armory', (req, res) => {
+    forwardRequest(req, res, 'armory');
+});
+
+router.put('/mobile/armory/:id', (req, res) => {
+    forwardRequest(req, res, `armory/${req.params.id}`);
+});
+
+router.delete('/mobile/armory/:id', (req, res) => {
+    forwardRequest(req, res, `armory/${req.params.id}`);
+});
+
+router.get('/mobile/armory/search', (req, res) => {
+    forwardRequest(req, res, 'armory/search');
+});
+
+// Forward edit requests
+router.post('/mobile/edit/firstName', (req, res) => {
+    forwardRequest(req, res, 'edit/firstName');
+});
+
+router.post('/mobile/edit/lastName', (req, res) => {
+    forwardRequest(req, res, 'edit/lastName');
+});
+
+router.post('/mobile/edit/profilePicture', (req, res) => {
+    forwardRequest(req, res, 'edit/profilePicture');
 });
 
 module.exports = router;
