@@ -1,16 +1,20 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
-const resetRoutes = require('./routes/reset');
-const verificationRoutes = require('./routes/verification');
+const forgotPasswordRoutes = require('./routes/forgotPassword');
+const resetPasswordRoutes = require('./routes/resetPassword');
+const resetEmailRoutes = require('./routes/resetEmail');
+const armoryRoutes = require('./routes/armory');
+const editRoutes = require('./routes/edit');
 const mobileRoutes = require('./routes/mobile');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect('mongodb+srv://geno:chungus@cluster0.8xrrp47.mongodb.net/Team9LargeProject?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => {
     console.log('MongoDB connected');
 }).catch(err => {
@@ -22,8 +26,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', signupRoutes);
 app.use('/api', loginRoutes);
-app.use('/api', resetRoutes);
-app.use('/api', verificationRoutes);
+app.use('/api', forgotPasswordRoutes);
+app.use('/api', resetPasswordRoutes);
+app.use('/api', resetEmailRoutes);
+app.use('/api', armoryRoutes);
+app.use('/api', editRoutes);
 app.use('/api', mobileRoutes);
 
 app.listen(PORT, () => {

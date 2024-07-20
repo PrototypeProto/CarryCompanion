@@ -1,36 +1,20 @@
+// routes/edit.js
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
-const JWT_SECRET = 'bazinga'; // Replace with your JWT secret
+const { verifyToken } = require('../services/verifyToken');
 
-// Middleware to verify JWT token
-const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
-    if (!token) return res.status(403).json({ message: 'No token provided' });
-
-    const tokenParts = token.split(' ');
-    if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
-        return res.status(401).json({ message: 'Token format is invalid' });
-    }
-
-    jwt.verify(tokenParts[1], JWT_SECRET, (err, decoded) => {
-        if (err) return res.status(500).json({ message: 'Failed to authenticate token' });
-        req.userId = decoded.id;
-        next();
-    });
-};
-
+// Change first name
 router.post('/edit/firstName', verifyToken, async (req, res) => {
     console.log('firstName change request body:', req.body);
 
     const { firstName } = req.body;
 
     try {
-        const user = await Users.findOne({ _id : req.userId });
+        const user = await Users.findOne({ _id: req.userId });
 
         if (!user) {
-            console.log('Invalid token:', token);
+            console.log('Invalid token:', req.headers['authorization']);
             return res.status(400).json({ message: 'Invalid token' });
         }
 
@@ -40,7 +24,7 @@ router.post('/edit/firstName', verifyToken, async (req, res) => {
 
         return res.status(200).json({
             message: 'firstName change successful',
-            user: { 
+            user: {
                 id: user._id,
                 username: user.username,
                 email: user.email,
@@ -55,16 +39,17 @@ router.post('/edit/firstName', verifyToken, async (req, res) => {
     }
 });
 
+// Change last name
 router.post('/edit/lastName', verifyToken, async (req, res) => {
     console.log('lastName change request body:', req.body);
 
     const { lastName } = req.body;
 
     try {
-        const user = await Users.findOne({ _id : req.userId  });
+        const user = await Users.findOne({ _id: req.userId });
 
         if (!user) {
-            console.log('Invalid token:', token);
+            console.log('Invalid token:', req.headers['authorization']);
             return res.status(400).json({ message: 'Invalid token' });
         }
 
@@ -74,7 +59,7 @@ router.post('/edit/lastName', verifyToken, async (req, res) => {
 
         return res.status(200).json({
             message: 'lastName change successful',
-            user: { 
+            user: {
                 id: user._id,
                 username: user.username,
                 email: user.email,
@@ -89,24 +74,25 @@ router.post('/edit/lastName', verifyToken, async (req, res) => {
     }
 });
 
+// Change profile picture
 router.post('/edit/profilePicture', verifyToken, async (req, res) => {
     console.log('profilePicture change request body:', req.body);
-    
+
     const { profilePicture } = req.body;
 
     try {
-        const user = await Users.findOne({ _id : req.userId  });
+        const user = await Users.findOne({ _id: req.userId });
         if (!user) {
             return res.status(400).json({ message: 'An error occurred in verifying the current user' });
         }
 
         user.profilePicture = profilePicture;
         await user.save();
-        console.log('User profilePicture changed to %d', profilePicture);
+        console.log('User profile picture changed to %s', profilePicture);
 
         return res.status(200).json({
             message: 'profilePicture change successful',
-            user: { 
+            user: {
                 id: user._id,
                 username: user.username,
                 email: user.email,
