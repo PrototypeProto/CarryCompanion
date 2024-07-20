@@ -40,7 +40,6 @@ const UserSchema = new mongoose.Schema({
         required: false,
     },
     profilePicture: {
-        //Int representing the index of the profile picture the user chose
         type: Number,
         required: false,
     }
