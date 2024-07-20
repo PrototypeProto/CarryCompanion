@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gun/screens/on_app_launch/reset_password.dart';
 import '../../api/mongo.dart';
 import '../on_logged_in/nav_components/nav_bar_components/create_nav_bar.dart';
 import 'signup.dart';
@@ -93,7 +94,12 @@ class _LoginState extends State<Login> {
                           foregroundColor: Colors.black,
                         ),
                         onPressed: () {
-                          // Handle forgot password functionality
+                          Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ForgotPassword(),
+                                    ),
+                                  );
                         },
                         child: const Text('Forgot Password?'),
                       ),

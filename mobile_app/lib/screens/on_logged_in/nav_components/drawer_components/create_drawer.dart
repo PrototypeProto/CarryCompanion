@@ -35,64 +35,78 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          UserAccountsDrawerHeader(
-            accountName: Text(_username),
-            accountEmail: Text(_email),
-            currentAccountPicture: const CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Icon(Icons.person),
+      child: Container(
+        color: Colors.grey[300], // Set drawer background color
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                _username,
+                style: TextStyle(color: Colors.white), // Text color
+              ),
+              accountEmail: Text(
+                _email,
+                style: TextStyle(color: Colors.white), // Text color
+              ),
+              currentAccountPicture: const CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.person, color: Colors.black), // Icon color
+              ),
+              decoration: BoxDecoration(
+                color: Colors.black, // Drawer header background color
+              ),
             ),
-            decoration: const BoxDecoration(
-              color: Colors.red,
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.logout, color: Colors.black),
+                    title: const Text('Logout', style: TextStyle(color: Colors.black)),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => MyApp()));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.settings, color: Colors.black),
+                    title: const Text('Settings', style: TextStyle(color: Colors.black)),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SettingsScreen()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.person_sharp, color: Colors.black),
+                    title: const Text('My Account', style: TextStyle(color: Colors.black)),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AccountScreen()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.public, color: Colors.black),
+                    title: const Text('About Us', style: TextStyle(color: Colors.black)),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AboutUsScreen()),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          ListTile(
-            /* TODO: Implement Logout feature correctly, including removing relevant auth tokens */
-            leading: Icon(Icons.logout),
-            title: const Text('Logout'),
-            onTap: () {
-              Scaffold.of(context).closeDrawer();
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => MyApp()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              Scaffold.of(context).closeDrawer();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SettingsScreen()),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.person_sharp),
-            title: const Text('My Account'),
-            onTap: () {
-              Scaffold.of(context).closeDrawer();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AccountScreen()),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.public),
-            title: const Text('About Us'),
-            onTap: () {
-              Scaffold.of(context).closeDrawer();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AboutUsScreen()),
-              );
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

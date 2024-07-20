@@ -100,7 +100,7 @@ final List<String> states = [
                 //most likely map objects are not movable hence more maps
                 child: SfMapsTheme(
                   data: SfMapsThemeData(
-                    selectionColor: Colors.grey,
+                    selectionColor: Colors.grey[50],
                     selectionStrokeWidth: 1,
                     selectionStrokeColor: Colors.white,
                   ),
@@ -110,7 +110,7 @@ final List<String> states = [
                         source: _shapeSource,
                         legend: MapLegend(MapElement.shape,position: MapLegendPosition.bottom,title: Text('Permits Honored'),overflowMode: MapLegendOverflowMode.wrap,iconSize: Size(15.0, 15.0),),
                         showDataLabels: true,
-                        strokeColor: Colors.white,
+                        strokeColor: Colors.grey[300],
                         dataLabelSettings: MapDataLabelSettings(
                           textStyle: TextStyle(
                             color: Colors.black,

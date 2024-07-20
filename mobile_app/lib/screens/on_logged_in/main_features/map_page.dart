@@ -29,7 +29,7 @@ class _MapScreenState extends State<MapPage> {
       }
       selectedIndex = index;
       _mapData[selectedIndex].color =
-          Colors.grey.shade300; // Set color of newly selected index
+          Colors.grey.shade50; // Set color of newly selected index
       _updateShapeSource();
       dropdownValue = states[selectedIndex+1];
     });
@@ -89,6 +89,12 @@ final List<String> states = [
                   dropdownValue = newValue!;
                   selectedIndex = states.indexOf(newValue)-1;
                   _updateShapeSource();
+                  _updateSelectedIndex(selectedIndex);
+                  showDialog(
+                            context: context,
+                            builder: (context) =>
+                                CustomDialogWidget(index: selectedIndex),
+                          );
                 });
               },
               items: states.map<DropdownMenuItem<String>>((String value) {
@@ -106,7 +112,7 @@ final List<String> states = [
                 padding: EdgeInsets.fromLTRB(10, 50, 0, 0),
                 child: SfMapsTheme(
                   data: SfMapsThemeData(
-                    selectionColor: Colors.grey,
+                    selectionColor: Colors.green[50],
                     selectionStrokeWidth: 1,
                     selectionStrokeColor: Colors.white,
                   ),
@@ -116,7 +122,7 @@ final List<String> states = [
                         source: _shapeSource,
                         legend: MapLegend(MapElement.shape,position: MapLegendPosition.bottom,title: Text('Right To Conceal Carry Laws'),overflowMode: MapLegendOverflowMode.wrap,iconSize: Size(15.0, 15.0),),
                         showDataLabels: true,
-                        strokeColor: Colors.white,
+                        strokeColor: Colors.grey[300],
                         dataLabelSettings: MapDataLabelSettings(
                           textStyle: TextStyle(
                             color: Colors.black,
