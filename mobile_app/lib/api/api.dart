@@ -1,121 +1,144 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-
-/* TODO: To be fixed soon */
 class ApiService {
-  final String _baseUrl = 'http://localhost:5000/api';
+  final String baseUrl;
 
-  Future<Map<String, dynamic>> signup(String username, String password, String firstName, String lastName, String email) async {
+  ApiService({required this.baseUrl});
+
+  Future<Map<String, dynamic>> signup(Map<String, dynamic> userData) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/signup'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'username': username,
-        'password': password,
-        'firstName': firstName,
-        'lastName': lastName,
-        'email': email,
-      }),
+      Uri.parse('$baseUrl/mobile/signup'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(userData),
     );
 
     if (response.statusCode == 200) {
-      return {'success': true, 'data': jsonDecode(response.body)};
+      return jsonDecode(response.body);
     } else {
-      return {'success': false, 'message': jsonDecode(response.body)['message']};
+      throw Exception('Failed to signup: ${response.body}');
     }
   }
 
-  Future<Map<String, dynamic>> login(String username, String password) async {
+  Future<Map<String, dynamic>> login(Map<String, dynamic> credentials) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/login'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'username': username,
-        'password': password,
-      }),
+      Uri.parse('$baseUrl/mobile/login'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(credentials),
     );
 
     if (response.statusCode == 200) {
-      return {'success': true, 'data': jsonDecode(response.body)};
+      return jsonDecode(response.body);
     } else {
-      return {'success': false, 'message': jsonDecode(response.body)['message']};
+      throw Exception('Failed to login: ${response.body}');
     }
   }
 
   Future<Map<String, dynamic>> requestPasswordReset(String email) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/request-password-reset'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'email': email,
-      }),
+      Uri.parse('$baseUrl/mobile/request-password-reset'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'email': email}),
     );
 
     if (response.statusCode == 200) {
-      return {'success': true, 'data': jsonDecode(response.body)};
+      return jsonDecode(response.body);
     } else {
-      return {'success': false, 'message': jsonDecode(response.body)['message']};
+      throw Exception('Failed to request password reset: ${response.body}');
     }
   }
 
-  Future<Map<String, dynamic>> resetPassword(String token, String newPassword) async {
+  Future<Map<String, dynamic>> resetEmail(Map<String, dynamic> emailData) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/reset-password'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'token': token,
-        'newPassword': newPassword,
-      }),
+      Uri.parse('$baseUrl/mobile/reset-email'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(emailData),
     );
 
     if (response.statusCode == 200) {
-      return {'success': true, 'data': jsonDecode(response.body)};
+      return jsonDecode(response.body);
     } else {
-      return {'success': false, 'message': jsonDecode(response.body)['message']};
-    }
-  }
-
-  Future<Map<String, dynamic>> resetEmail(String username, String password, String newEmail) async {
-    final response = await http.post(
-      Uri.parse('$_baseUrl/reset-email'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'username': username,
-        'password': password,
-        'newEmail': newEmail,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      return {'success': true, 'data': jsonDecode(response.body)};
-    } else {
-      return {'success': false, 'message': jsonDecode(response.body)['message']};
+      throw Exception('Failed to reset email: ${response.body}');
     }
   }
 
   Future<Map<String, dynamic>> verifyEmail(String token) async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/verify-email?token=$token'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      Uri.parse('$baseUrl/mobile/verify-email?token=$token'),
+      headers: {'Content-Type': 'application/json'},
     );
 
     if (response.statusCode == 200) {
-      return {'success': true, 'data': jsonDecode(response.body)};
+      return jsonDecode(response.body);
     } else {
-      return {'success': false, 'message': jsonDecode(response.body)['message']};
+      throw Exception('Failed to verify email: ${response.body}');
+    }
+  }
+
+  Future<Map<String, dynamic>> resetPassword(Map<String, dynamic> passwordData) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/mobile/reset-password'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(passwordData),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to reset password: ${response.body}');
+    }
+  }
+
+  // Add methods for armory CRUD operations similarly
+  Future<Map<String, dynamic>> addWeapon(Map<String, dynamic> weaponData) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/mobile/armory'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(weaponData),
+    );
+
+    if (response.statusCode == 201) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to add weapon: ${response.body}');
+    }
+  }
+
+  Future<Map<String, dynamic>> editWeapon(String id, Map<String, dynamic> weaponData) async {
+    final response = await http.put(
+      Uri.parse('$baseUrl/mobile/armory/$id'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(weaponData),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to edit weapon: ${response.body}');
+    }
+  }
+
+  Future<void> deleteWeapon(String id) async {
+    final response = await http.delete(
+      Uri.parse('$baseUrl/mobile/armory/$id'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete weapon: ${response.body}');
+    }
+  }
+
+  Future<List<dynamic>> searchWeapons(String query) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/mobile/armory/search?query=$query'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to search weapons: ${response.body}');
     }
   }
 }
