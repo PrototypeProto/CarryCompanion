@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'close_app_bar.dart';
 import 'settings_page_functions.dart';
 import '../../../on_app_launch/validate_input.dart';
+import '../../../../api/persist.dart';
+
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,6 +16,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
   TextEditingController currentPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmNewPasswordController = TextEditingController();
+
+  String _password = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPersistentData();
+  }
+
+  Future<void> _loadPersistentData() async {
+    final PreferencesHelper prefsHelper = PreferencesHelper();
+    final password = await prefsHelper.retrievePassword();
+    setState(() {
+      _password = password ?? '';
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +103,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ElevatedButton(
                     onPressed: () {
                       requestPasswordChange(
+                        _password,
                         currentPasswordController.text,
                         newPasswordController.text,
                         confirmNewPasswordController.text,
                         context,
-                      );
+                      ); _loadPersistentData();
                     },
                     child: Text('Change My Password'),
                   ),

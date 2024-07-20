@@ -3,9 +3,34 @@ import 'package:gun/main.dart';
 import 'about_us_page.dart';
 import 'account_page.dart';
 import 'settings_page.dart';
+import '../../../../api/persist.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
+
+  @override
+  _MyDrawerState createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  String _username = '';
+  String _email = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPersistentData();
+  }
+
+  Future<void> _loadPersistentData() async {
+    final PreferencesHelper prefsHelper = PreferencesHelper();
+    final username = await prefsHelper.retrieveUsername();
+    final email = await prefsHelper.retrieveEmail();
+    setState(() {
+      _username = username ?? '';
+      _email = email ?? '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +39,13 @@ class MyDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: const Text("John Doe"),
-            accountEmail: const Text("john.doe@example.com"),
+            accountName: Text(_username),
+            accountEmail: Text(_email),
             currentAccountPicture: const CircleAvatar(
               backgroundColor: Colors.white,
               child: Icon(Icons.person),
             ),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.red,
             ),
           ),
@@ -30,8 +55,8 @@ class MyDrawer extends StatelessWidget {
             title: const Text('Logout'),
             onTap: () {
               Scaffold.of(context).closeDrawer();
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => MyApp()));
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => MyApp()));
             },
           ),
           ListTile(

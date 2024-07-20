@@ -20,13 +20,14 @@ class _LoginState extends State<Login> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              SizedBox(height: screenHeight * 0.125),
+              Image.asset('assets/bear.png',width: 185, height:185),
+             // SizedBox(height: screenHeight * 0.125),
               Form(
                 key: _formKey,
                 child: Column(
@@ -42,10 +43,10 @@ class _LoginState extends State<Login> {
                           hintText: 'Username',
                           filled: true,
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black, width: 1),
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red, width: 1))),
+                              borderSide: BorderSide(color: Colors.red))),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your username';
@@ -60,10 +61,10 @@ class _LoginState extends State<Login> {
                           hintText: 'Password',
                           filled: true,
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black, width: 1),
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red, width: 1))),
+                              borderSide: BorderSide(color: Colors.red))),
                       obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -71,6 +72,18 @@ class _LoginState extends State<Login> {
                         }
                         return null;
                       },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                        ),
+                        onPressed: () {
+                          // Handle forgot password functionality
+                        },
+                        child: const Text('Forgot Password?'),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     SizedBox(
