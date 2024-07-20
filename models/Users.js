@@ -38,6 +38,11 @@ const UserSchema = new mongoose.Schema({
     suppressorPermit: {
         type: Boolean,
         required: false,
+    },
+    profilePicture: {
+        //Int representing the index of the profile picture the user chose
+        type: Number,
+        required: false,
     }
 }, { collection: 'Users', versionKey: false });
 
