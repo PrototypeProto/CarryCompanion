@@ -8,7 +8,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> signup(Map<String, dynamic> userData) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/mobile/signup'),
+      Uri.parse('$baseUrl/api/mobile/signup'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(userData),
     );
@@ -22,7 +22,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> login(Map<String, dynamic> credentials) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/mobile/login'),
+      Uri.parse('$baseUrl/api/mobile/login'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(credentials),
     );
@@ -36,7 +36,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> requestPasswordReset(String email) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/mobile/request-password-reset'),
+      Uri.parse('$baseUrl/api/mobile/request-password-reset'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'email': email}),
     );
@@ -50,7 +50,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> resetEmail(Map<String, dynamic> emailData) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/mobile/reset-email'),
+      Uri.parse('$baseUrl/api/mobile/reset-email'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(emailData),
     );
@@ -64,7 +64,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> verifyEmail(String token) async {
     final response = await http.get(
-      Uri.parse('$baseUrl/mobile/verify-email?token=$token'),
+      Uri.parse('$baseUrl/api/mobile/verify-email?token=$token'),
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -77,7 +77,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> resetPassword(Map<String, dynamic> passwordData) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/mobile/reset-password'),
+      Uri.parse('$baseUrl/api/mobile/reset-password'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(passwordData),
     );
@@ -89,10 +89,9 @@ class ApiService {
     }
   }
 
-  // Add methods for armory CRUD operations similarly
   Future<Map<String, dynamic>> addWeapon(Map<String, dynamic> weaponData) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/mobile/armory'),
+      Uri.parse('$baseUrl/api/mobile/armory'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(weaponData),
     );
@@ -106,7 +105,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> editWeapon(String id, Map<String, dynamic> weaponData) async {
     final response = await http.put(
-      Uri.parse('$baseUrl/mobile/armory/$id'),
+      Uri.parse('$baseUrl/api/mobile/armory/$id'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(weaponData),
     );
@@ -120,7 +119,7 @@ class ApiService {
 
   Future<void> deleteWeapon(String id) async {
     final response = await http.delete(
-      Uri.parse('$baseUrl/mobile/armory/$id'),
+      Uri.parse('$baseUrl/api/mobile/armory/$id'),
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -131,7 +130,7 @@ class ApiService {
 
   Future<List<dynamic>> searchWeapons(String query) async {
     final response = await http.get(
-      Uri.parse('$baseUrl/mobile/armory/search?query=$query'),
+      Uri.parse('$baseUrl/api/mobile/armory/search?query=$query'),
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -139,6 +138,48 @@ class ApiService {
       return jsonDecode(response.body);
     } else {
       throw Exception('Failed to search weapons: ${response.body}');
+    }
+  }
+
+  Future<Map<String, dynamic>> editFirstName(Map<String, dynamic> firstNameData) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/mobile/edit/firstName'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(firstNameData),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to edit first name: ${response.body}');
+    }
+  }
+
+  Future<Map<String, dynamic>> editLastName(Map<String, dynamic> lastNameData) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/mobile/edit/lastName'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(lastNameData),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to edit last name: ${response.body}');
+    }
+  }
+
+  Future<Map<String, dynamic>> editProfilePicture(Map<String, dynamic> profilePictureData) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/mobile/edit/profilePicture'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(profilePictureData),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to edit profile picture: ${response.body}');
     }
   }
 }
