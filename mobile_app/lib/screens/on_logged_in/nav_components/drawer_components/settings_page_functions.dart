@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:gun/main.dart';
 import '../../../on_app_launch/validate_input.dart';
+import '../../../../api/persist.dart';
+
+Future<void> updatePassword(String newPass) async {
+  final PreferencesHelper prefsHelper = PreferencesHelper();
+  await prefsHelper.storePassword(newPass); // Store password here
+
+}
 
 void requestPasswordChange(
-    String curPass, String newPass1, String newPass2, BuildContext context) {
+    String realPass, String curPass, String newPass1, String newPass2, BuildContext context) {
   bool passwordChanged = false;
   String? invalidPasswordMessage;
 
   /* TODO: Compare pass with JWT or smnthn
           If true, passwordChanged=true AND update password 
           ELSE RETURN invalid password used*/
-  invalidPasswordMessage = isValidPasswordMessage(newPass1, newPass2);
-  if (newPass2.compareTo(newPass1) == 0) {
-    if (curPass.compareTo(newPass1) == 0) {
-      invalidPasswordMessage = 'Can not use your existing password as the new password';
-    } else {
-      invalidPasswordMessage == null ? passwordChanged = true : passwordChanged = false;
-    }
+  if (realPass.compareTo(curPass) != 0) {
+    invalidPasswordMessage = 'incorrect user credentials';
   } else {
-    passwordChanged = false;
+    invalidPasswordMessage = isValidPasswordMessage(newPass1, newPass2);
+    if (newPass2.compareTo(newPass1) == 0) {
+      if (curPass.compareTo(newPass1) == 0) {
+        invalidPasswordMessage = 'Can not use your existing password as the new password';
+      } else {
+        invalidPasswordMessage == null ? passwordChanged = true : passwordChanged = false;
+        if (passwordChanged) {
+          updatePassword(newPass1);
+        }
+      }
+    } else {
+      passwordChanged = false;
+    }
   }
+
 
   showDialog(
     context: context,

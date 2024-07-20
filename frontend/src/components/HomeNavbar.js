@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../images/ccLogo.png';
+import logo from '../images/bearLogo.png';
 
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -16,9 +16,9 @@ function HomeNavbar()
     };
         
     return(
-        <nav className="relative flex top-0 h-20 bg-neutral-950 w-full items-center mx-auto px-4">
+        <nav className="relative flex top-0 h-20 bg-neutral-950 w-full items-center mx-auto px-4 border-b border-solid border-gray-600">
             <div className="inline-flex justify-start">
-                <a href="#">
+                <a href="/Home">
                     <img
                         className="h-20 w-auto text-white inline-flex justify-items-start"
                         // src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -30,13 +30,13 @@ function HomeNavbar()
             </div>
 
             {/* Div containing login and signup buttons */}
-            <div className="absolute inline-flex right-6 space-x-6">
+            <div className="absolute inline-flex right-6 space-x-10">
                 <button 
                 // className="border border-solid border-white rounded text-white"
                     onClick={gotoArmory}
                     type="button"
-                    className=" flex w-20 h-12 items-center justify-center rounded-md bg-gray-600
-                    text-md font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className=" flex w-24 h-12 items-center justify-center rounded-sm bg-gray-600
+                    text-lg font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                     Armory
                 </button>

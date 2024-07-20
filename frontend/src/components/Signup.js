@@ -6,13 +6,13 @@ function Signup()
 {
     var username;
     // Probably shouldn't require these two.
-    // var firstName; 
-    // var lastName;
+    var firstName = "John"; 
+    var lastName = "Doe";
     var signupEmail;
     var signupPassword;
     const [message,setMessage] = useState('');
 
-    const app_name = 'carry-companion'
+    const app_name = 'carry-companion-02c287317f3a'
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
@@ -28,13 +28,14 @@ function Signup()
     const doSignup = async event =>
     {
         event.preventDefault();
-        var obj = {signup:username.value,password:signupPassword.value};
+        // var obj = {signup:username.value,password:signupPassword.value};
+        var obj = {username:username.value, password:signupPassword.value, firstName:firstName, lastName:lastName, email:signupEmail.value};
         var js = JSON.stringify(obj);
         
         try
         {
             // Probably needs to be /api/signup
-            const response = await fetch('http://localhost:5000/api/login', 
+            const response = await fetch(buildPath("api/signup"), 
                 {method:'POST',body:js,headers:{'Content-Type':'application/json'}});
         
             var res = JSON.parse(await response.text());
@@ -49,7 +50,7 @@ function Signup()
                 {firstName:res.firstName,lastName:res.lastName,id:res.id}
                 localStorage.setItem('user_data', JSON.stringify(user));
                 setMessage('');
-                window.location.href = '/Large Project';
+                window.location.href = '/Home';
             }
         }
         catch(e)

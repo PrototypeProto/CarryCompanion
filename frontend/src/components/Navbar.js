@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../images/ccLogo.png';
+import logo from '../images/bearLogo.png';
 
 function Navbar()
 {
@@ -30,6 +30,15 @@ function Navbar()
 
             {/* Div containing login and signup buttons */}
             <div className="absolute inline-flex right-6 space-x-3" >
+            <button 
+                    onClick={gotoLogin}
+                    type="button"
+                    className="flex items-center justify-center w-24 h-12 rounded-full bg-red-700 
+                    text-md font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                    Sign in
+                </button>
+                
                 <button 
                 // className="border border-solid border-white rounded text-white"
                     onClick={gotoSignup}
@@ -40,14 +49,7 @@ function Navbar()
                     Join now
                 </button>
                 
-                <button 
-                    onClick={gotoLogin}
-                    type="button"
-                    className="flex items-center justify-center w-24 h-12 rounded-full bg-red-700 
-                    text-md font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                    Sign in
-                </button>
+            
             </div>
         </nav>
     )

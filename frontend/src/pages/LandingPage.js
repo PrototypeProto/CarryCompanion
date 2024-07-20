@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar.js';
 import AboutWebsite from '../components/AboutWebsite.js';
-import UnitedStatesMap from '../components/UnitedStatesMap.js';
+import UnitedStatesMap from '../components/ConcealCarryMap.js';
 
 const LandingPage = () =>
 {

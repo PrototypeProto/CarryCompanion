@@ -1,12 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'persist.dart';
 
 const url =
     "mongodb+srv://root:COP4331iscool@cluster0.f9xcqli.mongodb.net/Team9LargeProject";
 
 class MongoDatabase {
   static Db? _db;
+  static const String _usernameKey = 'username';
+  String? _username;
+  final PreferencesHelper _prefsHelper = PreferencesHelper();
+
+  MongoDatabase();
 
   static Future<void> connect() async {
     try {
@@ -26,31 +33,31 @@ class MongoDatabase {
     }
   }
 
-  //TODO: Modify to return the user object instead of a string
-  Future<bool> loginUser(username, password) async {
-    String userJson = '';
+  Future<bool> loginUser(String username, String password) async {
     bool validLogin = false;
     try {
       await MongoDatabase.connect();
       var user = await MongoDatabase._db
           ?.collection('Users')
           .findOne({'username': username, 'password': password});
-      if (user != null || user != '') {
-        userJson = jsonEncode(user);
+      if (user != null) {
         validLogin = true;
+        await _prefsHelper.storeUsername(username); // Store username here
+        await _prefsHelper.storePassword(password); // Store password here
+        await _prefsHelper.storeEmail(user['email']); // Store password here
+        print(user['email']);
+
       } else {
-        userJson = 'User not found';
+        log('User not found');
         validLogin = false;
       }
     } catch (err) {
       log('Error in loginUser: $err');
-      userJson = 'Error: $err';
     } finally {
       await MongoDatabase.close();
     }
     return validLogin;
   }
-
 
 Future<String> signUpUser(String username, String email, String password) async {
     String result = '';

@@ -68,7 +68,7 @@ class _ArmoryState extends State<Armory> {
     } else if (type == "Shotgun") {
       return "lib/img/shotgun.png";
     } else {
-      return "lib/img/unknown.png";  
+      return "lib/img/unknown.png";
     }
   }
 
@@ -78,7 +78,8 @@ class _ArmoryState extends State<Armory> {
     });
 
     if (!_isDeleteMode && itemSelected != -1) {
-      bool? confirmDelete = await showConfirmDeleteDialog(context, _items[itemSelected]['model']);
+      bool? confirmDelete =
+          await showConfirmDeleteDialog(context, _items[itemSelected]['model']);
       if (confirmDelete == true) {
         setState(() {
           _items.removeAt(itemSelected);
@@ -105,20 +106,30 @@ class _ArmoryState extends State<Armory> {
         itemBuilder: (context, index) {
           return MouseRegion(
             child: InkWell(
-              splashColor: Color.fromARGB(255, 103, 158, 204),
+              splashColor: Color.fromARGB(255, 40, 138, 218),
               onTap: () => _onItemTapped(_items[index]['model'], index),
               child: Card(
-                color: Color.fromARGB(255, 139, 177, 209),
+                color: Color.fromARGB(255, 77, 116, 148),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center, 
-                  children: [  
-                    Image.asset(
-                      createImagePath(_items[index]['type']),
-                      height: 80.0,
-                      width: 80.0,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          30), // Adjust border radius as needed
+                      child: ColoredBox(
+                        color: Colors.white.withOpacity(.5),
+                        child: Image.asset(
+                          createImagePath(_items[index]['type']),
+                          height: 140.0,
+                          width: 140.0,
+                        ),
+                      ),
                     ),
                     SizedBox(height: 8.0),
-                    Text(_items[index]['model']),
+                    Text(
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      _items[index]['model'],
+                    ),
                   ],
                 ),
               ),

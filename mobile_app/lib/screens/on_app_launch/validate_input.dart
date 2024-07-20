@@ -39,7 +39,7 @@ String? isValidPasswordMessage(String? password1, String? password2) {
     return 'Passwords do not match.';
   }
   if (password1 == null || password1.isEmpty) {
-    return 'Please enter your password';
+    return 'Please enter your new password';
   } else if (password1.length < 6) {
     return 'Password must be at least 6 characters long';
   } else if (password1.length >= 32) {
