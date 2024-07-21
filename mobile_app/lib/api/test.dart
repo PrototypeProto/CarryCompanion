@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'api.dart';
@@ -8,8 +9,6 @@ void main(List<String> args) async {
 
   String jwt = '';
 
-  String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2N2UwM2U0MzI1YmVmNGRmYzc3NzY2NyIsInVzZXJuYW1lIjoiVGVzdGluZyIsImlhdCI6MTcyMTUxNTE5NCwiZXhwIjoxNzIxNTE4Nzk0fQ.EvJERn9BFw3VmNaW-GnGiKf--2T_ALHjJKhgu6M6R0w";
   Map<String, dynamic> weaponData = {
     "_id": "669b294389d8d5154e22bdfa",
     "type": "Stratagem",
@@ -18,41 +17,140 @@ void main(List<String> args) async {
     "model": "Supply Pack"
   };
 
-  String t = "Test123!";
-  String tt = 'Test1234!';
-  String user = 'testUser';
+  String validUser = 'a';
+  String validPass = 'a';
 
+  String curPass = "Test123!";
+  String newPass = 'Test1234!';
+  String user = 'testUser';
+  String fname = 'hey';
+  String lname = 'mam';
+  String email = 'bobbbdl@ffi.com';
+  String newEmail = "genomegalul@gmail.com";
+  String pwd = 'Test123!';
+
+  /* Test LOGIN*/
+  Map<String, dynamic> ret = await serv.login({"username": user, "password": curPass});
   try {
-    Map<String, dynamic> ret =
-        await serv.login({"username": user, "password": t});
-    jwt = ret['token'];
-    // print(jwt);
-    print(ret);
+    if (ret['success']) {
+      jwt = ret['data']['token'];
+      print('Login successful. Token: $jwt');
+      // print('Response data: ${ret['data']}');
+    } else {
+      print('Login failed: ${ret['message']}');
+    }
   } catch (e) {
     print('Error: $e');
   }
-  Map<String, dynamic> ret = await serv.signup({
-    "username": user,
-    "password": pwd,
-    "firstName": fname,
-    "lastName": lname,
-    "email": email,
-    "verification": false,
-  });
 
-  print(ret);
-
-  // ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
-  // Map<String, dynamic> auth = await serv.resetPassword({"currentPassword": t, "newPassword": tt,}, jwt);
-  // invalidPasswordMessage = auth['message'];
-  // print(auth['message']);
-
+  /* Test SIGNUP*/
   // try {
-  //   List ret = await serv.searchWeapons('', jwt);
-  //   print(ret);
+  //   Map<String, dynamic> ret = await serv.signup({
+  //     "username": user,
+  //     "password": pwd,
+  //     "firstName": fname,
+  //     "lastName": lname,
+  //     "email": email,
+  //     "verification": false,
+  //   });
+
+  //   // Properly print the response
+  //   print('Signup response: $ret');
   // } catch (e) {
   //   print('Error: $e');
   // }
 
-  // print(await serv.addWeapon(weaponData, token));
+  /* reset password */
+  // try {
+  //   Map<String, dynamic> ret = await serv.resetPassword({"currentPassword": curPass, "newPassword": newPass}, jwt);
+
+  //   if (ret['success']) {
+  //     print('Password reset successful. Response data: ${ret['data']}');
+  //   } else {
+  //     print('Password reset failed: ${ret['message']}');
+  //   }
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
+
+  // /* reset email */
+  // try {
+  //   ret = await serv.resetEmail({ "password": curPass, "newEmail": newEmail}, jwt);
+
+  //   if (ret['success']) {
+  //     print('Email reset successful. Response data: \n${ret['data']['message']}');
+  //   } else {
+  //     print('Email reset failed: ${ret['message']}');
+  //   }
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
+
+  // /* reset  */
+  try {
+    Map<String, dynamic> ret = await serv.verifyEmail(jwt);
+
+    if (ret['success']) {
+      print('Email verification successful. Response data: ${ret['data']['message']}');
+    } else {
+      print('Email verification failed: ${ret['message']}');
+    }
+  } catch (e) {
+    print('Error: $e');
+  }
+
+  // /* reset  */
+  // try {
+  //   Map<String, dynamic> ret = await serv.forgotPassword(emailData);
+
+  //   if (ret['success']) {
+  //     print('Password reset request successful. Response data: ${ret['data']}');
+  //   } else {
+  //     print('Password reset request failed: ${ret['message']}');
+  //   }
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
+
+  // /* reset  */
+  // try {
+  //   Map<String, dynamic> ret = await serv.addWeapon(weaponData, token);
+
+  //   if (ret['success']) {
+  //     print('Weapon added successfully. Response data: ${ret['data']}');
+  //   } else {
+  //     print('Failed to add weapon: ${ret['message']}');
+  //   }
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
+
+  // /* reset  */
+  // try {
+  //   Map<String, dynamic> ret = await serv.editWeapon(id, weaponData, token);
+
+  //   if (ret['success']) {
+  //     print('Weapon edited successfully. Response data: ${ret['data']}');
+  //   } else {
+  //     print('Failed to edit weapon: ${ret['message']}');
+  //   }
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
+
+  // /* reset  */
+  // try {
+  //   await serv.deleteWeapon(id, token);
+  //   print('Weapon deleted successfully.');
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
+
+  // /* reset  */
+  // try {
+  //   List<dynamic> weapons = await serv.searchWeapons(query, token);
+  //   print('Weapons found: $weapons');
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
 }

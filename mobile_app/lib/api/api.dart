@@ -69,17 +69,29 @@ class ApiService {
   }
 
   Future<Map<String, dynamic>> resetEmail(
-      Map<String, dynamic> emailData) async {
+      Map<String, dynamic> emailData, String token) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/reset-email'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: jsonEncode(emailData),
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
     } else {
-      throw Exception('Failed to reset email: ${response.body}');
+      final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to reset email:',
+      };
+      // throw Exception('Failed to reset email: ${response.body}');
     }
   }
 
@@ -90,9 +102,17 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
     } else {
-      throw Exception('Failed to verify email: ${response.body}');
+       final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to verify email:',
+      };
     }
   }
 
