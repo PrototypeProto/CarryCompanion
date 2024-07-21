@@ -19,7 +19,7 @@ router.post('/request-password-reset', async (req, res) => {
         }
 
         const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '1h' });
-        const resetUrl = `http://localhost:5000/api/reset-password?token=${token}`;
+        const resetUrl = `http://localhost:5000/api/forgot/reset-password?token=${token}`;
         await sendPasswordResetEmail(email, resetUrl);
 
         res.status(200).json({ message: 'Password reset email sent' });
@@ -45,7 +45,7 @@ router.get('/reset-password', async (req, res) => {
 
         // Serve the password reset page (REPLACE THIS WITH FRONTEND URL)
         res.send(`
-            <form action="/api/reset-password" method="POST">
+            <form action="/api/forgot/reset-password" method="POST">
                 <input type="hidden" name="token" value="${token}" />
                 <input type="password" name="newPassword" placeholder="Enter new password" required />
                 <button type="submit">Reset Password</button>
