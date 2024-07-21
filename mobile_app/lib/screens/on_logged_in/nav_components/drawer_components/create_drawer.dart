@@ -13,7 +13,7 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  String _username = '';
+  String _cust_name = '';
   String _email = '';
 
   @override
@@ -24,10 +24,10 @@ class _MyDrawerState extends State<MyDrawer> {
 
   Future<void> _loadPersistentData() async {
     final PreferencesHelper prefsHelper = PreferencesHelper();
-    final username = await prefsHelper.retrieveUsername();
+    final cust_name = await prefsHelper.retrieveName();
     final email = await prefsHelper.retrieveEmail();
     setState(() {
-      _username = username ?? '';
+      _cust_name = cust_name ?? '';
       _email = email ?? '';
     });
   }
@@ -41,7 +41,7 @@ class _MyDrawerState extends State<MyDrawer> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(
-                _username,
+                _cust_name,
                 style: TextStyle(color: Colors.white), // Text color
               ),
               accountEmail: Text(

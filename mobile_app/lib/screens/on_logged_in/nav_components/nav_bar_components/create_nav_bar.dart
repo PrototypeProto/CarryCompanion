@@ -20,11 +20,11 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
   final titles = ['Concealed Carry Map', 'Armory', 'Reciprocity Map'];
   final PreferencesHelper _prefsHelper = PreferencesHelper();
 
-  @override
-  void initState() {
-    super.initState();
-    _initialize();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+    
+  // }
 
   Future<void> _initialize() async {
     // Awaiting an asynchronous operation here
@@ -40,6 +40,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    _initialize();
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),

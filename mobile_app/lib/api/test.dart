@@ -18,7 +18,7 @@ void main(List<String> args) async {
 
 
   try {
-    Map<String, dynamic> ret = await serv.login({"username" : "testUser", "password" : "Test123!"});
+    Map<String, dynamic> ret = await serv.login({"username" : "testUser00", "password" : "Password123!"});
     jwt = ret['token'];
     // print(jwt);
     print(ret);

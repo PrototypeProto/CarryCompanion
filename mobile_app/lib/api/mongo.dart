@@ -50,33 +50,25 @@ class MongoDatabase {
     // log(auth['token']);
   }
 
-  Future<bool> loginUser(String username, String password) async {
+  Future loginUser(String username, String password) async {
     bool validLogin = false;
     try {
       auth =
           await serv.login({"username": username, "password": password});
       // await loginstuff(username, password);
-      if (auth.isNotEmpty && auth.containsKey('token')) {
-        await _prefsHelper.storeLoginResponse(auth);
-        // validLogin = true;
-        // log(auth['token']);
-        // log(auth['firstName']);
-        // log(auth['lastName']);
-        // log(auth['email']);
-        // print(auth['message']);
-        // await _prefsHelper.storeName(auth['firstName'], auth['lastName']);
-        // await _prefsHelper.storeJwt(auth['token']);
-        // await _prefsHelper.storeEmail(auth["email"]);
-        // await loginstuff(username, password);
-        return true;
+      if (auth.containsKey('message')) {
+          await _prefsHelper.storeLoginResponse(auth);
+          return "success";
       } else {
         log('User not found');
-        validLogin = false;
+        return auth['message'];
       }
     } catch (err) {
       log('Error in loginUser: $err');
+      /* TODO: pretty up invalid sign in msg */
+      return err.toString();
     } 
-    return validLogin;
+    return auth;
   }
 
   Future<String> signUpUser(

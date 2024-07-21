@@ -117,15 +117,15 @@ class _LoginState extends State<Login> {
                             var user = await db.loginUser(
                                 _usernameController.text,
                                 _passwordController.text);
-                            if (user != 'User not found') {
+                            if (user == "success") {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => NavBar()),
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Failed to Login')),
+                                SnackBar(
+                                    content: Text(user)),
                               );
                             }
                           }
