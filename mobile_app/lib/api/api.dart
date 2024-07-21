@@ -42,17 +42,29 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> requestPasswordReset(String email) async {
+  Future<Map<String, dynamic>> resetPassword(
+      Map<String, dynamic> passwordData, String token) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/api/mobile/request-password-reset'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'email': email}),
+      Uri.parse('$baseUrl/api/mobile/reset-password'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: jsonEncode(passwordData),
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
     } else {
-      throw Exception('Failed to request password reset: ${response.body}');
+      final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to change password',
+      };
     }
   }
 
@@ -96,10 +108,15 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
+      return {
+        'data': responseBody,
+      };
     } else {
       final errorResponse = jsonDecode(response.body);
-      throw Exception(errorResponse['message'] ?? 'Failed to reset password');
+      return {
+        'message': errorResponse['message'] ?? 'Failed to change password',
+      };
     }
   }
 

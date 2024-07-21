@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gun/main.dart';
 import '../../../on_app_launch/validate_input.dart';
@@ -11,30 +14,43 @@ Future<void> updatePassword(String newPass) async {
   // resetPassword(newPass, await prefsHelper.getJwt());
 }
 
-void requestPasswordChange(
-    String realPass, String curPass, String newPass1, String newPass2, BuildContext context) {
+Future<void> requestPasswordChange(
+    String realPass, String curPass, String newPass1, String newPass2, BuildContext context) async {
   bool passwordChanged = false;
   String? invalidPasswordMessage;
 
   /* TODO: Compare pass with JWT or smnthn
           If true, passwordChanged=true AND update password 
           ELSE RETURN invalid password used*/
-  if (realPass.compareTo(curPass) != 0) {
-    invalidPasswordMessage = 'incorrect user credentials';
+  if (curPass.compareTo(newPass1) == 0) {
+    invalidPasswordMessage = 'Can not use your existing password as the new password';
+    passwordChanged = false;
+  } else if (newPass1.compareTo(newPass2) != 0) {
+    invalidPasswordMessage = 'New passwords do not match';
   } else {
-    invalidPasswordMessage = isValidPasswordMessage(newPass1, newPass2);
-    if (newPass2.compareTo(newPass1) == 0) {
-      if (curPass.compareTo(newPass1) == 0) {
-        invalidPasswordMessage = 'Can not use your existing password as the new password';
-      } else {
-        invalidPasswordMessage == null ? passwordChanged = true : passwordChanged = false;
-        if (passwordChanged) {
-          updatePassword(newPass1);
-        }
-      }
-    } else {
-      passwordChanged = false;
-    }
+    final PreferencesHelper _prefsHelper = PreferencesHelper();
+    String? token = await _prefsHelper.getJwt();
+    token ??= '';
+
+    ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+    Map<String, dynamic> auth = await serv.resetPassword({"currentPassword": curPass, "newPassword": newPass1,}, token);
+    invalidPasswordMessage = auth['message'];
+    log(invalidPasswordMessage!);
+    auth['success'] ? passwordChanged = true : false;
+
+    // invalidPasswordMessage = isValidPasswordMessage(newPass1, newPass2);
+    // if (newPass2.compareTo(newPass1) == 0) {
+    //   if (curPass.compareTo(newPass1) == 0) {
+    //     invalidPasswordMessage = 'Can not use your existing password as the new password';
+    //   } else {
+    //     invalidPasswordMessage == null ? passwordChanged = true : passwordChanged = false;
+    //     if (passwordChanged) {
+    //       updatePassword(newPass1);
+    //     }
+    //   }
+    // } else {
+    //   passwordChanged = false;
+    // }
   }
 
 
