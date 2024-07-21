@@ -31,7 +31,7 @@ app.use(cors());
 app.use('/api', signupRoutes);
 app.use('/api', loginRoutes);
 app.use('/api', verifyEmailRoutes);
-app.use('/api', forgotPasswordRoutes);
+app.use('/api/forgot', forgotPasswordRoutes);
 app.use('/api', resetPasswordRoutes);
 app.use('/api', resetEmailRoutes);
 app.use('/api', armoryRoutes);
