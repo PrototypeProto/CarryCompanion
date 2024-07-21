@@ -6,7 +6,6 @@ import '../../../../api/persist.dart';
 Future<void> updatePassword(String newPass) async {
   final PreferencesHelper prefsHelper = PreferencesHelper();
   await prefsHelper.storePassword(newPass); // Store password here
-
 }
 
 void requestPasswordChange(

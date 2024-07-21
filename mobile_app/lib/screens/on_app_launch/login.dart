@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gun/screens/on_app_launch/reset_password.dart';
 import '../../api/mongo.dart';
 import '../on_logged_in/nav_components/nav_bar_components/create_nav_bar.dart';
 import 'signup.dart';
@@ -14,6 +15,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,7 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Image.asset('assets/bear.png',width: 185, height:185),
-             // SizedBox(height: screenHeight * 0.125),
+              Image.asset('assets/bear.png', width: 185, height: 185),
               Form(
                 key: _formKey,
                 child: Column(
@@ -57,15 +58,28 @@ class _LoginState extends State<Login> {
                     const SizedBox(height: 10),
                     TextFormField(
                       controller: _passwordController,
-                      decoration: const InputDecoration(
-                          hintText: 'Password',
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        filled: true,
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red))),
-                      obscureText: true,
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
+                        ),
+                      ),
+                      obscureText: !_isPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
@@ -80,7 +94,12 @@ class _LoginState extends State<Login> {
                           foregroundColor: Colors.black,
                         ),
                         onPressed: () {
-                          // Handle forgot password functionality
+                          Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ForgotPassword(),
+                                    ),
+                                  );
                         },
                         child: const Text('Forgot Password?'),
                       ),
@@ -101,7 +120,8 @@ class _LoginState extends State<Login> {
                             if (user != 'User not found') {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => NavBar()));
+                                    builder: (context) => NavBar()),
+                              );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(

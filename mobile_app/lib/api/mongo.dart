@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'persist.dart';
+import '../../api/api.dart';
 
 const url =
     "mongodb+srv://root:COP4331iscool@cluster0.f9xcqli.mongodb.net/Team9LargeProject";
@@ -12,6 +14,9 @@ class MongoDatabase {
   static const String _usernameKey = 'username';
   String? _username;
   final PreferencesHelper _prefsHelper = PreferencesHelper();
+  // ApiService serv = ApiService(baseUrl: "http://10.0.2.2:5000");
+  ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  late Map<String, dynamic> auth;
 
   MongoDatabase();
 
@@ -33,41 +38,56 @@ class MongoDatabase {
     }
   }
 
+  Future<void> loginstuff(String username, String password) async {
+    // Map<String, dynamic> 
+    auth = await serv.login(
+      {"username": username, "password": password},
+    );
+    // log(auth['message']);
+    // await _prefsHelper.storeName(auth['firstName'], auth['lastName']);
+    // await _prefsHelper.storeJwt(auth['token']);
+    // await _prefsHelper.storeEmail("email");
+    // log(auth['token']);
+  }
+
   Future<bool> loginUser(String username, String password) async {
     bool validLogin = false;
     try {
-      await MongoDatabase.connect();
-      var user = await MongoDatabase._db
-          ?.collection('Users')
-          .findOne({'username': username, 'password': password});
-      if (user != null) {
-        validLogin = true;
-        await _prefsHelper.storeUsername(username); // Store username here
-        await _prefsHelper.storePassword(password); // Store password here
-        await _prefsHelper.storeEmail(user['email']); // Store password here
-        print(user['email']);
-
+      auth =
+          await serv.login({"username": username, "password": password});
+      // await loginstuff(username, password);
+      if (auth.isNotEmpty && auth.containsKey('token')) {
+        await _prefsHelper.storeLoginResponse(auth);
+        // validLogin = true;
+        // log(auth['token']);
+        // log(auth['firstName']);
+        // log(auth['lastName']);
+        // log(auth['email']);
+        // print(auth['message']);
+        // await _prefsHelper.storeName(auth['firstName'], auth['lastName']);
+        // await _prefsHelper.storeJwt(auth['token']);
+        // await _prefsHelper.storeEmail(auth["email"]);
+        // await loginstuff(username, password);
+        return true;
       } else {
         log('User not found');
         validLogin = false;
       }
     } catch (err) {
       log('Error in loginUser: $err');
-    } finally {
-      await MongoDatabase.close();
-    }
+    } 
     return validLogin;
   }
 
-Future<String> signUpUser(String username, String email, String password) async {
+  Future<String> signUpUser(
+      String username, String email, String password) async {
     String result = '';
     try {
       await connect();
       var userCollection = _db!.collection('Users');
 
       // Check if username already exists
-      var existingUser =
-          await userCollection.findOne({'username': username});
+      var existingUser = await userCollection.findOne({'username': username});
       if (existingUser != null) {
         result = 'Username already exists';
       } else {

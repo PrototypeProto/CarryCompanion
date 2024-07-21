@@ -4,6 +4,7 @@ import '../../main_features/map_page.dart';
 import '../../main_features/armory_page.dart';
 import 'create_page_app_bar.dart';
 import '../drawer_components/create_drawer.dart';
+import '../../../../api/persist.dart';
 
 /* responsible for creating the "main" page upon logging in / \
     Includes the navBar and buttons for opening drawers*/
@@ -18,6 +19,20 @@ class _NavBarState extends State<NavBar> {
   int index = 0;
   final screens = [MapPage(), Armory(), ReciprocityPage()];
   final titles = ['Concealed Carry Map', 'Armory', 'Reciprocity Map'];
+  final PreferencesHelper _prefsHelper = PreferencesHelper();
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    // Awaiting an asynchronous operation here
+    await _prefsHelper.processStoredLoginResponse();
+    // Other initialization code if needed
+  }
+
 
   @override
   Widget build(BuildContext context) {
