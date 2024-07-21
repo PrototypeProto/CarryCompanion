@@ -4,7 +4,6 @@ import 'settings_page_functions.dart';
 import '../../../on_app_launch/validate_input.dart';
 import '../../../../api/persist.dart';
 
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -33,100 +32,115 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
+      backgroundColor: Colors.grey[300],
       appBar: ScreenAppBar(title: 'Settings'),
-      body: Form(
-        child: Stack(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(40, 20, 0, 20),
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Text(
                 'Change Password',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 50.0, top: 70.0, right: 50.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextFormField(
-                    controller: currentPasswordController,
-                    decoration: InputDecoration(
-                      labelText: 'Current Password',
-                      filled: true,
-                      fillColor: Colors.white60,
-                    ),
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    controller: newPasswordController,
-                    decoration: InputDecoration(
-                      labelText: 'New Password',
-                      filled: true,
-                      fillColor: Colors.white60,
-                    ),
-                    obscureText: true,
-                    autovalidateMode: AutovalidateMode.always,
-                    validator: (value) {
-                      return isValidPasswordMessage(newPasswordController.text,
-                          confirmNewPasswordController.text);
-                    },
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    controller: confirmNewPasswordController,
-                    decoration: InputDecoration(
-                      labelText: 'Confirm New Password',
-                      filled: true,
-                      fillColor: Colors.white60,
-                    ),
-                    obscureText: true,
-                    autovalidateMode: AutovalidateMode.always,
-                    validator: (value) {
-                      return isValidPasswordMessage(
-                          confirmNewPasswordController.text,
-                          newPasswordController.text);
-                    },
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      requestPasswordChange(
-                        _password,
-                        currentPasswordController.text,
-                        newPasswordController.text,
-                        confirmNewPasswordController.text,
-                        context,
-                      ); _loadPersistentData();
-                    },
-                    child: Text('Change My Password'),
-                  ),
-                ],
+            TextFormField(
+              controller: currentPasswordController,
+              decoration: InputDecoration(
+                labelText: 'Current Password',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              obscureText: true,
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: newPasswordController,
+              decoration: InputDecoration(
+                labelText: 'New Password',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              obscureText: true,
+              autovalidateMode: AutovalidateMode.always,
+              validator: (value) {
+                return isValidPasswordMessage(
+                    newPasswordController.text, confirmNewPasswordController.text);
+              },
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: confirmNewPasswordController,
+              decoration: InputDecoration(
+                labelText: 'Confirm New Password',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              obscureText: true,
+              autovalidateMode: AutovalidateMode.always,
+              validator: (value) {
+                return isValidPasswordMessage(
+                    confirmNewPasswordController.text, newPasswordController.text);
+              },
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  requestPasswordChange(
+                    _password,
+                    currentPasswordController.text,
+                    newPasswordController.text,
+                    confirmNewPasswordController.text,
+                    context,
+                  );
+                  _loadPersistentData();
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  textStyle: TextStyle(fontSize: 18),
+                ),
+                child: Text('Change My Password'),
               ),
             ),
+            SizedBox(height: 40),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 50.0),
+              child: SizedBox(
+                width: 200, // Smaller width for the button
                 child: ElevatedButton(
                   onPressed: () {
                     requestAccountDeletion(context);
                   },
                   style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 15),
                     backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    textStyle: TextStyle(fontSize: 18),
                   ),
-                  child: Text('DELETE MY ACCOUNT'),
+                  child: Text('Delete My Account'),
                 ),
               ),
             ),

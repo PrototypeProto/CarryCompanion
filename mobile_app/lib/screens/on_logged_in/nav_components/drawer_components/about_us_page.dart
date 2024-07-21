@@ -14,7 +14,7 @@ class AboutUsScreen extends StatelessWidget {
     'Joshua Jarquin',
   ];
 
-  static const List<String> DeveloperResponsibilities = [
+  static const List<String> developerResponsibilities = [
     'Frontend',
     'Project Manager',
     'Mobile',
@@ -28,51 +28,53 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ScreenAppBar(title: 'About Us'),
-      backgroundColor: Colors.blue[200], // Page background color
+      backgroundColor: Colors.grey[300], // Page background color similar to Armory page
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
-          itemCount: 7,
+          itemCount: developerNames.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // 2 images per row
-            crossAxisSpacing: 10.0,
-            mainAxisSpacing: 10.0,
-            childAspectRatio: 0.64, // Adjust aspect ratio to allow space for text
+            crossAxisCount: 2, // 2 items per row
+            crossAxisSpacing: 8.0,
+            mainAxisSpacing: 8.0,
+            childAspectRatio: 0.75, // Aspect ratio to allow space for text
           ),
           itemBuilder: (context, index) {
             return Card(
-              // color: Color.fromARGB(255, 209, 172, 6), // Card color
-              color : Colors.orange.withOpacity(0.70),
+              color: Colors.black, // Card color matching Armory page
               elevation: 4.0, // Card shadow
               child: Padding(
                 padding: const EdgeInsets.all(8.0), // Inner padding for card
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(80.0), // Rounded corners
                       child: Image.asset(
                         'assets/about_us/image${index + 1}.png', // Ensure paths match your asset structure
                         fit: BoxFit.cover,
+                        height: 140.0,
+                        width: 140.0,
                       ),
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                      developerNames[index], // Replace with your titles
+                      developerNames[index], // Developer name
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 17.0,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue, // First line text color
+                        color: Colors.white, // Text color matching Armory page
                       ),
                     ),
+                    const SizedBox(height: 4.0),
                     Text(
-                      DeveloperResponsibilities[index], // Replace with your subtitles
+                      developerResponsibilities[index], // Developer responsibility
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,
-                        color: Colors.green, // Second line text color
+                        color: Colors.grey[400], // Secondary text color
                       ),
                     ),
                   ],

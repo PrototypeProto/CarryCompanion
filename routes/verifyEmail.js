@@ -1,6 +1,7 @@
+// routes/verifyEmail.js
 const express = require('express');
 const router = express.Router();
-const { verifyEmailToken } = require('../services/verifyToken'); // Import the service function
+const { verifyEmailToken } = require('../services/verifyToken'); 
 
 // Email verification endpoint
 router.get('/verify-email', async (req, res) => {

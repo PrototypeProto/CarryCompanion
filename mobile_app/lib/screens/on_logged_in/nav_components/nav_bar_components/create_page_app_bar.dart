@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const PageAppBar({required this.title, super.key});
   final String title;
+  final VoidCallback onMenuPressed;
+
+  const PageAppBar({required this.title, required this.onMenuPressed, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +12,7 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.black,
       leading: IconButton(
         icon: Icon(Icons.menu, color: Colors.white),
-        onPressed: () {
-          Scaffold.of(context).openDrawer();
-        },
+        onPressed: onMenuPressed,
       ),
       titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
       title: Text(title),
@@ -20,10 +20,10 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: Image.asset(
-            'assets/bear.png', 
-            width: 45, 
-            height: 45, 
-            fit: BoxFit.contain, 
+            'assets/bear.png',
+            width: 45,
+            height: 45,
+            fit: BoxFit.contain,
           ),
         ),
       ],

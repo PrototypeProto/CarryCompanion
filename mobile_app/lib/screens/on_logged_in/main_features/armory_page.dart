@@ -9,7 +9,6 @@ class Armory extends StatefulWidget {
   _ArmoryState createState() => _ArmoryState();
 }
 
-// TODO: /* Should fetch from API / id should be objectID from mongodb */
 class _ArmoryState extends State<Armory> {
   final List<Map<String, dynamic>> _items = [
     {'type': 'Pistol', 'make': 'pipes', 'model': 'p250', "id": 1},
@@ -43,11 +42,6 @@ class _ArmoryState extends State<Armory> {
     });
   }
 
-  /* Responsible for logic with deletion */
-  /* Set item selected to -1 if not in delete mode
-      upon changing from delete to nondelete, if there is a itemSelected, remove
-      Pop up a confirm delete
-   */
   void _onItemTapped(String name, int index) {
     print('Tapped on $name');
     print('Tapped on id: ${_items[index]['id']}');
@@ -94,9 +88,9 @@ class _ArmoryState extends State<Armory> {
   Widget build(BuildContext context) {
     updateNumGuns();
     return Scaffold(
-      backgroundColor: Colors.blue[50], // Setting background color
+      backgroundColor: Colors.grey[300], // Matching background color to Login page
       body: GridView.builder(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0), // Updated padding to match Login page
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 8.0,
@@ -106,18 +100,17 @@ class _ArmoryState extends State<Armory> {
         itemBuilder: (context, index) {
           return MouseRegion(
             child: InkWell(
-              splashColor: Color.fromARGB(255, 40, 138, 218),
+              splashColor: Colors.red.withOpacity(0.5), // Matching splash color to Login page
               onTap: () => _onItemTapped(_items[index]['model'], index),
               child: Card(
-                color: Color.fromARGB(255, 77, 116, 148),
+                color: Colors.black, // Matching card color to Login page
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                          30), // Adjust border radius as needed
+                      borderRadius: BorderRadius.circular(15), // Adjusted border radius
                       child: ColoredBox(
-                        color: Colors.white.withOpacity(.5),
+                        color: Colors.white.withOpacity(0.2), // Matching opacity
                         child: Image.asset(
                           createImagePath(_items[index]['type']),
                           height: 140.0,
@@ -125,10 +118,10 @@ class _ArmoryState extends State<Armory> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     Text(
-                      style: TextStyle(color: Colors.white, fontSize: 16),
                       _items[index]['model'],
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
                 ),
@@ -143,16 +136,19 @@ class _ArmoryState extends State<Armory> {
           FloatingActionButton(
             onPressed: _toggleDeleteMode,
             tooltip: _isDeleteMode ? 'Cancel Delete' : 'Delete Guns',
-            backgroundColor: _isDeleteMode ? Colors.red : null,
+            backgroundColor: Colors.red, // Red background
+            foregroundColor: Colors.white, // White icon
             child: Icon(Icons.delete),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           FloatingActionButton(
             onPressed: () {
               showAddGunDialog(context, _addItem, numGuns);
               incrementGunCounter();
             },
             tooltip: 'Add Gun',
+            backgroundColor: Colors.red, // Red background
+            foregroundColor: Colors.white, // White icon
             child: Icon(Icons.add),
           ),
         ],

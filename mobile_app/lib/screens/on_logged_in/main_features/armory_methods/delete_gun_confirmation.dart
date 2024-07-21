@@ -5,22 +5,40 @@ Future<bool?> showConfirmDeleteDialog(BuildContext context, String itemName) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Confirm Delete'),
-        content: Text('Are you sure you want to delete $itemName?'),
+        title: Text(
+          'Confirm Delete',
+          style: TextStyle(color: Colors.black), // Title color
+        ),
+        content: Text(
+          'Are you sure you want to delete $itemName?',
+          style: TextStyle(color: Colors.black), // Content text color
+        ),
         actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false); // Return false on no
-            },
-            child: Text('No'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop(true); // Return true on yes
-            },
-            child: Text('Yes'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false); // Return false on No
+                },
+                child: Text(
+                  'No',
+                  style: TextStyle(color: Colors.black), // Text color
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true); // Return true on Yes
+                },
+                child: Text(
+                  'Yes',
+                  style: TextStyle(color: Colors.black), // Text color
+                ),
+              ),
+            ],
           ),
         ],
+        backgroundColor: Colors.grey[300], // Background color for dialog
       );
     },
   );

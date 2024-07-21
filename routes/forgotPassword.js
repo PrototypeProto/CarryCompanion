@@ -8,7 +8,7 @@ const Users = require('../models/Users');
 const { sendPasswordResetEmail } = require('../services/email');
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Request password reset (for users who forgot their password)
+// Request password reset
 router.post('/request-password-reset', async (req, res) => {
     const { email } = req.body;
 
@@ -29,7 +29,7 @@ router.post('/request-password-reset', async (req, res) => {
     }
 });
 
-// Serve the password reset form (for users who forgot their password)
+// Serve the password reset form
 router.get('/reset-password', async (req, res) => {
     const { token } = req.query;
     console.log('Password reset token:', token);
@@ -43,7 +43,7 @@ router.get('/reset-password', async (req, res) => {
             return res.status(400).json({ message: 'Invalid token' });
         }
 
-        // Serve the password reset page (you can replace this with your frontend URL)
+        // Serve the password reset page (REPLACE THIS WITH FRONTEND URL)
         res.send(`
             <form action="/api/reset-password" method="POST">
                 <input type="hidden" name="token" value="${token}" />
@@ -57,7 +57,7 @@ router.get('/reset-password', async (req, res) => {
     }
 });
 
-// Handle password reset form submission (for users who forgot their password)
+// Handle password reset form submission
 router.post('/reset-password', async (req, res) => {
     const { token, newPassword } = req.body;
     console.log('Reset password request:', req.body);
