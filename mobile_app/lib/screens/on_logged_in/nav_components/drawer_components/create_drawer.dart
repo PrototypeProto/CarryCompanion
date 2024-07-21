@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gun/main.dart';
 import 'about_us_page.dart';
@@ -24,7 +26,13 @@ class _MyDrawerState extends State<MyDrawer> {
 
   Future<void> _loadPersistentData() async {
     final PreferencesHelper prefsHelper = PreferencesHelper();
+    
+    // await prefsHelper.processStoredLoginResponse();();
     final cust_name = await prefsHelper.retrieveName();
+    log("a");
+    log(_cust_name);
+    // log(prefsHelper.retrieveName() as String);
+    log("b");
     final email = await prefsHelper.retrieveEmail();
     setState(() {
       _cust_name = cust_name ?? '';

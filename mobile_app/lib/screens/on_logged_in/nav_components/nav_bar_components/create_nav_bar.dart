@@ -43,7 +43,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
     _initialize();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 100),
     );
   }
 

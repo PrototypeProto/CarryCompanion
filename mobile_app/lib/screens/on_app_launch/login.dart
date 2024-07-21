@@ -117,7 +117,7 @@ class _LoginState extends State<Login> {
                             var user = await db.loginUser(
                                 _usernameController.text,
                                 _passwordController.text);
-                            if (user == "success") {
+                            if (user['success'] == true) {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => NavBar()),
@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                    content: Text(user)),
+                                    content: Text(user['message'])),
                               );
                             }
                           }

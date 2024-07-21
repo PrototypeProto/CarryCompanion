@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gun/main.dart';
 import '../../../on_app_launch/validate_input.dart';
 import '../../../../api/persist.dart';
+import '../../../../api/api.dart';
+
 
 Future<void> updatePassword(String newPass) async {
   final PreferencesHelper prefsHelper = PreferencesHelper();
   await prefsHelper.storePassword(newPass); // Store password here
+  // resetPassword(newPass, await prefsHelper.getJwt());
 }
 
 void requestPasswordChange(

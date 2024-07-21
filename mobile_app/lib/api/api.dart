@@ -28,9 +28,17 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
     } else {
-      throw Exception('Failed to login: ${response.body}');
+      final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to login',
+      };
     }
   }
 
@@ -90,7 +98,8 @@ class ApiService {
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
-      throw Exception('Failed to reset password: ${response.body}');
+      final errorResponse = jsonDecode(response.body);
+      throw Exception(errorResponse['message'] ?? 'Failed to reset password');
     }
   }
 

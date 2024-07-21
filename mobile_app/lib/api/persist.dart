@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -101,12 +101,16 @@ class PreferencesHelper {
   }
 
   // Method to store login response as JSON
-  Future<void> storeLoginResponse(Map<String, dynamic> response) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String jsonString = jsonEncode(response);
-    await prefs.setString(_loginResponseKey, jsonString);
-    processStoredLoginResponse();
-  }
+Future<void> storeLoginResponse(Map<String, dynamic> response, String password) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  
+  // Extract the 'data' field from the response
+  Map<String, dynamic> data = response['data'];
+  
+  String jsonString = jsonEncode(data);
+  await prefs.setString(_loginResponseKey, jsonString);
+  await prefs.setString(_passwordKey, password);
+}
 
  Future<void> processStoredLoginResponse() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -127,10 +131,12 @@ class PreferencesHelper {
     }
 
     // Print the entire response for debugging
-    print('Response: $response');
+    log('PRINTING Response: $response');
     
     // Check if the response contains the 'token' key
     if (response.containsKey('token')) {
+      log('SUCCESS Response: $response');
+
       String token = response['token'] as String? ?? '';
       Map<String, dynamic>? user = response['user'] as Map<String, dynamic>?;
 
@@ -140,10 +146,10 @@ class PreferencesHelper {
       String? email = user?['email'] as String?;
       
       // Print for debugging
-      print('Token: $token');
-      print('First Name: $firstName');
-      print('Last Name: $lastName');
-      print('Email: $email');
+      log('Token: $token');
+      log('First Name: $firstName');
+      log('Last Name: $lastName');
+      log('Email: $email');
       
       // Store values if they are not null or empty
       if (token.isNotEmpty) {
@@ -156,7 +162,7 @@ class PreferencesHelper {
         await storeEmail(email);
       }
     } else {
-      print('Token not found in the response.');
+      log('Token not found in the response.');
     }
   }
 }

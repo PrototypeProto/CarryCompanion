@@ -51,24 +51,22 @@ class MongoDatabase {
   }
 
   Future loginUser(String username, String password) async {
-    bool validLogin = false;
     try {
       auth =
           await serv.login({"username": username, "password": password});
       // await loginstuff(username, password);
-      if (auth.containsKey('message')) {
-          await _prefsHelper.storeLoginResponse(auth);
-          return "success";
+      if (auth['success'] == true) {
+          await _prefsHelper.storeLoginResponse(auth, password);
+          return auth;
       } else {
         log('User not found');
-        return auth['message'];
+        return auth;
       }
     } catch (err) {
       log('Error in loginUser: $err');
       /* TODO: pretty up invalid sign in msg */
       return err.toString();
     } 
-    return auth;
   }
 
   Future<String> signUpUser(
