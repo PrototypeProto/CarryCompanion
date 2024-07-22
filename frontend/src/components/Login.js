@@ -33,6 +33,9 @@ function Login()
                 headers: { 'Content-Type': 'application/json' },
             });
 
+    
+            const res = await response.json();
+
             if (!response.ok) {
                 // Check if the response status code is not OK (i.e., not 200)
                 const errorData = await response.json();
@@ -40,7 +43,8 @@ function Login()
                 return;
             }
 
-            const res = await response.json();
+            localStorage.setItem('jwtToken', res.token);
+ 
 
             if (res && res.user && res.user.id) {
                 var user = {
@@ -58,35 +62,32 @@ function Login()
             console.error('Error during login:', e);
             setMessage('An error occurred during login.');
         }
-        
-        // try
-        // {
-        //     // const response = await fetch('http://localhost:5000/api/login',
-        //     const response = await fetch(buildPath("api/login"), 
-        //         {method:'POST',body:js,headers:{'Content-Type':'application/json'}});
-        
-        //     var res = JSON.parse(await response.text());
+    };
 
-           
+    const handleForgotPassword = async (event) => 
+    {
+        event.preventDefault();
+        const email = prompt('Please enter your email address:');
+        if (!email) return;
 
-        //     // if( res.id <= 0 )
-        //     // {
-        //     //     setMessage('User/Password combination incorrect');
-        //     // }
-        //     // else
-        //     // {
-        //     //     var user =
-        //     //     {firstName:res.firstName,lastName:res.lastName,id:res.id}
-        //     //     localStorage.setItem('user_data', JSON.stringify(user));
-        //     //     setMessage('');
-        //     //     window.location.href = '/Home';
-        //     // }
-        // }
-        // catch(e)
-        // {
-        //     alert(e.toString());
-        //     return;
-        // }
+        try {
+            const response = await fetch(buildPath('api/request-password-reset'), {
+                method: 'POST',
+                body: JSON.stringify({ email }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            const res = await response.json();
+
+            if (response.ok) {
+                alert('Password reset email sent. Please check your inbox.');
+            } else {
+                setMessage(res.message || 'An error occurred while trying to reset the password.');
+            }
+        } catch (error) {
+            console.error('Error during password reset request:', error);
+            setMessage('An error occurred while trying to reset the password.');
+        }
     };
 
     return(
