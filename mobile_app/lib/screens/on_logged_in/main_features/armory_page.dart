@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gun/api/api.dart';
+import 'package:gun/api/persist.dart';
 import 'armory_methods/add_gun_popup.dart';
 import 'armory_methods/delete_gun_confirmation.dart';
 
@@ -10,19 +12,44 @@ class Armory extends StatefulWidget {
 }
 
 class _ArmoryState extends State<Armory> {
-  final List<Map<String, dynamic>> _items = [
-    {'type': 'Pistol', 'make': 'pipes', 'model': 'p250', "id": 1},
-    {'type': 'Shotgun', 'make': 'wood/metal', 'model': 'xm1014', "id": 2},
-    {'type': 'Rifle', 'make': 'energy', 'model': 'AWP', "id": 3},
-    {'type': '???', 'make': 'chaotic', 'model': 'Juan-perez', "id": 4},
-  ];
-
+  List<Map<String, dynamic>> _items = [];
   int numGuns = 0;
   int recentDeletedItem = 0;
-
   bool _isDeleteMode = false;
-
   int itemSelected = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchAndStoreGuns();
+  }
+
+  // Method to fetch guns and update state
+  Future<void> _fetchAndStoreGuns() async {
+    final PreferencesHelper _prefsHelper = PreferencesHelper();
+    try {
+      // Fetch guns
+      List<Map<String, dynamic>> guns = await _prefsHelper.retrieveGuns();
+
+      // Update state with fetched guns
+      setState(() {
+        _items = guns;
+        numGuns = _items.length;
+      });
+    } catch (e) {
+      // Handle errors (e.g., log the error, show a message to the user)
+      print('Failed to fetch or store guns: $e');
+      setState(() {
+        _items = [
+          {'type': 'Pistol', 'make': 'pipes', 'model': 'p250', "id": 1},
+          {'type': 'Shotgun', 'make': 'wood/metal', 'model': 'xm1014', "id": 2},
+          {'type': 'Rifle', 'make': 'energy', 'model': 'AWP', "id": 3},
+          {'type': '???', 'make': 'chaotic', 'model': 'Juan-perez', "id": 4},
+        ];
+      });
+    }
+  }
+  
 
   void updateNumGuns() {
     numGuns = _items.length;
@@ -88,9 +115,11 @@ class _ArmoryState extends State<Armory> {
   Widget build(BuildContext context) {
     updateNumGuns();
     return Scaffold(
-      backgroundColor: Colors.grey[300], // Matching background color to Login page
+      backgroundColor:
+          Colors.grey[300], // Matching background color to Login page
       body: GridView.builder(
-        padding: const EdgeInsets.all(16.0), // Updated padding to match Login page
+        padding:
+            const EdgeInsets.all(16.0), // Updated padding to match Login page
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 8.0,
@@ -100,7 +129,8 @@ class _ArmoryState extends State<Armory> {
         itemBuilder: (context, index) {
           return MouseRegion(
             child: InkWell(
-              splashColor: Colors.red.withOpacity(0.5), // Matching splash color to Login page
+              splashColor: Colors.red
+                  .withOpacity(0.5), // Matching splash color to Login page
               onTap: () => _onItemTapped(_items[index]['model'], index),
               child: Card(
                 color: Colors.black, // Matching card color to Login page
@@ -108,9 +138,11 @@ class _ArmoryState extends State<Armory> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(15), // Adjusted border radius
+                      borderRadius:
+                          BorderRadius.circular(15), // Adjusted border radius
                       child: ColoredBox(
-                        color: Colors.white.withOpacity(0.2), // Matching opacity
+                        color:
+                            Colors.white.withOpacity(0.2), // Matching opacity
                         child: Image.asset(
                           createImagePath(_items[index]['type']),
                           height: 140.0,

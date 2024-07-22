@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:gun/api/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /* A collection of get and set methods to store persistant data */
@@ -50,7 +51,6 @@ class PreferencesHelper {
     return prefs.getString(_nameKey);
   }
 
-
   // Method to store password
   Future<void> storePassword(String password) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -63,7 +63,7 @@ class PreferencesHelper {
     return prefs.getString(_passwordKey);
   }
 
-   // Method to store email
+  // Method to store email
   Future<void> storeEmail(String email) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(_emailKey, email);
@@ -94,35 +94,35 @@ class PreferencesHelper {
   }
 
   // Method to add a gun to arsenal array
-  Future<void> addCard(Map<String, dynamic> newCard) async {
+  Future<void> addWeapon(Map<String, dynamic> newWeapon) async {
     List<Map<String, dynamic>> guns = await retrieveGuns();
-    guns.add(newCard);
+    guns.add(newWeapon);
     await storeGuns(guns);
   }
 
   // Method to store login response as JSON
-Future<void> storeLoginResponse(Map<String, dynamic> response, String password) async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  // Extract the 'data' field from the response
-  Map<String, dynamic> data = response['data'];
-  
-  String jsonString = jsonEncode(data);
-  await prefs.setString(_loginResponseKey, jsonString);
-  await prefs.setString(_passwordKey, password);
-  log(jsonString);
+  Future<void> storeLoginResponse(
+      Map<String, dynamic> response, String password) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Extract the 'data' field from the response
+    Map<String, dynamic> data = response['data'];
 
-}
+    String jsonString = jsonEncode(data);
+    await prefs.setString(_loginResponseKey, jsonString);
+    await prefs.setString(_passwordKey, password);
+    log(jsonString);
+  }
 
- Future<void> processStoredLoginResponse() async {
+  Future<void> processStoredLoginResponse() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonString = prefs.getString(_loginResponseKey);
-    
+
     // Ensure the JSON string is not null
     if (jsonString == null) {
       print('No login response found in SharedPreferences.');
       return;
     }
-    
+
     Map<String, dynamic> response;
     try {
       response = jsonDecode(jsonString);
@@ -133,7 +133,7 @@ Future<void> storeLoginResponse(Map<String, dynamic> response, String password) 
 
     // Print the entire response for debugging
     log('PRINTING Response: $response');
-    
+
     // Check if the response contains the 'token' key
     if (response.containsKey('token')) {
       log('SUCCESS Response: $response');
@@ -145,16 +145,26 @@ Future<void> storeLoginResponse(Map<String, dynamic> response, String password) 
       String? firstName = user?['firstName'] as String?;
       String? lastName = user?['lastName'] as String?;
       String? email = user?['email'] as String?;
-      
+
       // Print for debugging
       log('Token: $token');
       log('First Name: $firstName');
       log('Last Name: $lastName');
       log('Email: $email');
-      
+
       // Store values if they are not null or empty
       if (token.isNotEmpty) {
-        await storeJwt(token);
+        ApiService serv = ApiService(
+            baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+
+        // Fetch and store weapons
+        try {
+          List<Map<String, dynamic>> weapons =
+              await serv.searchWeapons('', token);
+          await storeGuns(weapons);
+        } catch (e) {
+          print('Failed to fetch or store weapons: $e');
+        }
       }
       if (firstName != null && lastName != null) {
         await storeName(firstName, lastName);

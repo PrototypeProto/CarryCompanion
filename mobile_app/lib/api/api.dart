@@ -108,7 +108,7 @@ class ApiService {
         'data': responseBody,
       };
     } else {
-       final errorResponse = jsonDecode(response.body);
+      final errorResponse = jsonDecode(response.body);
       return {
         'success': false,
         'message': errorResponse['message'] ?? 'Failed to verify email:',
@@ -116,7 +116,8 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> forgotPassword(Map<String, dynamic> emailData) async {
+  Future<Map<String, dynamic>> forgotPassword(
+      Map<String, dynamic> emailData) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/forgot/mobile/request-password-reset'),
       headers: {'Content-Type': 'application/json'},
@@ -197,7 +198,8 @@ class ApiService {
     }
   }
 
-  Future<List<dynamic>> searchWeapons(String query, String token) async {
+  Future<List<Map<String, dynamic>>> searchWeapons(
+      String query, String token) async {
     final response = await http.get(
       Uri.parse('$baseUrl/api/mobile/armory/search?query=$query'),
       headers: {
@@ -207,7 +209,8 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      List<dynamic> jsonList = jsonDecode(response.body);
+      return jsonList.map((item) => item as Map<String, dynamic>).toList();
     } else {
       throw Exception('Failed to search weapons: ${response.body}');
     }
