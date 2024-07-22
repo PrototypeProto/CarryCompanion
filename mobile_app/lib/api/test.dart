@@ -5,28 +5,23 @@ import 'api.dart';
 
 void main(List<String> args) async {
   // ApiService serv = ApiService(baseUrl: "http://localhost:5000");
-  ApiService serv =
-      ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
 
-  String jwt = ''; // grab on Login
+  String jwt = '';
 
-  /* Sample weapon Map */
   Map<String, dynamic> weaponData = {
-    "type": "Pistol",
-    "datePurchased": "111",
-    "manufacturer": "Magnum Research",
-    "model": "Desert Eagle"
+    "type": "Stratagfefeem", 
+    "datePurchased": "111", 
+    "manufacturer": "Super glkddadadockss", 
+    "model": "Supply Paedck"
   };
 
-  /* VARIABLES USED FOR TESTING */
-  String validUser = 'a';
-  String validPass = '11111111';
 
-  /* Change current password VARIABLES */
+  String validUser = 'a';
+  String validPass = 'a';
+
   String curPass = "11111111";
   String newPass = '1111111';
-
-  /* SIGN UP VARIABLES */
   String user = 'aaaa';
   String fname = 'hey';
   String lname = 'mam';
@@ -35,27 +30,19 @@ void main(List<String> args) async {
   String pwd = 'Test123!';
   String weaponID = '669da9e43c8c69202d1eabc8';
 
-  /* Test LOGIN, REQUIRED*/
-  Map<String, dynamic> ret =
-      await serv.login({"username": validUser, "password": validPass});
+  /* Test LOGIN*/
+  Map<String, dynamic> ret = await serv.login({"username": user, "password": curPass});
   try {
-    print('');
     if (ret['success']) {
       jwt = ret['data']['token'];
       print('Login successful. Token: $jwt');
-      print('\nUser:');
-      ret['data']['user'].forEach((key, value) {
-        print('$key: $value');
-      });
+      // print('Response data: ${ret['data']}');
     } else {
       print('Login failed: ${ret['message']}');
     }
   } catch (e) {
     print('Error: $e');
   }
-    print('');
-}
-
 
   /* Test SIGNUP*/
   // try {
@@ -171,4 +158,4 @@ void main(List<String> args) async {
   // } catch (e) {
   //   print('Error: $e');
   // }
-
+}
