@@ -31,18 +31,14 @@ const UserSchema = new mongoose.Schema({
             ref: 'Arsenal'
         }
     ],
-    ccPermit: {
-        type: Boolean,
-        required: false,
-    },
-    suppressorPermit: {
-        type: Boolean,
-        required: false,
+    deletionDate: {
+        type: Date,
+        default: null,
     },
     profilePicture: {
         type: Number,
         required: false,
-    }
+    },
 }, { collection: 'Users', versionKey: false });
 
 module.exports = mongoose.model('Users', UserSchema);

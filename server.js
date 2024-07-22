@@ -9,6 +9,8 @@ const verifyEmailRoutes = require('./routes/verifyEmail');
 const forgotPasswordRoutes = require('./routes/forgotPassword');
 const resetPasswordRoutes = require('./routes/resetPassword');
 const resetEmailRoutes = require('./routes/resetEmail');
+const deleteAccountRoutes = require('./routes/deleteAccount');
+const deletion = require('./services/deletion');
 const armoryRoutes = require('./routes/armory');
 const editRoutes = require('./routes/edit');
 const mobileRoutes = require('./routes/mobile');
@@ -24,10 +26,10 @@ mongoose.connect(process.env.MONGODB_URI, {
     console.error(err.message);
 });
 
-app.use(cors());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors());
 
 app.use('/api', signupRoutes);
 app.use('/api', loginRoutes);
@@ -35,6 +37,7 @@ app.use('/api', verifyEmailRoutes);
 app.use('/api/forgot', forgotPasswordRoutes);
 app.use('/api', resetPasswordRoutes);
 app.use('/api', resetEmailRoutes);
+app.use('/api', deleteAccountRoutes);
 app.use('/api', armoryRoutes);
 app.use('/api', editRoutes);
 app.use('/api', mobileRoutes);
@@ -45,11 +48,11 @@ app.listen(PORT, () => {
 
 // For Heroku deployment
 if (process.env.NODE_ENV === 'production')
-{
-    app.use(express.static('frontend/build'));
-
-    app.get('*', (req, res) =>
     {
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-    });
-}
+        app.use(express.static('frontend/build'));
+    
+        app.get('*', (req, res) =>
+        {
+            res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+        });
+    }
