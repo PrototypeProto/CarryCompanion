@@ -61,7 +61,7 @@ void showAddGunDialog(BuildContext context, Function(Map<String, dynamic>) addIt
                   ),
                 ),
                 value: newType,
-                items: ['Pistol', 'Rifle', 'Shotgun'].map((String value) {
+                items: ['Handgun', 'Rifle', 'Shotgun'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),

@@ -207,7 +207,7 @@ class ApiService {
   }
 
   Future<List<Map<String, dynamic>>> searchWeapons(
-      String query, String token) async {
+    String query, String token) async {
     final response = await http.get(
       Uri.parse('$baseUrl/api/mobile/armory/search?query=$query'),
       headers: {

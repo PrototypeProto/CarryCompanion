@@ -10,12 +10,14 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   final List<String> images = [
     'assets/landing_map.png',
+    'assets/landing_reciprocity.png',
     'assets/landing_armory.png',
   ];
 
   final List<String> imageTexts = [
     'The carry map. \nSee where you can, can\'t or possibly carry.',
-    'A tool for ease of future lookups on carry laws.',
+    'Which states can you safely visit',
+    'A database for your convenience.',
   ];
 
   int _currentIndex = 0;

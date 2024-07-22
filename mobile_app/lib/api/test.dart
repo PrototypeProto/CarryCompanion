@@ -14,14 +14,14 @@ void main(List<String> args) async {
   String weaponID = '669e9b109ce260e59fac03a6';
 
   Map<String, dynamic> weaponData = {
-    "type": "Pistol",
+    "type": "Rifle",
     "datePurchased": "111",
-    "manufacturer": "Magnum Research",
-    "model": "Desert Eagle 50"
+    "manufacturer": "Kalashnikov Concern",
+    "model": "Avtomat Kalashnikova"
   };
 
   Map<String, dynamic> newWeaponData = {
-    "type": "Pistol",
+    "type": "Handgun",
     "datePurchased": "111",
     "manufacturer": "Magnum Research Park",
     "model": "Desert Eagle 55"
@@ -66,11 +66,11 @@ void main(List<String> args) async {
   // signup(newUsername, newPass, fname, lname, newEmail);
   // resetPassword(curPass, newPass, jwt);
   // forgotPassword(email);
-  // addWeapon(weaponData, jwt);
+  addWeapon(weaponData, jwt);
   // editWeapon(weaponID, newWeaponData, jwt);
 
   // deleteWeapon(weaponID, jwt);
-  searchWeapon("", jwt);
+  // searchWeapon("", jwt);
 }
 
 /* Test SIGNUP*/
