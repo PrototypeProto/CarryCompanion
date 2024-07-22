@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'close_app_bar.dart';
 import 'settings_page_functions.dart';
@@ -34,6 +33,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  InputDecoration _inputDecoration(String labelText) {
+    return InputDecoration(
+      labelText: labelText,
+      filled: true,
+      fillColor: Colors.white,
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +66,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 'Change Password',
                 style: TextStyle(
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
@@ -58,29 +73,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             TextFormField(
               controller: currentPasswordController,
-              decoration: InputDecoration(
-                labelText: 'Current Password',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+              decoration: _inputDecoration('Current Password'),
               obscureText: true,
             ),
             SizedBox(height: 20),
             TextFormField(
               controller: newPasswordController,
-              decoration: InputDecoration(
-                labelText: 'New Password',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+              decoration: _inputDecoration('New Password'),
               obscureText: true,
-              autovalidateMode: AutovalidateMode.always,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 return isValidPasswordMessage(
                     newPasswordController.text, confirmNewPasswordController.text);
@@ -89,16 +90,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(height: 20),
             TextFormField(
               controller: confirmNewPasswordController,
-              decoration: InputDecoration(
-                labelText: 'Confirm New Password',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+              decoration: _inputDecoration('Confirm New Password'),
               obscureText: true,
-              autovalidateMode: AutovalidateMode.always,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 return isValidPasswordMessage(
                     confirmNewPasswordController.text, newPasswordController.text);
@@ -119,31 +113,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   _loadPersistentData();
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 15),
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  textStyle: TextStyle(fontSize: 18),
+                  padding: EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Text('Change My Password'),
               ),
             ),
-            SizedBox(height: 40),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: 200, // Smaller width for the button
-                child: ElevatedButton(
-                  onPressed: () {
-                    requestAccountDeletion(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                    textStyle: TextStyle(fontSize: 18),
-                  ),
-                  child: Text('Delete My Account'),
+             Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: TextButton(
+                onPressed: () {
+                  requestAccountDeletion(context);
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.red,
                 ),
+                child: Text('Delete My Account'),
               ),
             ),
           ],

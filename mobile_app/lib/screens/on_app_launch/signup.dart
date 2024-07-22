@@ -20,6 +20,20 @@ class _SignUpState extends State<SignUp> {
   ApiService serv =
       ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
 
+  InputDecoration _inputDecoration(String hintText) {
+    return InputDecoration(
+      hintText: hintText,
+      filled: true,
+      fillColor: Colors.white,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -43,67 +57,40 @@ class _SignUpState extends State<SignUp> {
                         const Text('Sign Up',
                             style:
                                 TextStyle(fontSize: 24, color: Colors.black)),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 10),
                         TextFormField(
                           controller: _firstNameController,
-                          decoration: const InputDecoration(
-                              hintText: 'First Name',
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.red))),
+                          decoration: _inputDecoration('First Name'),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your first name';
+                            } else if (!RegExp(r'^[a-zA-Z\s\-]+$')
+                                .hasMatch(value)) {
+                              return 'First name can only contain alphabetic characters, spaces, and hyphens';
                             }
-                            /* TODO: FIX REGEX FOR NAME (FIRST AND LAST) */
-                            // else if (!RegExp(
-                            //         r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$')
-                            //     .hasMatch(value)) {
-                            //   return 'Please enter a valid email';
-                            // }
                             return null;
                           },
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _lastNameController,
-                          decoration: const InputDecoration(
-                              hintText: 'Last Name',
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.red))),
+                          decoration: _inputDecoration('Last Name'),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your last name';
+                            } else if (!RegExp(r'^[a-zA-Z\s\-]+$')
+                                .hasMatch(value)) {
+                              return 'Last name can only contain alphabetic characters, spaces, and hyphens';
                             }
-                            /* TODO: FIX REGEX FOR NAME (FIRST AND LAST) */
-                            // else if (!RegExp(
-                            //         r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$')
-                            //     .hasMatch(value)) {
-                            //   return 'Please enter a valid email';
-                            // }
                             return null;
                           },
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _emailController,
-                          decoration: const InputDecoration(
-                              hintText: 'Email',
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.red))),
+                          decoration: _inputDecoration('Email'),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -119,14 +106,7 @@ class _SignUpState extends State<SignUp> {
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _usernameController,
-                          decoration: const InputDecoration(
-                              hintText: 'Username',
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.red))),
+                          decoration: _inputDecoration('Username'),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -143,14 +123,7 @@ class _SignUpState extends State<SignUp> {
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _passwordController,
-                          decoration: const InputDecoration(
-                              hintText: 'Password',
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.red))),
+                          decoration: _inputDecoration('Password'),
                           obscureText: true,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
@@ -170,14 +143,7 @@ class _SignUpState extends State<SignUp> {
                         const SizedBox(height: 10),
                         TextFormField(
                           controller: _confirmPasswordController,
-                          decoration: const InputDecoration(
-                              hintText: 'Confirm Password',
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.red))),
+                          decoration: _inputDecoration('Confirm Password'),
                           obscureText: true,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
@@ -197,14 +163,7 @@ class _SignUpState extends State<SignUp> {
                                 backgroundColor: Colors.red,
                                 foregroundColor: Colors.white),
                             onPressed: () async {
-                              /* TODO: implement signup API with correct text forms */
-
                               if (_formKey.currentState?.validate() == true) {
-                                // var db = MongoDatabase();
-                                // var user = await db.signUpUser(
-                                //     _usernameController.text,
-                                //     _emailController.text,
-                                //     _passwordController.text);
                                 Map<String, dynamic> ret = await serv.signup({
                                   "username": _usernameController.text,
                                   "password": _passwordController.text,
@@ -217,14 +176,14 @@ class _SignUpState extends State<SignUp> {
                                 if (ret['success']) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                        content:
-                                            Text('Sign up successful: ${ret['data']['message']}')),
+                                        content: Text(
+                                            'Sign up successful: ${ret['data']['message']}')),
                                   );
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                        content:
-                                            Text('Sign up failed: ${ret['message']}')),
+                                        content: Text(
+                                            'Sign up failed: ${ret['message']}')),
                                   );
                                 }
                               }

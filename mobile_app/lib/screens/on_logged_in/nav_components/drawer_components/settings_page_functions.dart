@@ -106,31 +106,8 @@ void verifyAccountDeletion(BuildContext context) {
   //   return;
   // }
 }
-
 Future<void> requestAccountDeletion(BuildContext context) async {
-  bool? deleteConfirmed = await showDialog<bool>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Confirm Delete'),
-        content: Text('Are you sure you want to delete your account?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false); // Return false on no
-            },
-            child: Text('No'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop(true); // Return true on yes
-            },
-            child: Text('Yes'),
-          ),
-        ],
-      );
-    },
-  );
+  bool? deleteConfirmed = await showConfirmDeleteDialog(context, 'your account');
 
   if (deleteConfirmed == true) {
     await showDeletionSuccessDialog(context);
@@ -139,36 +116,91 @@ Future<void> requestAccountDeletion(BuildContext context) async {
   }
 }
 
+Future<bool?> showConfirmDeleteDialog(BuildContext context, String itemName) {
+  return showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          'Confirm Delete',
+          style: TextStyle(color: Colors.black), 
+        ),
+        content: Text(
+          'Are you sure you want to delete $itemName?',
+          style: TextStyle(color: Colors.black), 
+        ),
+        actions: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false); 
+                },
+                child: Text(
+                  'No',
+                  style: TextStyle(color: Colors.black), 
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true); 
+                },
+                child: Text(
+                  'Yes',
+                  style: TextStyle(color: Colors.black), 
+                ),
+              ),
+            ],
+          ),
+        ],
+        backgroundColor: Colors.grey[300], 
+      );
+    },
+  );
+}
+
 Future<void> showDeletionSuccessDialog(BuildContext context) {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // User must tap the button to dismiss
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Success!'),
+        title: Text(
+          'Success!',
+          style: TextStyle(color: Colors.black), // Title color
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text('An email has been sent to confirm account deletion.'),
+            Text(
+              'An email has been sent to confirm account deletion.',
+              style: TextStyle(color: Colors.black), // Content text color
+            ),
             SizedBox(height: 20), // Add some space between text and button
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop(); // Close this dialog
-                  // Add your sign out logic here
-                  // Navigator.pushNamed(context, '/');
                   Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-                  // For example, Navigator.of(context).pushReplacementNamed('/login');
                 },
-                child: Text('Sign me out!'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red, // Background color for button
+                ),
+                child: Text(
+                  'Sign me out!',
+                  style: TextStyle(color: Colors.white), // Button text color
+                ),
               ),
             ),
           ],
         ),
+        backgroundColor: Colors.grey[300], // Background color for dialog
       );
-    },
+    }
   );
 }
+
 
 
 Future<void> showDeletionCancelledDialog(BuildContext context) {
@@ -176,16 +208,26 @@ Future<void> showDeletionCancelledDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Account Not Deleted'),
-        content: Text('Your account has not been deleted.'),
+        title: Text(
+          'Account Not Deleted',
+          style: TextStyle(color: Colors.black), // Title color
+        ),
+        content: Text(
+          'Your account has not been deleted.',
+          style: TextStyle(color: Colors.black), // Content text color
+        ),
         actions: <Widget>[
-          ElevatedButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop(); // Close this dialog
             },
-            child: Text('OK'),
+            child: Text(
+              'OK',
+              style: TextStyle(color: Colors.black), // Button text color
+            ),
           ),
         ],
+        backgroundColor: Colors.grey[300], // Background color for dialog
       );
     },
   );

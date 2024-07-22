@@ -19,6 +19,20 @@ class _LoginState extends State<Login> {
   bool _isPasswordVisible = false;
   final PreferencesHelper _prefsHelper = PreferencesHelper();
 
+  InputDecoration _inputDecoration(String hintText) {
+    return InputDecoration(
+      hintText: hintText,
+      filled: true,
+      fillColor: Colors.white,
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -42,14 +56,7 @@ class _LoginState extends State<Login> {
                     const SizedBox(height: 40),
                     TextFormField(
                       controller: _usernameController,
-                      decoration: const InputDecoration(
-                          hintText: 'Username',
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red))),
+                      decoration: _inputDecoration('Username'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your username';
@@ -60,14 +67,7 @@ class _LoginState extends State<Login> {
                     const SizedBox(height: 10),
                     TextFormField(
                       controller: _passwordController,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        filled: true,
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
+                      decoration: _inputDecoration('Password').copyWith(
                         suffixIcon: IconButton(
                           icon: Icon(
                             _isPasswordVisible
