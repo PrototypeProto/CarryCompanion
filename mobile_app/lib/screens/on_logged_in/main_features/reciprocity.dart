@@ -8,29 +8,29 @@ class ReciprocityPage extends StatefulWidget {
   const ReciprocityPage({super.key});
 
   @override
-  State<ReciprocityPage> createState() => _ReciprocityPageState();
+  State<ReciprocityPage> createState() => ReciprocityPageState();
 }
 
-class _ReciprocityPageState extends State<ReciprocityPage> {
-  late MapShapeSource _shapeSource;
-  late List<MapModel> _mapData;
+class ReciprocityPageState extends State<ReciprocityPage> {
+  late MapShapeSource shapeSource;
+  late List<MapModel> mapData;
   int selectedIndex = -1;
 
   @override
   void initState() {
     super.initState();
-    _mapData = _getMapData();
-    _updateShapeSource();
+    mapData = getMapData();
+    updateShapeSource();
   }
 
-  void _updateShapeSource() {
-    _shapeSource = MapShapeSource.asset(
+  void updateShapeSource() {
+    shapeSource = MapShapeSource.asset(
       "assets/usa.json",
       shapeDataField: "name",
-      dataCount: _mapData.length,
-      primaryValueMapper: (int index) => _mapData[index].state,
+      dataCount: mapData.length,
+      primaryValueMapper: (int index) => mapData[index].state,
       dataLabelMapper: (int index) => '',
-      shapeColorValueMapper: (int index) => _mapData[index].color,
+      shapeColorValueMapper: (int index) => mapData[index].color,
        shapeColorMappers: [
         MapColorMapper(from: 0, to: 50, color: Colors.green, text: 'Permit Honored'),
         MapColorMapper(from: 51, to: 100, color: Colors.yellow, text: 'Permit Honored w/ Restrictions'),
@@ -39,7 +39,7 @@ class _ReciprocityPageState extends State<ReciprocityPage> {
     );
   }
 
-void _updateSelectedIndex(int index) {
+void updateSelectedIndex(int index) {
     setState(() {
       selectedIndex = index;
       dropdownValue = states[selectedIndex+1];
@@ -79,8 +79,8 @@ final List<String> states = [
                 setState(() {
                   dropdownValue = newValue!;
                   selectedIndex = states.indexOf(newValue)-1;
-                  _applyPermitFilter();
-                  _updateShapeSource();
+                  applyPermitFilter();
+                  updateShapeSource();
                 });
               },
               items: states.map<DropdownMenuItem<String>>((String value) {
@@ -107,7 +107,7 @@ final List<String> states = [
                   child: SfMaps(
                     layers: [
                       MapShapeLayer(
-                        source: _shapeSource,
+                        source: shapeSource,
                         legend: MapLegend(MapElement.shape,position: MapLegendPosition.bottom,title: Text('Permits Honored'),overflowMode: MapLegendOverflowMode.wrap,iconSize: Size(15.0, 15.0),),
                         showDataLabels: true,
                         strokeColor: Colors.grey[300],
@@ -120,11 +120,11 @@ final List<String> states = [
                         ),
                         selectedIndex: selectedIndex,
                         onSelectionChanged: (int index) {
-                          _updateSelectedIndex(index);
+                          updateSelectedIndex(index);
                           print('SelectedIndex : $selectedIndex');
                           dropdownValue = states[index+1];
-                          _applyPermitFilter();
-                          _updateShapeSource();
+                          applyPermitFilter();
+                          updateShapeSource();
                         },
                         selectionSettings: MapSelectionSettings(
                             // TODO what can I do with this??
@@ -145,25 +145,25 @@ final List<String> states = [
     );
   }
   
-  void _applyPermitFilter() {
+  void applyPermitFilter() {
     //TODO make the drop down select multiple indexes
     for (int i=0; i<50; i++){
-      _mapData[i].color = Colors.red;
+      mapData[i].color = Colors.red;
     }
      var noRestrictions = permitRecognitionMapNoRestrictions[selectedIndex];
     for (int x in noRestrictions!){
-      _mapData[x].color = Colors.green;
+      mapData[x].color = Colors.green;
     }
      var restrictions = permitRecognitionMapWithRestrictions[selectedIndex];
     for (int x in restrictions!){
-      _mapData[x].color = Colors.yellow;
+      mapData[x].color = Colors.yellow;
     }
-    _mapData[selectedIndex].color = Colors.green;
+    mapData[selectedIndex].color = Colors.green;
   }
 }
 
 
-List<MapModel> _getMapData() {
+List<MapModel> getMapData() {
   // first is NAME from json, then 2nd is name displayed on the map
   //need variables here for colors so we can change them
 
