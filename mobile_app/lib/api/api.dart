@@ -14,9 +14,17 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
     } else {
-      throw Exception('Failed to signup: ${response.body}');
+      final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to signup:',
+      };
     }
   }
 

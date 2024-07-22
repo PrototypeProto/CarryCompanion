@@ -22,10 +22,10 @@ void main(List<String> args) async {
 
   String curPass = "11111111";
   String newPass = '1111111';
-  String user = 'a';
+  String user = 'aaaa';
   String fname = 'hey';
   String lname = 'mam';
-  String email = 'bobbbdl@ffi.com';
+  String email = 'bobbbdl@dsaffi.com';
   String newEmail = "genomegalul@gmail.com";
   String pwd = 'Test123!';
   String weaponID = '669da9e43c8c69202d1eabc8';
@@ -48,15 +48,18 @@ void main(List<String> args) async {
   // try {
   //   Map<String, dynamic> ret = await serv.signup({
   //     "username": user,
-  //     "password": pwd,
+  //     "password": newPass,
   //     "firstName": fname,
   //     "lastName": lname,
   //     "email": email,
   //     "verification": false,
   //   });
-
   //   // Properly print the response
-  //   print('Signup response: $ret');
+  //   if (ret['success']) {
+  //     print('Signup response: ${ret['data']['message']}');
+  //   } else {
+  //     print('Signup failed: ${ret['message']}');
+  //   }
   // } catch (e) {
   //   print('Error: $e');
   // }
@@ -102,7 +105,7 @@ void main(List<String> args) async {
 
   // /* Forgot passowrd wip TODO: FIX */
   // try {
-  //   Map<String, dynamic> ret = await serv.forgotPassword(emailData);
+  //   Map<String, dynamic> ret = await serv.forgotPassword(email);
 
   //   if (ret['success']) {
   //     print('Password reset request successful. Response data: ${ret['data']}');
@@ -149,10 +152,10 @@ void main(List<String> args) async {
   // }
 
   // /* works  */
-  try {
-    List<dynamic> weapons = await serv.searchWeapons('', jwt);
-    print('Weapons found: ${weapons}');
-  } catch (e) {
-    print('Error: $e');
-  }
+  // try {
+  //   List<dynamic> weapons = await serv.searchWeapons('', jwt);
+  //   print('Weapons found: ${weapons}');
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
 }

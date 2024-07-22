@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gun/api/api.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -10,6 +11,8 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text('Forgot Password',
-                            style: TextStyle(fontSize: 24, color: Colors.black)),
+                            style:
+                                TextStyle(fontSize: 24, color: Colors.black)),
                         const SizedBox(height: 40),
                         const Text(
                           'Enter your email address for your account. We\'ll send a link to recover your account.',
@@ -47,7 +51,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               filled: true,
                               fillColor: Colors.white, // Background color
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white), // Border color
+                                borderSide: BorderSide(
+                                    color: Colors.white), // Border color
                               ),
                               focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red))),
@@ -73,14 +78,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             onPressed: () async {
                               if (_formKey.currentState?.validate() == true) {
                                 //TODO api goes within this scope
+
+
+                                /* TODO: UNCOMMENT WHEN API FIXED FOR FORGOT PASSWORD */
+                                // Map<String, dynamic> ret = await serv.forgotPassword(_emailController.text);
+
                                 var result = 'Reset link sent';
                                 if (result == 'Reset link sent') {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Reset link sent to your email')),
+                                    const SnackBar(
+                                        content: Text(
+                                            'Reset link sent to your email')),
                                   );
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Failed to send reset link')),
+                                    const SnackBar(
+                                        content:
+                                            Text('Failed to send reset link')),
                                   );
                                 }
                               }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gun/api/api.dart';
 import '../../api/mongo.dart';
 
 class SignUp extends StatefulWidget {
@@ -14,6 +15,10 @@ class _SignUpState extends State<SignUp> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  ApiService serv =
+      ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +41,59 @@ class _SignUpState extends State<SignUp> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text('Sign Up',
-                            style: TextStyle(fontSize: 24, color: Colors.black)),
+                            style:
+                                TextStyle(fontSize: 24, color: Colors.black)),
                         const SizedBox(height: 40),
+                        TextFormField(
+                          controller: _firstNameController,
+                          decoration: const InputDecoration(
+                              hintText: 'First Name',
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red))),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your first name';
+                            }
+                            /* TODO: FIX REGEX FOR NAME (FIRST AND LAST) */
+                            // else if (!RegExp(
+                            //         r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$')
+                            //     .hasMatch(value)) {
+                            //   return 'Please enter a valid email';
+                            // }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                        TextFormField(
+                          controller: _lastNameController,
+                          decoration: const InputDecoration(
+                              hintText: 'Last Name',
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red))),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your last name';
+                            }
+                            /* TODO: FIX REGEX FOR NAME (FIRST AND LAST) */
+                            // else if (!RegExp(
+                            //         r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$')
+                            //     .hasMatch(value)) {
+                            //   return 'Please enter a valid email';
+                            // }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 10),
                         TextFormField(
                           controller: _emailController,
                           decoration: const InputDecoration(
@@ -75,7 +131,8 @@ class _SignUpState extends State<SignUp> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your username';
-                            } else if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
+                            } else if (!RegExp(r'^[a-zA-Z0-9]+$')
+                                .hasMatch(value)) {
                               return 'Usernames may only contain alphabetic and numeric characters';
                             } else if (value.length >= 32) {
                               return 'Usernames cannot exceed 32 characters';
@@ -140,28 +197,34 @@ class _SignUpState extends State<SignUp> {
                                 backgroundColor: Colors.red,
                                 foregroundColor: Colors.white),
                             onPressed: () async {
-                              /* TODO: implement signup API with correct text forms
-                               Map<String, dynamic> ret = await serv.signup({
-                                //     "username": user,
-                                //     "password": pwd,
-                                //     "firstName": fname,
-                                //     "lastName": lname,
-                                //     "email": email,
-                                //     "verification": false,
-                                //   }); */
+                              /* TODO: implement signup API with correct text forms */
+
                               if (_formKey.currentState?.validate() == true) {
-                                var db = MongoDatabase();
-                                var user = await db.signUpUser(
-                                    _usernameController.text,
-                                    _emailController.text,
-                                    _passwordController.text);
-                                if (user == 'User successfully signed up') {
+                                // var db = MongoDatabase();
+                                // var user = await db.signUpUser(
+                                //     _usernameController.text,
+                                //     _emailController.text,
+                                //     _passwordController.text);
+                                Map<String, dynamic> ret = await serv.signup({
+                                  "username": _usernameController.text,
+                                  "password": _passwordController.text,
+                                  "firstName": _firstNameController.text,
+                                  "lastName": _lastNameController.text,
+                                  "email": _emailController.text,
+                                  "verification": false,
+                                });
+
+                                if (ret['success']) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Successfully Signed Up')),
+                                    SnackBar(
+                                        content:
+                                            Text('Sign up successful: ${ret['data']['message']}')),
                                   );
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Failed to Register User')),
+                                    SnackBar(
+                                        content:
+                                            Text('Sign up failed: ${ret['message']}')),
                                   );
                                 }
                               }
@@ -177,9 +240,12 @@ class _SignUpState extends State<SignUp> {
             ),
             Positioned(
               left: 0,
-              top: MediaQuery.of(context).padding.top/2,
+              top: MediaQuery.of(context).padding.top / 2,
               child: IconButton(
-                icon: Icon(Icons.arrow_back,size: 30,),
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: 30,
+                ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
