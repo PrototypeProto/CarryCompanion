@@ -88,7 +88,7 @@ class _LandingPageState extends State<LandingPage> {
                       },
                     ),
                     Positioned(
-                      bottom: 100, // Adjust as needed
+                      bottom: 110, // Adjust as needed
                       left: 50,
                       right: 50,
                       child: Row(
