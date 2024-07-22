@@ -87,7 +87,7 @@ void main(List<String> args) async {
   //   print('Error: $e');
   // }
 
-  // /* verify email TODO:  */
+  // /* verify email TODO: IDK IF WE NEED IT */
   // try {
   //   Map<String, dynamic> ret = await serv.verifyEmail(jwt);
 
@@ -100,7 +100,7 @@ void main(List<String> args) async {
   //   print('Error: $e');
   // }
 
-  // /* Forgot passowrd wip TODO: */
+  // /* Forgot passowrd wip TODO: FIX */
   // try {
   //   Map<String, dynamic> ret = await serv.forgotPassword(emailData);
 
@@ -126,30 +126,30 @@ void main(List<String> args) async {
   //   print('Error: $e');
   // }
 
-  // /* reset  */
-  try {
-    Map<String, dynamic> ret = await serv.editWeapon(weaponID, weaponData, jwt);
-
-    if (ret['success']) {
-      print('Weapon edited successfully. Response data: ${ret["message"]}');
-    } else {
-      print('Failed to edit weapon: ${ret["message"]}');
-    }
-  } catch (e) {
-    print('Error: $e');
-  }
-
-  // /* reset  */
+  // /* TODO: FIX  */
   // try {
-  //   await serv.deleteWeapon(id, token);
+  //   Map<String, dynamic> ret = await serv.editWeapon(weaponID, weaponData, jwt);
+
+  //   if (ret['success']) {
+  //     print('Weapon edited successfully. Response data: ${ret["message"]}');
+  //   } else {
+  //     print('Failed to edit weapon: ${ret["message"]}');
+  //   }
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
+
+  // /* TODO: FIX */
+  // try {
+  //   await serv.deleteWeapon(weaponID, jwt);
   //   print('Weapon deleted successfully.');
   // } catch (e) {
   //   print('Error: $e');
   // }
 
-  // /* reset  */
+  // /* works  */
   // try {
-  //   List<dynamic> weapons = await serv.searchWeapons(query, token);
+  //   List<dynamic> weapons = await serv.searchWeapons("", jwt);
   //   print('Weapons found: $weapons');
   // } catch (e) {
   //   print('Error: $e');
