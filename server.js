@@ -13,6 +13,7 @@ const armoryRoutes = require('./routes/armory');
 const editRoutes = require('./routes/edit');
 const mobileRoutes = require('./routes/mobile');
 
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -23,10 +24,10 @@ mongoose.connect(process.env.MONGODB_URI, {
     console.error(err.message);
 });
 
+app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(cors());
 
 app.use('/api', signupRoutes);
 app.use('/api', loginRoutes);
@@ -44,11 +45,11 @@ app.listen(PORT, () => {
 
 // For Heroku deployment
 if (process.env.NODE_ENV === 'production')
+{
+    app.use(express.static('frontend/build'));
+
+    app.get('*', (req, res) =>
     {
-        app.use(express.static('frontend/build'));
-    
-        app.get('*', (req, res) =>
-        {
-            res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-        });
-    }
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    });
+}
