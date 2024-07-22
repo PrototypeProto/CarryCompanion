@@ -141,10 +141,19 @@ class ApiService {
       body: jsonEncode(weaponData),
     );
 
-    if (response.statusCode == 201) {
-      return jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
     } else {
-      throw Exception('Failed to add weapon: ${response.body}');
+      final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to add weapon:',
+      };
+      // throw Exception('Failed to add weapon: ${response.body}');
     }
   }
 
@@ -160,9 +169,17 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
     } else {
-      throw Exception('Failed to edit weapon: ${response.body}');
+      final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to edit weapon:',
+      };
     }
   }
 

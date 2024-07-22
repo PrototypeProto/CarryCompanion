@@ -10,12 +10,12 @@ void main(List<String> args) async {
   String jwt = '';
 
   Map<String, dynamic> weaponData = {
-    "_id": "669b294389d8d5154e22bdfa",
-    "type": "Stratagem",
-    "datePurchased": "111",
-    "manufacturer": "Super Earth",
+    "type": "Stratagem", 
+    "datePurchased": "111", 
+    "manufacturer": "Super ~~~~~", 
     "model": "Supply Pack"
   };
+
 
   String validUser = 'a';
   String validPass = 'a';
@@ -28,6 +28,7 @@ void main(List<String> args) async {
   String email = 'bobbbdl@ffi.com';
   String newEmail = "genomegalul@gmail.com";
   String pwd = 'Test123!';
+  String weaponID = '669da12a3c8c69202d1eaba6!';
 
   /* Test LOGIN*/
   Map<String, dynamic> ret = await serv.login({"username": user, "password": curPass});
@@ -86,20 +87,20 @@ void main(List<String> args) async {
   //   print('Error: $e');
   // }
 
-  // /* reset  */
-  try {
-    Map<String, dynamic> ret = await serv.verifyEmail(jwt);
+  // /* verify email TODO:  */
+  // try {
+  //   Map<String, dynamic> ret = await serv.verifyEmail(jwt);
 
-    if (ret['success']) {
-      print('Email verification successful. Response data: ${ret['data']['message']}');
-    } else {
-      print('Email verification failed: ${ret['message']}');
-    }
-  } catch (e) {
-    print('Error: $e');
-  }
+  //   if (ret['success']) {
+  //     print('Email verification successful. Response data: ${ret['data']['message']}');
+  //   } else {
+  //     print('Email verification failed: ${ret['message']}');
+  //   }
+  // } catch (e) {
+  //   print('Error: $e');
+  // }
 
-  // /* reset  */
+  // /* Forgot passowrd wip TODO: */
   // try {
   //   Map<String, dynamic> ret = await serv.forgotPassword(emailData);
 
@@ -114,10 +115,10 @@ void main(List<String> args) async {
 
   // /* reset  */
   // try {
-  //   Map<String, dynamic> ret = await serv.addWeapon(weaponData, token);
+  //   Map<String, dynamic> ret = await serv.addWeapon(weaponData, jwt);
 
   //   if (ret['success']) {
-  //     print('Weapon added successfully. Response data: ${ret['data']}');
+  //     print('Weapon added successfully. Response data: ${ret["data"]["weapon"]["_id"]}');
   //   } else {
   //     print('Failed to add weapon: ${ret['message']}');
   //   }
@@ -126,17 +127,17 @@ void main(List<String> args) async {
   // }
 
   // /* reset  */
-  // try {
-  //   Map<String, dynamic> ret = await serv.editWeapon(id, weaponData, token);
+  try {
+    Map<String, dynamic> ret = await serv.editWeapon(weaponID, weaponData, jwt);
 
-  //   if (ret['success']) {
-  //     print('Weapon edited successfully. Response data: ${ret['data']}');
-  //   } else {
-  //     print('Failed to edit weapon: ${ret['message']}');
-  //   }
-  // } catch (e) {
-  //   print('Error: $e');
-  // }
+    if (ret['success']) {
+      print('Weapon edited successfully. Response data: ${ret["message"]}');
+    } else {
+      print('Failed to edit weapon: ${ret["message"]}');
+    }
+  } catch (e) {
+    print('Error: $e');
+  }
 
   // /* reset  */
   // try {
