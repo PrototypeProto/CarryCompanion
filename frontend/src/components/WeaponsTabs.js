@@ -91,7 +91,7 @@ const WeaponsTabs = ({ onSearchResults, onAddCard }) =>
             <div className="flex-2 flex justify-center mx-4 h-12">
                 
                 <input ref={(c) => search = c} type="text" placeholder="Search Inventory" className="border-0 border-solid rounded-l-md w-96"></input>
-                <button onClick={handleInventorySearch} className="text-white border-0 rounded-r-md border-solid w-12 bg-red-600">{searchIcon}</button>
+                <button onClick={handleInventorySearch} className="text-white border-0 rounded-r-md border-solid w-12 bg-red-600 hover:bg-red-700">{searchIcon}</button>
                 
             </div>
             <div className="flex-1 flex justify-end">
