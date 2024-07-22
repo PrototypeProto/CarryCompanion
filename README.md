@@ -6,7 +6,8 @@ This is your team's large project, Please note that all members must submit the 
 
 You have 15 minutes. Make sure your team practices the presentation. <-- Make sure!
 
-Your team's list and presentation time can be found at the google sheet here: https://docs.google.com/spreadsheets/d/1ykiAYu9BqM8L5LmX5ewNV8LpApr3zX7JAIcb9-mX2-g/edit#gid=0 Links to an external site..  You will need a project title and your github link. The presentation time will be assigned later
+Your team's list and presentation time can be found at the google sheet here: <url>https://docs.google.com/spreadsheets/d/108ES1kBjKK52zeU0U9LDlyGBHkMeJE4prTgAancoFmM/edit?gid=0#gid=0)</url>
+You will need a project title and your github link. The presentation time will be assigned later
 
 The large project presentations will be 15 minutes. Attendance for all presentations is mandatory. Immediately in advance of your presentation you DO NOT have time to go the google drive, drop box, or the like and retrieve your material. You should have your slides and support material on a USB stick. All members must participate in the presentation and be present.
 
