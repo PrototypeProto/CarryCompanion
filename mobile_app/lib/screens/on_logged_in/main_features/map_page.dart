@@ -6,44 +6,44 @@ class MapPage extends StatefulWidget {
   const MapPage({super.key});
 
   @override
-  State<MapPage> createState() => _MapScreenState();
+  State<MapPage> createState() => MapScreenState();
 }
 
-class _MapScreenState extends State<MapPage> {
-  late MapShapeSource _shapeSource;
-  late List<MapModel> _mapData;
+class MapScreenState extends State<MapPage> {
+  late MapShapeSource shapeSource;
+  late List<MapModel> mapData;
   int selectedIndex = -1;
 
   @override
   void initState() {
     super.initState();
-    _mapData = _getMapData();
-    _updateShapeSource();
+    mapData = getMapData();
+    updateShapeSource();
   }
 
-  void _updateSelectedIndex(int index) {
+  void updateSelectedIndex(int index) {
     setState(() {
       if (selectedIndex != -1) {
-        _mapData[selectedIndex].color =
+        mapData[selectedIndex].color =
             Colors.red; // TODO make this a variable for filtering
       }
       selectedIndex = index;
-      _mapData[selectedIndex].color =
+      mapData[selectedIndex].color =
           Colors.grey.shade50; // Set color of newly selected index
-      _updateShapeSource();
+      updateShapeSource();
       dropdownValue = states[selectedIndex+1];
     });
   }
 
-  void _updateShapeSource() {
-    _shapeSource = MapShapeSource.asset(
+  void updateShapeSource() {
+    shapeSource = MapShapeSource.asset(
       "assets/usa.json",
       shapeDataField: "name",
-      dataCount: _mapData.length,
-      primaryValueMapper: (int index) => _mapData[index].state,
+      dataCount: mapData.length,
+      primaryValueMapper: (int index) => mapData[index].state,
       dataLabelMapper: (int index) =>
-          (index == selectedIndex ? _mapData[index].stateCode : ''),
-      shapeColorValueMapper: (int index) => _mapData[index].color,
+          (index == selectedIndex ? mapData[index].stateCode : ''),
+      shapeColorValueMapper: (int index) => mapData[index].color,
       shapeColorMappers: [
   MapColorMapper(from: 0, to: 50, color: Color(0xFF0088D1), text: 'No Permit Required'),
   MapColorMapper(from: 51, to: 100, color: Color(0xFF00245E), text: 'Permit Required'),
@@ -88,8 +88,8 @@ final List<String> states = [
                 setState(() {
                   dropdownValue = newValue!;
                   selectedIndex = states.indexOf(newValue)-1;
-                  _updateShapeSource();
-                  _updateSelectedIndex(selectedIndex);
+                  updateShapeSource();
+                  updateSelectedIndex(selectedIndex);
                   showDialog(
                             context: context,
                             builder: (context) =>
@@ -119,7 +119,7 @@ final List<String> states = [
                   child: SfMaps(
                     layers: [
                       MapShapeLayer(
-                        source: _shapeSource,
+                        source: shapeSource,
                         legend: MapLegend(MapElement.shape,position: MapLegendPosition.bottom,title: Text('Right To Conceal Carry Laws'),overflowMode: MapLegendOverflowMode.wrap,iconSize: Size(15.0, 15.0),),
                         showDataLabels: true,
                         strokeColor: Colors.grey[300],
@@ -132,8 +132,8 @@ final List<String> states = [
                         ),
                         selectedIndex: selectedIndex,
                         onSelectionChanged: (int index) {
-                          _updateSelectedIndex(index);
-                          _updateShapeSource();
+                          updateSelectedIndex(index);
+                          updateShapeSource();
                           showDialog(
                             context: context,
                             builder: (context) =>
@@ -269,7 +269,7 @@ class CustomDialogWidget extends StatelessWidget {
   }
 }
 
-List<MapModel> _getMapData() {
+List<MapModel> getMapData() {
   // first is NAME from json, then 2nd is name displayed on the map
   //need variables here for colors so we can change them
   const noPermitRequired = Color(0xFF0088D1); 

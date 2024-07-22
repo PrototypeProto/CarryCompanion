@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:gun/main.dart';
 import 'about_us_page.dart';
-import 'account_page.dart';
 import 'settings_page.dart';
 import '../../../../api/persist.dart';
 
@@ -89,18 +88,6 @@ class _MyDrawerState extends State<MyDrawer> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SettingsScreen()),
-                      );
-                    },
-                  ),
-                  /* TODO: REMOVE? */
-                  ListTile(
-                    leading: Icon(Icons.person_sharp, color: Colors.black),
-                    title: const Text('My Account', style: TextStyle(color: Colors.black)),
-                    onTap: () {
-                      ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const AccountScreen()),
                       );
                     },
                   ),
