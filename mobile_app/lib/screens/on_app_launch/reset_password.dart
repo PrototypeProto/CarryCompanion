@@ -79,9 +79,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               if (_formKey.currentState?.validate() == true) {
                                 //TODO api goes within this scope
 
-
+                              print(_emailController.text);
                               Map<String, dynamic> result = await serv.forgotPassword(_emailController.text);
-                               
+                              
                                 if (result['success']) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(

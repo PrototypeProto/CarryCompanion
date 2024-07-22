@@ -128,9 +128,9 @@ class ApiService {
     final response = await http.post(
       Uri.parse('$baseUrl/api/forgot/mobile/request-password-reset'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(emailData),
+      body: emailData,
     );
-    print('response: $response');
+    //print('response: $response');
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
       return {

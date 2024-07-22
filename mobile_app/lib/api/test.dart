@@ -128,7 +128,7 @@ void forgotPassword(String email) async {
       ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
   try {
     print('');
-    Map<String, dynamic> ret = await serv.forgotPassword({"email": email});
+    Map<String, dynamic> ret = await serv.forgotPassword(email);
 
     if (ret['success']) {
       print(
@@ -231,6 +231,18 @@ void searchWeapon(String query, String jwt) async {
   print('');
 }
  
+ void requestDeleteAccount(String jwt) async {
+  ApiService serv =
+      ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  try {
+    print('');
+    await serv.deleteAccount(jwt);
+    print('Account deleted successfully.');
+  } catch (e) {
+    print('Error: $e');
+  }
+  print('');
+}
  
 /* UNUSED APIS */
 

@@ -2,6 +2,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:gun/api/test.dart';
 import 'package:gun/main.dart';
 import '../../../on_app_launch/validate_input.dart';
 import '../../../../api/persist.dart';
@@ -110,6 +111,10 @@ Future<void> requestAccountDeletion(BuildContext context) async {
   bool? deleteConfirmed = await showConfirmDeleteDialog(context, 'your account');
 
   if (deleteConfirmed == true) {
+    //TODO put delete account here
+    final PreferencesHelper prefsHelper = PreferencesHelper();
+    String token = await prefsHelper.getJwt(); 
+    requestDeleteAccount(token);
     await showDeletionSuccessDialog(context);
   } else {
     await showDeletionCancelledDialog(context);
