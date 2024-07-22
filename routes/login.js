@@ -32,6 +32,12 @@ router.post('/login', async (req, res) => {
             return res.status(403).json({ message: 'Account not verified. Verification email resent.' });
         }
 
+        // Cancel account deletion if user logs in during the countdown period
+        if (user.deletionDate && new Date() < new Date(user.deletionDate)) {
+            user.deletionDate = null;
+            await user.save();
+        }
+
         const token = jwt.sign({ id: user._id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
 
         return res.status(200).json({
