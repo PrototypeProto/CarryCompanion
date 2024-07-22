@@ -22,9 +22,14 @@ class PreferencesHelper {
   }
 
   // Method to retrieve JWT
-  Future<String?> getJwt() async {
+  Future<String> getJwt() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_jwtKey);
+    String? token = prefs.getString(_jwtKey);
+    
+    if (token == null) {
+      return "no token";
+    }
+    return token;
   }
 
   // Method to store username
@@ -110,6 +115,7 @@ class PreferencesHelper {
     String jsonString = jsonEncode(data);
     await prefs.setString(_loginResponseKey, jsonString);
     await prefs.setString(_passwordKey, password);
+    // await prefs.setString(_jwtKey, response['token']);
     log(jsonString);
   }
 
@@ -137,6 +143,7 @@ class PreferencesHelper {
     // Check if the response contains the 'token' key
     if (response.containsKey('token')) {
       log('SUCCESS Response: $response');
+    await prefs.setString(_jwtKey, response['token']);
 
       String token = response['token'] as String? ?? '';
       Map<String, dynamic>? user = response['user'] as Map<String, dynamic>?;

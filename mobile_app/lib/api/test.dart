@@ -151,7 +151,7 @@ void main(List<String> args) async {
   // /* works  */
   try {
     List<dynamic> weapons = await serv.searchWeapons('', jwt);
-    print('Weapons found: ${weapons[0]}');
+    print('Weapons found: ${weapons}');
   } catch (e) {
     print('Error: $e');
   }

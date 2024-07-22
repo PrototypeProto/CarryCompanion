@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gun/api/api.dart';
 import 'package:gun/api/persist.dart';
@@ -17,16 +19,23 @@ class _ArmoryState extends State<Armory> {
   int recentDeletedItem = 0;
   bool _isDeleteMode = false;
   int itemSelected = -1;
+  String jwt = "";
+  final PreferencesHelper _prefsHelper = PreferencesHelper();
+
 
   @override
   void initState() {
     super.initState();
+    // _prefsHelper = PreferencesHelper();
     _fetchAndStoreGuns();
   }
 
   // Method to fetch guns and update state
   Future<void> _fetchAndStoreGuns() async {
-    final PreferencesHelper _prefsHelper = PreferencesHelper();
+    String? _jwt = await _prefsHelper.getJwt();
+    // if (jwt == null) {
+    //   throw Exception("JWT token is null");
+    // }
     try {
       // Fetch guns
       List<Map<String, dynamic>> guns = await _prefsHelper.retrieveGuns();
@@ -35,6 +44,7 @@ class _ArmoryState extends State<Armory> {
       setState(() {
         _items = guns;
         numGuns = _items.length;
+        jwt = _jwt!;
       });
     } catch (e) {
       // Handle errors (e.g., log the error, show a message to the user)
@@ -49,7 +59,6 @@ class _ArmoryState extends State<Armory> {
       });
     }
   }
-  
 
   void updateNumGuns() {
     numGuns = _items.length;
@@ -103,7 +112,15 @@ class _ArmoryState extends State<Armory> {
           await showConfirmDeleteDialog(context, _items[itemSelected]['model']);
       if (confirmDelete == true) {
         setState(() {
+          ApiService serv = ApiService(
+            baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com",
+          );
+
+          log("DELETING\n");
+          log(_items[itemSelected]['_id']);
+          serv.deleteWeapon(_items[itemSelected]['_id'], jwt);
           _items.removeAt(itemSelected);
+          _prefsHelper.storeGuns(_items);
           decrementGunCounter();
           itemSelected = -1;
         });
@@ -175,7 +192,7 @@ class _ArmoryState extends State<Armory> {
           const SizedBox(width: 16),
           FloatingActionButton(
             onPressed: () {
-              showAddGunDialog(context, _addItem, numGuns);
+              showAddGunDialog(context, _addItem, jwt);
               incrementGunCounter();
             },
             tooltip: 'Add Gun',
