@@ -196,6 +196,19 @@ void editWeapon(
   print('');
 }
 
+void requestDeleteAccount(String jwt) async {
+  ApiService serv =
+      ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+  try {
+    print('');
+    await serv.deleteAccount(jwt);
+    print('Account deleted successfully.');
+  } catch (e) {
+    print('Error: $e');
+  }
+  print('');
+}
+
 void deleteWeapon(String weaponID, String jwt) async {
     ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
 

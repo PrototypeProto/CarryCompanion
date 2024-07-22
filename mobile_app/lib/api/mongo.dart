@@ -15,7 +15,7 @@ class MongoDatabase {
   String? _username;
   final PreferencesHelper _prefsHelper = PreferencesHelper();
   // ApiService serv = ApiService(baseUrl: "http://localhost:5000");
-  ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
   late Map<String, dynamic> auth;
 
   MongoDatabase();
