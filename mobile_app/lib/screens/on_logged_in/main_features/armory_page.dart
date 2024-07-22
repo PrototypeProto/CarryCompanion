@@ -162,15 +162,15 @@ class _ArmoryState extends State<Armory> {
                             Colors.white.withOpacity(0.2), // Matching opacity
                         child: Image.asset(
                           createImagePath(_items[index]['type']),
-                          height: 140.0,
-                          width: 140.0,
+                          height: 110.0,
+                          width: 110.0,
                         ),
                       ),
                     ),
                     const SizedBox(height: 8.0),
                     Text(
                       _items[index]['model'],
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ],
                 ),

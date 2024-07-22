@@ -124,18 +124,25 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> forgotPassword(
-      Map<String, dynamic> emailData) async {
+  Future<Map<String, dynamic>> forgotPassword(String emailData) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/forgot/mobile/request-password-reset'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(emailData),
     );
-
+    print('response: $response');
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to request password reset: ${response.body}');
+      final responseBody = jsonDecode(response.body);
+      return {
+        'success': true,
+        'data': responseBody,
+      };
+    }else {
+      final errorResponse = jsonDecode(response.body);
+      return {
+        'success': false,
+        'message': errorResponse['message'] ?? 'Failed to request password reset:',
+      };
     }
   }
 
@@ -277,4 +284,23 @@ class ApiService {
       throw Exception('Failed to edit profile picture: ${response.body}');
     }
   }
+
+
+   Future<Map<String, dynamic>> deleteAccount(String token) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/mobile/request-deletion'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: jsonEncode(''),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to edit first name: ${response.body}');
+    }
+  }
+
 }

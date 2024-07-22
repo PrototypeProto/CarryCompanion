@@ -80,19 +80,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 //TODO api goes within this scope
 
 
-                                /* TODO: UNCOMMENT WHEN API FIXED FOR FORGOT PASSWORD */
-                                // Map<String, dynamic> ret = await serv.forgotPassword(_emailController.text);
-
-                                var result = 'Reset link sent';
-                                if (result == 'Reset link sent') {
+                              Map<String, dynamic> result = await serv.forgotPassword(_emailController.text);
+                               
+                                if (result['success']) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
+                                    SnackBar(
                                         content: Text(
                                             'Reset link sent to your email')),
                                   );
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
+                                    SnackBar(
                                         content:
                                             Text('Failed to send reset link')),
                                   );
