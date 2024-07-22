@@ -91,7 +91,7 @@ class _ArmoryState extends State<Armory> {
   }
 
   String createImagePath(String type) {
-    if (type == "Pistol") {
+    if (type == "Handgun") {
       return "lib/img/pistol.png";
     } else if (type == "Rifle") {
       return "lib/img/rifle.png";

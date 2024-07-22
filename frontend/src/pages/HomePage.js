@@ -15,10 +15,6 @@ const HomePage = () =>
                 <MapSelect></MapSelect>
             </div>
 
-            {/* <div className="">
-                <UnitedStatesMap />
-            </div> */}
-
             {/* <div>
                 <LegendInfo></LegendInfo>
             </div> */}

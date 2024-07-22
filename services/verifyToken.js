@@ -1,7 +1,8 @@
 // services/verifyToken.js
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET; // Replace with your JWT secret
+const Users = require('../models/Users');
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
@@ -19,6 +20,24 @@ const verifyToken = (req, res, next) => {
     });
 };
 
+const verifyEmailToken = async (token) => {
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        const user = await Users.findOne({ email: decoded.email });
+
+        if (!user) {
+            throw new Error('Invalid token');
+        }
+
+        user.verification = true;
+        await user.save();
+        return { message: 'Email verified', user };
+    } catch (error) {
+        throw new Error(`Error during email verification: ${error.message}`);
+    }
+};
+
 module.exports = {
     verifyToken,
+    verifyEmailToken,
 };

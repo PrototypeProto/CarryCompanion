@@ -8,8 +8,8 @@ const { verifyToken } = require('../services/verifyToken');
 // Add a weapon to the arsenal
 router.post('/armory', verifyToken, async (req, res) => {
     try {
-        const { type, datePurchased, manufacturer, model } = req.body;
-        const weapon = new Arsenal({ type, datePurchased, manufacturer, model });
+        const { type, manufacturer, model, ammoType, attachments, description, datePurchased } = req.body;
+        const weapon = new Arsenal({ type, manufacturer, model, ammoType, attachments, description, datePurchased });
         await weapon.save();
 
         // Add weapon to user's arsenal array
@@ -25,10 +25,10 @@ router.post('/armory', verifyToken, async (req, res) => {
 router.put('/armory/:id', verifyToken, async (req, res) => {
     try {
         const { id } = req.params;
-        const { type, datePurchased, manufacturer, model } = req.body;
+        const { type, manufacturer, model, ammoType, attachments, description, datePurchased } = req.body;
         const updatedWeapon = await Arsenal.findByIdAndUpdate(
             id,
-            { type, datePurchased, manufacturer, model },
+            { type, manufacturer, model, ammoType, attachments, description, datePurchased },
             { new: true }
         );
         if (!updatedWeapon) {
@@ -68,7 +68,10 @@ router.get('/armory/search', verifyToken, async (req, res) => {
         const weapons = user.arsenal.filter(weapon =>
             weapon.type.match(new RegExp(query, 'i')) ||
             weapon.manufacturer.match(new RegExp(query, 'i')) ||
-            weapon.model.match(new RegExp(query, 'i'))
+            weapon.model.match(new RegExp(query, 'i')) ||
+            weapon.ammoType.match(new RegExp(query, 'i')) ||
+            weapon.attachments.match(new RegExp(query, 'i')) ||
+            weapon.datePurchased.match(new RegExp(query, 'i'))
         );
 
         console.log('Found Weapons:', weapons);

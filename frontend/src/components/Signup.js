@@ -60,7 +60,6 @@ function Signup()
         }
     };
 
-
     return (
         <div className="bg-white-800 border-1 border-solid border-red-800 justify-items-center">
 

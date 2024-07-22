@@ -2,6 +2,21 @@ import React, { useState } from 'react';
 
 const NewCardForm = ({ onAddCard }) =>
 {
+    const [message,setMessage] = useState('');
+    
+    const app_name = 'carry-companion-02c287317f3a'
+    function buildPath(route)
+    {
+        if (process.env.NODE_ENV === 'production')
+        {
+            return 'https://' + app_name + '.herokuapp.com/' + route;
+        }
+        else
+        {
+            return 'http://localhost:5000/' + route;
+        }
+    }
+    
     const [make, setMake] = useState('');
     const [model, setModel] = useState('');
     const [datePurchased, setDatePurchased] = useState('');
@@ -10,11 +25,10 @@ const NewCardForm = ({ onAddCard }) =>
     const [ammoType, setAmmoType] = useState('');
     const [attachments, setAttachments] = useState('');
 
-    const handleSubmit = (e) => 
+    const handleSubmit = async (e) => 
     {
         e.preventDefault();
-        const card ={ make, model, datePurchased, itemType, ammoType, attachments, description };
-        onAddCard(card);
+        
         // onAddCard({ model, datePurchased, itemType, ammoType, attachments, description });
         setMake('');
         setModel('');
@@ -23,6 +37,42 @@ const NewCardForm = ({ onAddCard }) =>
         setItemType('Handgun');
         setAttachments('');
         setAmmoType('');
+
+        const card ={ make, model, datePurchased, itemType, ammoType, attachments, description };
+        onAddCard(card);
+        
+        const url = 'http://localhost:5000/api/armory';
+        // const token = localStorage.getItem('jwtToken');
+
+        const getToken = () => localStorage.getItem('jwtToken'); // Function to get the JWT token from local storage
+
+        var obj = {type:itemType,datePurchased:datePurchased,manufacturer:make,model:model};
+        var js = JSON.stringify(obj); // Convert the weapon data to JSON
+
+        try 
+        {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: js,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getToken()}`, // Include the JWT token for authentication
+                },
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Error: ${response.status} - ${errorData.message}`);
+            }
+
+            const responseData = await response.json();
+            console.log(responseData);
+        }
+        catch (error)
+        {
+            console.error('Error:', error);
+            setMessage(error.message || 'Unable to Add Weapon!');
+        }
     };
 
     return(

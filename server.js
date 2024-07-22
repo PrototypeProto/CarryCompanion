@@ -9,10 +9,13 @@ const verifyEmailRoutes = require('./routes/verifyEmail');
 const forgotPasswordRoutes = require('./routes/forgotPassword');
 const resetPasswordRoutes = require('./routes/resetPassword');
 const resetEmailRoutes = require('./routes/resetEmail');
+const deleteAccountRoutes = require('./routes/deleteAccount');
+const deletion = require('./services/deletion');
 const armoryRoutes = require('./routes/armory');
 const editRoutes = require('./routes/edit');
 const mobileRoutes = require('./routes/mobile');
 
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -34,6 +37,7 @@ app.use('/api', verifyEmailRoutes);
 app.use('/api/forgot', forgotPasswordRoutes);
 app.use('/api', resetPasswordRoutes);
 app.use('/api', resetEmailRoutes);
+app.use('/api', deleteAccountRoutes);
 app.use('/api', armoryRoutes);
 app.use('/api', editRoutes);
 app.use('/api', mobileRoutes);

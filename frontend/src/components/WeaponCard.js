@@ -1,15 +1,43 @@
 import React, { useState } from 'react';
-import handgun from '../images/handgun.png';
+import handgunImage from '../images/handgunImage.png';
+import rifleImage from '../images/rifleImage.png';
+import shotgunImage from '../images/shotgunImage.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPenToSquare, faEye, faDiamond } from '@fortawesome/free-solid-svg-icons'
 
-const WeaponCard = ({ card }) => 
+const WeaponCard = ({ card, onDelete }) => 
 {
     // Maybe change to the name of the gun
     const deleteIcon = <FontAwesomeIcon icon={faTrash} className=""/>
     const editIcon = <FontAwesomeIcon icon={faPenToSquare} className=""/>
     const inspectIcon = <FontAwesomeIcon icon={faEye} className=""/>
     const diamondIcon = <FontAwesomeIcon icon={faDiamond} className="w-2"/>
+
+    const app_name = 'carry-companion-02c287317f3a'
+    function buildPath(route)
+    {
+        if (process.env.NODE_ENV === 'production')
+        {
+            return 'https://' + app_name + '.herokuapp.com/' + route;
+        }
+        else
+        {
+            return 'http://localhost:5000/' + route;
+        }
+    }
+
+    const getImage = (type) => {
+        switch (type) {
+            case 'Handgun':
+                return handgunImage;
+            case 'Rifle':
+                return rifleImage;
+            case 'Shotgun':
+                return shotgunImage;
+            default:
+                return handgunImage; // default image
+        }
+    };
 
     const handleInspectCard = async event =>
     {
@@ -23,7 +51,26 @@ const WeaponCard = ({ card }) =>
 
     const handleDeleteCard = async event =>
     {
-        
+        try {
+            const getToken = () => localStorage.getItem('jwtToken'); // Function to get the JWT token from local storage
+            // const response = await fetch(`http://localhost:5000/api/armory/${card._id}`, {
+            const response = await fetch(buildPath(`api/armory/${card._id}`), {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getToken()}`, // Include the JWT token for authentication
+                },
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Error: ${response.status} - ${errorData.message}`);
+            }
+
+            onDelete(card._id);
+        } catch (error) {
+            console.error('Error deleting card:', error);
+        }
     };
 
     return(
@@ -40,15 +87,16 @@ const WeaponCard = ({ card }) =>
                 {card.make} {card.model}
             </div>
             <div className="flex border-t border-b border-solid border-black size-fit">
-                <img
-                    className=""
+                {/* <img
                     src={handgun}
                 >
-                </img>
+                </img> */}
+                <img src={getImage(card.itemType)} alt={card.itemType} />
+
             </div>
 
             {/* Add diamond next to each thing as a bullet point */}
-            <div class="space-y-4 border-0 border-solid border-cyan-500 text-base font-medium">
+            <div className="space-y-4 border-0 border-solid border-cyan-500 text-base font-medium">
                 <div className="ml-1">
                     {/* Can add a update maintenance feature but default date can be the purchase date */}
                     Last maintenance: {card.datePurchased}
@@ -67,7 +115,7 @@ const WeaponCard = ({ card }) =>
             {/* button width splits: 1/3 1/3 1/3 */}
             {/* Maybe make a 3 bar logo button that opens up the button group to abstract button*/}
             {/* Could add border-l border-r to edit icon */}
-            <div class=" mt-auto w-full border-t border-b border-solid border-gray-400 text-black h-12">
+            <div className=" mt-auto w-full border-t border-b border-solid border-gray-400 text-black h-12">
                 <button onClick={handleInspectCard} className="border-r border-solid round-bl-sm border-gray-400 w-1/3 h-full text-gray-600">{inspectIcon} Inspect</button>
                 <button onClick={handleEditCard} className=" border-b-0 border-solid border-gray-400 w-1/3 h-full text-blue-500">{editIcon} Edit</button>
                 <button onClick={handleDeleteCard} className="border-l border-b-0 border-solid round-br-sm border-gray-400 w-1/3 h-full text-red-600">{deleteIcon} Delete</button>

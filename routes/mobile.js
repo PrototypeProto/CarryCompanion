@@ -106,4 +106,10 @@ router.post('/mobile/edit/profilePicture', (req, res) => {
     forwardRequest(req, res, 'edit/profilePicture', 'POST');
 });
 
+// Forward deletion request
+router.post('/mobile/request-deletion', (req, res) => {
+    console.log('Received request at /mobile/request-deletion'); 
+    forwardRequest(req, res, 'request-deletion', 'POST');
+});
+
 module.exports = router;

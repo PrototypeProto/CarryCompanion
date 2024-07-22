@@ -16,7 +16,7 @@ const SAMPLE_CSS = `
       padding: 0px !important;
    }
    #container{
-      margin-top: -0px;        
+      margin-top: 10px;        
    }
    .tip {
       border: 1px solid #4D4D4D;
@@ -105,9 +105,6 @@ function ConcealCarryMap()
          { value: 'Rights Restricted', color: '#922100' },
          { value: 'Discretionary/Reasonable Issue', color: '#F57F17' }
       ],
-      // strokeThickness: ".5",
-      // stroke: "White", 
-      // highlightBorderWidth: "2",
       border: { color: 'white', width: 1.5},
    };
 
@@ -148,7 +145,11 @@ function ConcealCarryMap()
       <div>
          <style>{SAMPLE_CSS}</style>
          <div>
-            <MapsComponent border ={{color : 'purple', width: 2}} height="800px" id="container" loaded={onMapsLoad} load={load} zoomSettings={{ enable: false }} 
+            <MapsComponent 
+            // border ={{color : 'purple', width: 2}} 
+            height="800px" id="container" 
+            loaded={onMapsLoad} load={load} 
+            zoomSettings={{ enable: false }} 
             titleSettings={{ 
                text: 'Right to Conceal Carry Laws',
                textStyle: { size: '50px', fontWeight: '500', color: 'black'} }} 
@@ -165,7 +166,7 @@ function ConcealCarryMap()
                textStyle: { fontWeight: '500', size: '14px' }, 
                toggleLegendSettings: {
                   enable: true,
-                  border: { width: 2, color: 'red'}
+                  border: { width: 2}
                } 
             }} 
 
@@ -186,6 +187,45 @@ function ConcealCarryMap()
                   </LayerDirective>
                </LayersDirective>
             </MapsComponent>
+         </div>
+         
+         {/* Legend section */}
+         <div className="mt-10">
+            <h1 className="font-semibold ml-10 text-xl">
+               No Permit Required
+            </h1>
+            <p className="font-medium ml-20">
+               This category indicates states where no permit is required to conceal carry firearms. 
+               Individuals in these states can legally carry concealed firearms without undergoing the permit application process, 
+               although certain federal and state regulations may still apply.
+            </p>
+
+            <h1>
+               Permit Required
+            </h1>
+            <p>
+               States classified under this category require individuals to obtain a permit to carry concealed firearms. 
+               The process generally involves background checks, firearms training, 
+               and fulfilling other state-specific criteria to ensure responsible and qualified handling of firearms.
+            </p>
+
+            <h1>
+               Rights Restricted
+            </h1>
+            <p>
+               In states marked as "Rights Restricted," concealed carry is allowed but with significant restrictions. 
+               This may include limited areas where carrying is permitted, stricter qualifications for obtaining a permit, 
+               or other regulatory measures that restrict the ease of carrying concealed firearms.
+            </p>
+
+            <h1>
+               Discretionary/Reasonable Issue
+            </h1>
+            <p>
+               This category refers to states where local authorities have discretionary power in issuing concealed carry permits. 
+               These states operate on a "may-issue" basis, where the issuance of a permit is not guaranteed and is subject to the discretion of issuing authorities, 
+               often based on the applicant's provided justification for needing a permit.
+            </p>
          </div>
 
          {/* <div className="popup" id="closepopu" style={{ display: popup }}> */}

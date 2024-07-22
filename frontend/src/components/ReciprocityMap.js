@@ -11,65 +11,11 @@ const SAMPLE_CSS = `
    #container{
       margin-top: 0px;        
    }
-   .tip {
-      border: 1px solid #4D4D4D;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      border-radius: 7px;
-      margin-right: 25px;
-      min-width: 110px;
-      padding-top: 9px;
-      padding-right: 10px;
-      padding-left: 10px;
-      width: auto;
-      height: auto;
-      background: #4D4D4D;
-   }
-   .popup {
-      border: 0.5px groove #CCCCCC;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-      left: 70%;
-      top: 65%;   
-      margin-bottom: 2em;
-      border-radius: 2px;
-      display: none;
-      width: 400px;
-      position: absolute;
-      padding: 1em;
-      background: #F4F4F4;
-   }
-   .close-btn {
-      border: 2px solid #5B5B5B;
-      margin-left: -9px;
-      position: absolute;
-      opacity: 0.8;
-      background-color: #605F61;
-      border-radius: 50%/50%;
-      width: 20px;
-      height: 19px;
-      display: none;
-      z-index: 1000;
-   }
-   .close-btn a {
-      margin-left: 2px;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-   }
-   #closebutton {
-      float:right;
-      font-size:16px; 
-      display:inline-block; 
-      padding:2px 5px; 
-      cursor:pointer; 
-   }
-   .firstLine td{
-      border-bottom: 2px solid black;
-   }
    .e-ddl.e-input-group.e-control-wrapper .e-input 
    {
       font-size: 20px;
       font-family: emoji;
-      color: white;
+      color: black;
       background: ;
    }
 
@@ -77,7 +23,11 @@ const SAMPLE_CSS = `
    {
       color: gray;
       font-size: 13px;
-   }`;
+   }
+   .e-ddl.e-input-group.e-control-wrapper.e-input-focus::before, .e-ddl.e-input-group.e-control-wrapper.e-input-focus::after {
+    background: #c000ff;
+   }   
+   `;
 
 function ReciprocityMap() {
    const typeElement = useRef(null);
@@ -88,7 +38,6 @@ function ReciprocityMap() {
    const dropList = Object.keys(reciprocityData).map(state => ({ text: state, value: state }));
    // const dropList = Object.keys(reciprocityData).sort().map(state => ({ text: state, value: state }));
 
-
    useEffect(() => {
       console.log('Selected State:', selectedState); // Debug log
       console.log('Reciprocity Data:', reciprocityData[selectedState]); // Debug log
@@ -96,17 +45,20 @@ function ReciprocityMap() {
       const recognition = reciprocityData[selectedState]?.recognition || {};
       const data = Object.keys(recognition).map(state => ({
          State: state,
-         'Permit Status': recognition[state] ? 'Yes' : 'No'
+         // 'Permit Status': recognition[state] ? 'Yes' : 'No'
+         'Permit Status': recognition[state]
       }));
       setStateData(data);
    }, [selectedState]);
 
+   // Greens: #006128, 009e47
+   // other shade of orange #FF9800, #d97900, #d17200, ffcb35
    const shapeSettings = {
       colorValuePath: 'Permit Status',
       colorMapping: [
-         { value: 'Yes', color: '#388E3C' },
-         { value: 'No', color: '#D32F2F' },
-         { value: 'Yes, With Restriction', color: '#F57F17' }
+         { value: 'Yes', color: '#006128' },
+         { value: 'No', color: '#922100' },
+         { value: 'Yes, With Restrictions', color: '#ffcb35' }
       ],
       border: { color: 'white', width: 1.5 },
    };
@@ -129,23 +81,6 @@ function ReciprocityMap() {
    return (
       <div>
          <style>{SAMPLE_CSS}</style>
-         <div className="">
-            <label className="text-white">Permit State</label>
-               <DropDownListComponent 
-                  allowFiltering={true}
-                  filterBarPlaceholder="Search a state"
-                  // id="Type" 
-                  id="ddlelement"
-                  index={dropList.findIndex(item => item.value === initialSelectedState)} 
-                  change={typeChange.bind(this)} 
-                  ref={typeElement} 
-                  dataSource={dropList} 
-                  fields={{ text: 'text', value: 'value' }}
-                  placeholder="Select a State"
-                  popupHeight="200px"
-                  popupWidth="200px"
-               />
-         </div>
          <div>
             <MapsComponent 
                // border={{ color: 'purple', width: 2 }} 
@@ -154,7 +89,7 @@ function ReciprocityMap() {
                loaded={onMapsLoad} 
                load={load} 
                zoomSettings={{ enable: false }} 
-               titleSettings={{ text: 'Right to Conceal Carry Laws', textStyle: { size: '50px' } }} 
+               titleSettings={{ text: 'Concealed Carry Reciprocity Map', textStyle: { size: '50px' } }} 
                legendSettings={{ 
                   visible: true, 
                   mode: "Default",
@@ -190,22 +125,24 @@ function ReciprocityMap() {
                </LayersDirective>
             </MapsComponent>
 
-            {/* <div className="ml-10 mt-10"> */}
-               {/* <DropDownListComponent 
-                  allowFiltering={true}
-                  filterBarPlaceholder="Search a state"
-                  // placeholder="Enter Permit State"
-
-                  id="Type" 
-                  // width="100%" 
-                  index={dropList.findIndex(item => item.value === initialSelectedState)} 
-                  change={typeChange.bind(this)} 
-                  ref={typeElement} 
-                  dataSource={dropList} 
-                  fields={{ text: 'text', value: 'value' }}
-
-               /> */}
-            {/* </div> */}
+         </div>
+         <div className="bg-white w-52 absolute top-44 right-4 bg-white p-4 rounded-md shadow-md">
+            <label className="font-semibold text-xl">Permit State</label>
+            <DropDownListComponent 
+               allowFiltering={true}
+               filterBarPlaceholder="Search a state"
+               id="Type" 
+               // id="ddlelement"
+               index={dropList.findIndex(item => item.value === initialSelectedState)} 
+               change={typeChange.bind(this)} 
+               ref={typeElement} 
+               dataSource={dropList} 
+               fields={{ text: 'text', value: 'value' }}
+               placeholder="Select a State"
+               popupHeight="200px"
+               popupWidth="200px"
+               className="bg-red-600"
+            />
          </div>
       </div>
    );

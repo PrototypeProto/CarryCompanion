@@ -5,10 +5,6 @@ const ArsenalSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    datePurchased: {
-        type: Date,
-        required: true,
-    },
     manufacturer: {
         type: String,
         required: true,
@@ -16,6 +12,22 @@ const ArsenalSchema = new mongoose.Schema({
     model: {
         type: String,
         required: true,
+    },
+    ammoType: {
+        type: String,
+        required: false,
+    },
+    attachments: {
+        type: String,
+        required: false,
+    },
+    description: {
+        type: String,
+        required: false,
+    },
+    datePurchased: {
+        type: Date,
+        required: false,
     },
 }, { collection: 'Arsenal', versionKey: false });
 

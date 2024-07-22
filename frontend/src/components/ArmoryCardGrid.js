@@ -15,19 +15,6 @@ const ArmoryCardGrid = ({ cards }) =>
             
             ))}
             
-            {/* h-4/5 w-1/2 */}
-            {/* <div className="col-span-1 row-span-1 mt-20 h-6/6 w-1/2 border-0 border-solid border-purple-700 justify-self-center">
-                <WeaponCard className=""></WeaponCard>
-            </div>
-            
-            <div className="col-span-1 row-span-1 mt-20 h-full w-1/2 border-0 border-solid border-purple-700 justify-self-center">
-                <WeaponCard className=""></WeaponCard>
-            </div>
-
-            <div className="col-span-1 row-span-1 mt-20 h-full w-1/2 border-0 border-solid border-purple-700 justify-self-center">
-                <WeaponCard className=""></WeaponCard>
-            </div> */}
-
         </div>
     );
 };

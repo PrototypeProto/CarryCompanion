@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const EMAIL = 'carrycompanion@gmail.com';
-const APP_PASSWORD = 'cqouitjjpehmjjqr'; // Replace with your app password
+const APP_PASSWORD = process.env.APP_PASSWORD;
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -33,7 +33,32 @@ async function sendPasswordResetEmail(email, resetUrl) {
     return transporter.sendMail(mailOptions);
 }
 
+async function sendAccountDeletionEmail(email, deletionUrl) {
+    const mailOptions = {
+        from: EMAIL,
+        to: email,
+        subject: 'IMPORTANT: Account Deletion',
+        html: `<p>Click <a href="${deletionUrl}">here</a> to delete your account.</p>`,
+    };
+
+    console.log('Sending account deletion email:', mailOptions);
+    return transporter.sendMail(mailOptions);
+}
+
+async function sendDeletionNotificationEmail(email) {
+    const mailOptions = {
+        from: EMAIL,
+        to: email,
+        subject: 'IMPORTANT: Account Deletion in 7 Days',
+        html: `Your CarryCompanion account will be deleted in 7 days. This process will be canceled if you log in now!`,
+    };
+
+    return transporter.sendMail(mailOptions);
+}
+
 module.exports = {
     sendVerificationEmail,
     sendPasswordResetEmail,
+    sendAccountDeletionEmail,
+    sendDeletionNotificationEmail,
 };

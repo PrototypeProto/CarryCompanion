@@ -16,13 +16,11 @@ function HomeNavbar()
     };
         
     return(
-        <nav className="relative flex top-0 h-20 bg-neutral-950 w-full items-center mx-auto px-4 border-b border-solid border-gray-600">
+        <nav className="relative flex top-0 h-20 bg-neutral-950 w-full items-center mx-auto px-4 border-b-0 border-solid border-gray-600">
             <div className="inline-flex justify-start">
                 <a href="/Home">
                     <img
                         className="h-20 w-auto text-white inline-flex justify-items-start"
-                        // src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                        // src="../images/ccLogo.png"
                         src={logo}
                         alt="Your Company"
                     />
@@ -63,13 +61,13 @@ function HomeNavbar()
                             Your Profile
                         </a>
                         </MenuItem>
-                        <MenuItem>
+                        {/* <MenuItem>
                         <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                             Settings
                         </a>
-                        </MenuItem>
+                        </MenuItem> */}
                         <MenuItem>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                        <a href="/" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                             Sign out
                         </a>
                         </MenuItem>
