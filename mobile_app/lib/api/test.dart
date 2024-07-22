@@ -5,9 +5,10 @@ import 'api.dart';
 
 void main(List<String> args) async {
   // ApiService serv = ApiService(baseUrl: "http://localhost:5000");
-  ApiService serv =
-      ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  // ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
 
+  
   String jwt = '';
 
   /* armory stuff */
@@ -66,12 +67,15 @@ void main(List<String> args) async {
   // signup(newUsername, newPass, fname, lname, newEmail);
   // resetPassword(curPass, newPass, jwt);
   // forgotPassword(email);
-  addWeapon(weaponData, jwt);
+  // addWeapon(weaponData, jwt);
   // editWeapon(weaponID, newWeaponData, jwt);
 
   // deleteWeapon(weaponID, jwt);
   // searchWeapon("", jwt);
+  forgotPassword("carrycompanion@gmail.com");
 }
+
+
 
 /* Test SIGNUP*/
 Future<void> signup(String username, String newPass, String fname, String lname,
@@ -124,15 +128,16 @@ Future<void> resetPassword(String curPass, String newPass, String jwt) async {
 
 // /* Forgot passowrd wip TODO: FIX */
 void forgotPassword(String email) async {
-  ApiService serv =
-      ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  // ApiService serv =
+      // ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+
   try {
     print('');
     Map<String, dynamic> ret = await serv.forgotPassword(email);
 
     if (ret['success']) {
-      print(
-          'Password reset request successful. Response data: ${ret['data']['message']}');
+      print('Password reset request successful. Response data: ${ret['data']['message']}');
     } else {
       print('Password reset request failed: ${ret['message']}');
     }

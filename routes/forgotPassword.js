@@ -9,7 +9,7 @@ const { sendPasswordResetEmail } = require('../services/email');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Request password reset
-router.post('/request-password-reset', async (req, res) => {
+router.post('/request-forgot-password', async (req, res) => {
     const { email } = req.body;
 
     try {
@@ -30,7 +30,7 @@ router.post('/request-password-reset', async (req, res) => {
 });
 
 // Serve the password reset form
-router.get('/reset-password', async (req, res) => {
+router.get('/forgot-password', async (req, res) => {
     const { token } = req.query;
     console.log('Password reset token:', token);
 
@@ -58,7 +58,7 @@ router.get('/reset-password', async (req, res) => {
 });
 
 // Handle password reset form submission
-router.post('/reset-password', async (req, res) => {
+router.post('/forgot-password', async (req, res) => {
     const { token, newPassword } = req.body;
     console.log('Reset password request:', req.body);
 
