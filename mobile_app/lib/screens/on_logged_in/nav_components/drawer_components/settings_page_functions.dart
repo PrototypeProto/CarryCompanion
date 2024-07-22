@@ -24,19 +24,22 @@ Future<void> requestPasswordChange(
           ELSE RETURN invalid password used*/
   if (curPass.compareTo(newPass1) == 0) {
     invalidPasswordMessage = 'Can not use your existing password as the new password';
+    log(invalidPasswordMessage);
     passwordChanged = false;
   } else if (newPass1.compareTo(newPass2) != 0) {
     invalidPasswordMessage = 'New passwords do not match';
+    log(invalidPasswordMessage);
   } else {
     final PreferencesHelper _prefsHelper = PreferencesHelper();
     String? token = await _prefsHelper.getJwt();
-    token ??= '';
+    // token ??= '';
 
     ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
-    Map<String, dynamic> auth = await serv.resetPassword({"currentPassword": curPass, "newPassword": newPass1,}, token);
-    invalidPasswordMessage = auth['message'];
-    log(invalidPasswordMessage!);
+    Map<String, dynamic> auth = await serv.resetPassword({"currentPassword": curPass, "newPassword": newPass1,}, token!);
     auth['success'] ? passwordChanged = true : false;
+    auth['success'] ? invalidPasswordMessage = auth['data']['message'] : invalidPasswordMessage = auth['message'];
+
+    log(invalidPasswordMessage!);
 
     // invalidPasswordMessage = isValidPasswordMessage(newPass1, newPass2);
     // if (newPass2.compareTo(newPass1) == 0) {
@@ -76,36 +79,36 @@ Future<void> requestPasswordChange(
 }
 
 void verifyAccountDeletion(BuildContext context) {
-  Future<bool?> deleteAccount = requestAccountDeletion(context);
+  requestAccountDeletion(context);
 
-  /* Fix pop up */
-  if (deleteAccount == true) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Account Successfully Deleted'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
+  // /* Fix pop up */
+  // if (deleteAccount == true) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Account Successfully Deleted'),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
                 
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-    MyApp();
-  } else {
-    /* Do nothing */
-    return;
-  }
+  //             },
+  //             child: Text('OK'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  //   MyApp();
+  // } else {
+  //   /* Do nothing */
+  //   return;
+  // }
 }
 
-Future<bool?> requestAccountDeletion(BuildContext context) {
-  return showDialog<bool>(
+Future<void> requestAccountDeletion(BuildContext context) async {
+  bool? deleteConfirmed = await showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
@@ -123,6 +126,64 @@ Future<bool?> requestAccountDeletion(BuildContext context) {
               Navigator.of(context).pop(true); // Return true on yes
             },
             child: Text('Yes'),
+          ),
+        ],
+      );
+    },
+  );
+
+  if (deleteConfirmed == true) {
+    await showDeletionSuccessDialog(context);
+  } else {
+    await showDeletionCancelledDialog(context);
+  }
+}
+
+Future<void> showDeletionSuccessDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // User must tap the button to dismiss
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Success!'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('An email has been sent to confirm account deletion.'),
+            SizedBox(height: 20), // Add some space between text and button
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close this dialog
+                  // Add your sign out logic here
+                  // Navigator.pushNamed(context, '/');
+                  Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                  // For example, Navigator.of(context).pushReplacementNamed('/login');
+                },
+                child: Text('Sign me out!'),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+
+Future<void> showDeletionCancelledDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Account Not Deleted'),
+        content: Text('Your account has not been deleted.'),
+        actions: <Widget>[
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close this dialog
+            },
+            child: Text('OK'),
           ),
         ],
       );

@@ -140,6 +140,15 @@ class _SignUpState extends State<SignUp> {
                                 backgroundColor: Colors.red,
                                 foregroundColor: Colors.white),
                             onPressed: () async {
+                              /* TODO: implement signup API with correct text forms
+                               Map<String, dynamic> ret = await serv.signup({
+                                //     "username": user,
+                                //     "password": pwd,
+                                //     "firstName": fname,
+                                //     "lastName": lname,
+                                //     "email": email,
+                                //     "verification": false,
+                                //   }); */
                               if (_formKey.currentState?.validate() == true) {
                                 var db = MongoDatabase();
                                 var user = await db.signUpUser(

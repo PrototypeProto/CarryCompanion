@@ -29,11 +29,12 @@ class _MyDrawerState extends State<MyDrawer> {
     
     // await prefsHelper.processStoredLoginResponse();();
     final cust_name = await prefsHelper.retrieveName();
-    log("a");
+    final email = await prefsHelper.retrieveEmail();
+
+    // log("a");
     log(_cust_name);
     // log(prefsHelper.retrieveName() as String);
-    log("b");
-    final email = await prefsHelper.retrieveEmail();
+    // log("b");
     setState(() {
       _cust_name = cust_name ?? '';
       _email = email ?? '';
@@ -75,6 +76,9 @@ class _MyDrawerState extends State<MyDrawer> {
                       ScaffoldMessenger.of(context).removeCurrentSnackBar();
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => MyApp()));
+                      // Navigator.of(context).pushReplacementNamed('/'); /* other methods to remove stack */
+                      // Navigator.popUntil(context, ModalRoute.withName('/'));
+                      // Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false); /* may be finicky */
                     },
                   ),
                   ListTile(
@@ -88,6 +92,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       );
                     },
                   ),
+                  /* TODO: REMOVE? */
                   ListTile(
                     leading: Icon(Icons.person_sharp, color: Colors.black),
                     title: const Text('My Account', style: TextStyle(color: Colors.black)),

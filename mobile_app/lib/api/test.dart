@@ -4,31 +4,31 @@ import 'dart:developer';
 import 'api.dart';
 
 void main(List<String> args) async {
-  ApiService serv = ApiService(baseUrl: "http://localhost:5000");
-  // ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  // ApiService serv = ApiService(baseUrl: "http://localhost:5000");
+  ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
 
   String jwt = '';
 
   Map<String, dynamic> weaponData = {
-    "type": "Stratagem", 
+    "type": "Stratagfefeem", 
     "datePurchased": "111", 
-    "manufacturer": "Super ~~~~~", 
-    "model": "Supply Pack"
+    "manufacturer": "Super glkddadadockss", 
+    "model": "Supply Paedck"
   };
 
 
   String validUser = 'a';
   String validPass = 'a';
 
-  String curPass = "Test123!";
-  String newPass = 'Test1234!';
-  String user = 'testUser';
+  String curPass = "11111111";
+  String newPass = '1111111';
+  String user = 'a';
   String fname = 'hey';
   String lname = 'mam';
   String email = 'bobbbdl@ffi.com';
   String newEmail = "genomegalul@gmail.com";
   String pwd = 'Test123!';
-  String weaponID = '669da12a3c8c69202d1eaba6!';
+  String weaponID = '669da9e43c8c69202d1eabc8';
 
   /* Test LOGIN*/
   Map<String, dynamic> ret = await serv.login({"username": user, "password": curPass});
@@ -66,7 +66,7 @@ void main(List<String> args) async {
   //   Map<String, dynamic> ret = await serv.resetPassword({"currentPassword": curPass, "newPassword": newPass}, jwt);
 
   //   if (ret['success']) {
-  //     print('Password reset successful. Response data: ${ret['data']}');
+  //     print('Password reset successful. Response data: ${ret['data']['message']}');
   //   } else {
   //     print('Password reset failed: ${ret['message']}');
   //   }
@@ -118,7 +118,8 @@ void main(List<String> args) async {
   //   Map<String, dynamic> ret = await serv.addWeapon(weaponData, jwt);
 
   //   if (ret['success']) {
-  //     print('Weapon added successfully. Response data: ${ret["data"]["weapon"]["_id"]}');
+  //     print('Weapon added successfully. Response data: \n${ret["data"]["weapon"]["_id"]}');
+  //     print('Weapon added successfully. Response data: \n${ret["data"]["weapon"]}');
   //   } else {
   //     print('Failed to add weapon: ${ret['message']}');
   //   }
@@ -148,10 +149,10 @@ void main(List<String> args) async {
   // }
 
   // /* works  */
-  // try {
-  //   List<dynamic> weapons = await serv.searchWeapons("", jwt);
-  //   print('Weapons found: $weapons');
-  // } catch (e) {
-  //   print('Error: $e');
-  // }
+  try {
+    List<dynamic> weapons = await serv.searchWeapons('', jwt);
+    print('Weapons found: ${weapons}');
+  } catch (e) {
+    print('Error: $e');
+  }
 }

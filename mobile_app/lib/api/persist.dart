@@ -76,14 +76,14 @@ class PreferencesHelper {
   }
 
   // Method to store asenal json array?
-  Future<void> storeCards(List<Map<String, dynamic>> cards) async {
+  Future<void> storeGuns(List<Map<String, dynamic>> guns) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String jsonString = jsonEncode(cards);
+    String jsonString = jsonEncode(guns);
     await prefs.setString(_arsenalKey, jsonString);
   }
 
   // Method to retrieve asenal json array?
-  Future<List<Map<String, dynamic>>> retrieveCards() async {
+  Future<List<Map<String, dynamic>>> retrieveGuns() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonString = prefs.getString(_arsenalKey);
     if (jsonString == null) {
@@ -95,21 +95,22 @@ class PreferencesHelper {
 
   // Method to add a gun to arsenal array
   Future<void> addCard(Map<String, dynamic> newCard) async {
-    List<Map<String, dynamic>> cards = await retrieveCards();
-    cards.add(newCard);
-    await storeCards(cards);
+    List<Map<String, dynamic>> guns = await retrieveGuns();
+    guns.add(newCard);
+    await storeGuns(guns);
   }
 
   // Method to store login response as JSON
 Future<void> storeLoginResponse(Map<String, dynamic> response, String password) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  
   // Extract the 'data' field from the response
   Map<String, dynamic> data = response['data'];
   
   String jsonString = jsonEncode(data);
   await prefs.setString(_loginResponseKey, jsonString);
   await prefs.setString(_passwordKey, password);
+  log(jsonString);
+
 }
 
  Future<void> processStoredLoginResponse() async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gun/screens/on_app_launch/reset_password.dart';
 import '../../api/mongo.dart';
+import '../../api/persist.dart';
 import '../on_logged_in/nav_components/nav_bar_components/create_nav_bar.dart';
 import 'signup.dart';
 
@@ -16,6 +17,7 @@ class _LoginState extends State<Login> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+  final PreferencesHelper _prefsHelper = PreferencesHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -95,11 +97,11 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () {
                           Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ForgotPassword(),
-                                    ),
-                                  );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ForgotPassword(),
+                            ),
+                          );
                         },
                         child: const Text('Forgot Password?'),
                       ),
@@ -118,14 +120,14 @@ class _LoginState extends State<Login> {
                                 _usernameController.text,
                                 _passwordController.text);
                             if (user['success'] == true) {
+                              await _prefsHelper.processStoredLoginResponse();
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => NavBar()),
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(user['message'])),
+                                SnackBar(content: Text(user['message'])),
                               );
                             }
                           }
@@ -135,8 +137,8 @@ class _LoginState extends State<Login> {
                     ),
                     const SizedBox(height: 5),
                     TextButton(
-                        style: TextButton.styleFrom(
-                            foregroundColor: Colors.black),
+                        style:
+                            TextButton.styleFrom(foregroundColor: Colors.black),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => SignUp()));

@@ -5,7 +5,7 @@ import '../../main_features/map_page.dart';
 import '../../main_features/armory_page.dart';
 import 'create_page_app_bar.dart';
 import '../drawer_components/create_drawer.dart';
-import '../../../../api/persist.dart';
+// import '../../../../api/persist.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -18,7 +18,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
   int index = 0;
   final screens = [MapPage(), Armory(), ReciprocityPage()];
   final titles = ['Concealed Carry Map', 'Armory', 'Reciprocity Map'];
-  final PreferencesHelper _prefsHelper = PreferencesHelper();
+  // final PreferencesHelper _prefsHelper = PreferencesHelper();
 
   // @override
   // void initState() {
@@ -26,11 +26,11 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
     
   // }
 
-  Future<void> _initialize() async {
-    // Awaiting an asynchronous operation here
-    await _prefsHelper.processStoredLoginResponse();
-    // Other initialization code if needed
-  }
+  // void _initialize() async {
+  //   // Awaiting an asynchronous operation here
+  //   await _prefsHelper.processStoredLoginResponse();
+  //   // Other initialization code if needed
+  // }
 
 
   late AnimationController animationController;
@@ -40,10 +40,10 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _initialize();
+    // _initialize();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 300),
     );
   }
 

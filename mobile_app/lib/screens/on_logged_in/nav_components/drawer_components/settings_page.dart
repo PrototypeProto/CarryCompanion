@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'close_app_bar.dart';
 import 'settings_page_functions.dart';
