@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
             { expiresIn: '1h' }
         );
 
-        const verificationUrl = `http://localhost:5000/api/verify-email?token=${token}`;
+        const verificationUrl = `https://www.thisisforourclass.xyz/api/verify-email?token=${token}`;
         console.log('Verification URL:', verificationUrl);
         await sendVerificationEmail(email, verificationUrl);
 

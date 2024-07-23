@@ -17,7 +17,7 @@ router.post('/request-deletion', verifyToken, async (req, res) => {
         }
 
         const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-        const deletionUrl = `http://localhost:5000/api/deletion?token=${token}`;
+        const deletionUrl = `https://www.thisisforourclass.xyz/api/deletion?token=${token}`;
         await sendAccountDeletionEmail(user.email, deletionUrl);
 
         res.status(200).json({ message: 'Account deletion email sent' });

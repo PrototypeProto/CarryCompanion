@@ -26,7 +26,7 @@ router.post('/reset-email', verifyToken, async (req, res) => {
         }
 
         const token = jwt.sign({ newEmail }, JWT_SECRET, { expiresIn: '1h' });
-        const verificationUrl = `http://localhost:5000/api/verify-new-email?token=${token}`;
+        const verificationUrl = `https://www.thisisforourclass.xyz/api/verify-new-email?token=${token}`;
         console.log('New verification URL:', verificationUrl);
         await sendVerificationEmail(newEmail, verificationUrl);
 

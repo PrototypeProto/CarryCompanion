@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
         if (!user.verification) {
             // Resend verification email if account is not verified
             const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-            const verificationUrl = `http://localhost:5000/api/verify-email?token=${token}`;
+            const verificationUrl = `https://www.thisisforourclass.xyz/api/verify-email?token=${token}`;
             await sendVerificationEmail(user.email, verificationUrl);
             return res.status(403).json({ message: 'Account not verified. Verification email resent.' });
         }
