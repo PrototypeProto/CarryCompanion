@@ -124,36 +124,22 @@ class ApiService {
     }
   }
 
-<<<<<<< HEAD
-  Future<Map<String, dynamic>> forgotPassword(String emailData) async {
-=======
   Future<Map<String, dynamic>> forgotPassword(
       String emailData) async {
->>>>>>> 01fe68450058e571c3f361c9ea431f10d210e6f7
     final response = await http.post(
       Uri.parse('$baseUrl/api/mobile/request-forgot-password'),
       headers: {'Content-Type': 'application/json'},
-<<<<<<< HEAD
-      body: emailData,
-    );
-    //print('response: $response');
-=======
       body: jsonEncode({"email": emailData}),
     );
     // print(response);
     // return {};
->>>>>>> 01fe68450058e571c3f361c9ea431f10d210e6f7
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
       return {
         'success': true,
         'data': responseBody,
       };
-<<<<<<< HEAD
-    }else {
-=======
     } else {
->>>>>>> 01fe68450058e571c3f361c9ea431f10d210e6f7
       final errorResponse = jsonDecode(response.body);
       return {
         'success': false,
