@@ -11,7 +11,7 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+  ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
 
   @override
