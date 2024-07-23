@@ -6,12 +6,12 @@ function Login()
     var loginPassword;
     const [message,setMessage] = useState('');
 
-    const app_name = 'carry-companion-02c287317f3a'
+    const app_name = 'https://www.thisisforourclass.xyz'
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
         {
-            return 'https://' + app_name + '.herokuapp.com/' + route;
+            return app_name + route;
         }
         else
         {
