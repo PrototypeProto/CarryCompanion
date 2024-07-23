@@ -7,8 +7,12 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import ArmoryPage from './pages/ArmoryPage';
-import NewCardPage from './pages/NewCardPage';
 import AccountSettingsPage from './pages/AccountSettingsPage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
+import SuccessfulVerificationPage from './pages/SuccessfulVerificationPage';
+import EmailSentPage from './pages/EmailSentPage';
+
+
 
 function App()
 {
@@ -20,8 +24,11 @@ function App()
         <Route path="/Signup" element={<SignupPage />} />
         <Route path="/Home" element={<HomePage  />} />
         <Route path="/Armory" element={<ArmoryPage />} />
-        <Route path="/NewCard" element={<NewCardPage />} />
         <Route path="/Account" element={<AccountSettingsPage />} />
+        <Route path="/ChangePasswordPage" element={<ChangePasswordPage />} />
+        <Route path="/SuccessfulVerification" element={<SuccessfulVerificationPage />} />
+        <Route path="/EmailSent" element={<EmailSentPage />} />
+
       </Routes>
     </BrowserRouter>
   );
