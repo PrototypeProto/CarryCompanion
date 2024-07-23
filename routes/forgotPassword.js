@@ -44,13 +44,7 @@ router.get('/forgot-password', async (req, res) => {
         }
 
         // Serve the password reset page (REPLACE THIS WITH FRONTEND URL)
-        res.send(`
-            <form action="/api/forgot-password" method="POST">
-                <input type="hidden" name="token" value="${token}" />
-                <input type="password" name="newPassword" placeholder="Enter new password" required />
-                <button type="submit">Reset Password</button>
-            </form>
-        `);
+        res.redirect(`https://www.thisisforourclass.xyz/ChangePasswordPage?token=${token}`);
     } catch (error) {
         console.error('Error during password reset:', error);
         res.status(500).json({ message: 'Server error' });
