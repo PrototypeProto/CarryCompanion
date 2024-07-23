@@ -191,7 +191,7 @@ function ConcealCarryMap()
          
          {/* Legend section */}
          <div className="mt-10">
-            <h1 className="font-semibold ml-10 text-xl">
+            <h1 className="font-semibold ml-10 text-xl mt-10">
                No Permit Required
             </h1>
             <p className="font-medium ml-20">
@@ -200,28 +200,28 @@ function ConcealCarryMap()
                although certain federal and state regulations may still apply.
             </p>
 
-            <h1>
+            <h1 className="font-semibold ml-10 text-xl mt-8">
                Permit Required
             </h1>
-            <p>
+            <p className="font-medium ml-20">
                States classified under this category require individuals to obtain a permit to carry concealed firearms. 
                The process generally involves background checks, firearms training, 
                and fulfilling other state-specific criteria to ensure responsible and qualified handling of firearms.
             </p>
 
-            <h1>
+            <h1 className="font-semibold ml-10 text-xl mt-8">
                Rights Restricted
             </h1>
-            <p>
+            <p className="font-medium ml-20">
                In states marked as "Rights Restricted," concealed carry is allowed but with significant restrictions. 
                This may include limited areas where carrying is permitted, stricter qualifications for obtaining a permit, 
                or other regulatory measures that restrict the ease of carrying concealed firearms.
             </p>
 
-            <h1>
+            <h1 className="font-semibold ml-10 text-xl mt-8">
                Discretionary/Reasonable Issue
             </h1>
-            <p>
+            <p className="font-medium ml-20">
                This category refers to states where local authorities have discretionary power in issuing concealed carry permits. 
                These states operate on a "may-issue" basis, where the issuance of a permit is not guaranteed and is subject to the discretion of issuing authorities, 
                often based on the applicant's provided justification for needing a permit.

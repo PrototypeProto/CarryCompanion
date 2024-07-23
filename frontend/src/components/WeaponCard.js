@@ -119,7 +119,7 @@ const WeaponCard = ({ card, onDelete }) =>
             {/* Could add border-l border-r to edit icon */}
             <div className=" mt-auto w-full border-t border-b border-solid border-gray-400 text-black h-12">
                 <button onClick={handleInspectCard} className="border-r border-solid round-bl-sm border-gray-400 w-1/3 h-full text-gray-600">{inspectIcon} Inspect</button>
-                <button onClick={handleEditCard} className=" border-b-0 border-solid border-gray-400 w-1/3 h-full text-blue-500">{editIcon} Edit</button>
+                <button onClick={handleEditCard} className=" border-b-0 border-solid border-gray-400 w-1/3 h-full text-blue-900">{editIcon} Edit</button>
                 <button onClick={handleDeleteCard} className="border-l border-b-0 border-solid round-br-sm border-gray-400 w-1/3 h-full text-red-600">{deleteIcon} Delete</button>
             </div>
         </div>
