@@ -2,7 +2,7 @@
     {
         "value": 5,
         "State": "Alabama",
-        "Right to Carry Law": "No Permit Required",
+        "Right to Carry Law": "Permit Required",
         
         "PermitToPurchaseHandguns" : "No", 
         "PermitToPurchaseOtherFirearms" : "No",
@@ -48,8 +48,8 @@
         "State": "Arizona",
         "Right to Carry Law": "No Permit Required",
         
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
+        "PermitToPurchaseHandguns" : "", 
+        "PermitToPurchaseOtherFirearms" : "",
         
         "PermitToCarryHandgun" : "No",
         "PermitToCarryOtherFirearms" : "No",
@@ -93,11 +93,11 @@
         "PermitToPurchaseHandguns" : "Yes", 
         "PermitToPurchaseOtherFirearms" : "Yes*",
         
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
+        "PermitToCarryHandgun" : "No",
+        "PermitToCarryOtherFirearms" : "Yes",
         
         "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "Yes*"
+        "RegistrationOfOtherFirearms" : "Yes**"
     },
     {
         "value": 1,
@@ -114,14 +114,28 @@
         "RegistrationOfOtherFirearms" : "No"
     },
     {
-        "value": 5,
-        "State": "Florida",
-        "Right to Carry Law": "No Permit Required",
+        "value": 1,
+        "State": "District of Columbia",
+        "Right to Carry Law": "Permit Required",
         
         "PermitToPurchaseHandguns" : "No", 
         "PermitToPurchaseOtherFirearms" : "No",
         
-        "PermitToCarryHandgun" : "No",
+        "PermitToCarryHandgun" : "Yes",
+        "PermitToCarryOtherFirearms" : "N/A",
+        
+        "RegistrationOfHandguns" : "Yes",
+        "RegistrationOfOtherFirearms" : "Yes"
+    },
+    {
+        "value": 5,
+        "State": "Florida",
+        "Right to Carry Law": "Permit Required",
+        
+        "PermitToPurchaseHandguns" : "No", 
+        "PermitToPurchaseOtherFirearms" : "No",
+        
+        "PermitToCarryHandgun" : "Yes",
         "PermitToCarryOtherFirearms" : "No",
         
         "RegistrationOfHandguns" : "No",
@@ -135,7 +149,7 @@
         "PermitToPurchaseHandguns" : "No", 
         "PermitToPurchaseOtherFirearms" : "No",
         
-        "PermitToCarryHandgun" : "No",
+        "PermitToCarryHandgun" : "Yes",
         "PermitToCarryOtherFirearms" : "No",
         
         "RegistrationOfHandguns" : "No",
@@ -161,7 +175,7 @@
         "PermitToPurchaseHandguns" : "No", 
         "PermitToPurchaseOtherFirearms" : "No",
         
-        "PermitToCarryHandgun" : "No",
+        "PermitToCarryHandgun" : "No*",
         "PermitToCarryOtherFirearms" : "No",
         
         "RegistrationOfHandguns" : "No",
@@ -183,11 +197,11 @@
     {
         "value": 5,
         "State": "Indiana",
-        "Right to Carry Law": "No Permit Required",
+        "Right to Carry Law": "Permit Required",
         "PermitToPurchaseHandguns" : "No", 
         "PermitToPurchaseOtherFirearms" : "No",
         
-        "PermitToCarryHandgun" : "No",
+        "PermitToCarryHandgun" : "Yes",
         "PermitToCarryOtherFirearms" : "No",
         
         "RegistrationOfHandguns" : "No",
@@ -197,10 +211,10 @@
         "value": 5,
         "State": "Iowa",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
+        "PermitToPurchaseHandguns" : "No*", 
         "PermitToPurchaseOtherFirearms" : "No",
         
-        "PermitToCarryHandgun" : "No",
+        "PermitToCarryHandgun" : "No*",
         "PermitToCarryOtherFirearms" : "No",
         
         "RegistrationOfHandguns" : "No",
@@ -235,11 +249,11 @@
     {
         "value": 5,
         "State": "Louisiana",
-        "Right to Carry Law": "No Permit Required",
+        "Right to Carry Law": "Permit Required",
         "PermitToPurchaseHandguns" : "No", 
         "PermitToPurchaseOtherFirearms" : "No",
         
-        "PermitToCarryHandgun" : "No",
+        "PermitToCarryHandgun" : "Yes",
         "PermitToCarryOtherFirearms" : "No",
         
         "RegistrationOfHandguns" : "No",
@@ -252,7 +266,7 @@
         "PermitToPurchaseHandguns" : "No", 
         "PermitToPurchaseOtherFirearms" : "No",
         
-        "PermitToCarryHandgun" : "No",
+        "PermitToCarryHandgun" : "No*",
         "PermitToCarryOtherFirearms" : "No",
         
         "RegistrationOfHandguns" : "No",
@@ -262,403 +276,217 @@
         "value": 1,
         "State": "Maryland",
         "Right to Carry Law": "Rights Restricted",
-        "PermitToPurchaseHandguns" : "Yes", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "Yes",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 35.3,
+        "Clinton": 60.5
     },
     {
         "value": 1,
         "State": "Massachusetts",
         "Right to Carry Law": "Rights Restricted",
-        "PermitToPurchaseHandguns" : "Yes", 
-        "PermitToPurchaseOtherFirearms" : "FID Required",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "FID Required",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 33.5,
+        "Clinton": 60.8
     },
     {
         "value": 5,
         "State": "Michigan",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "Yes*", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "Yes",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 47.6,
+        "Clinton": 47.3
     },
     {
         "value": 1,
         "State": "Minnesota",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "Yes", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes*",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 45.4,
+        "Clinton": 46.9
     },
     {
         "value": 5,
         "State": "Mississippi",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 58.3,
+        "Clinton": 39.7
     },
     {
         "value": 5,
         "State": "Missouri",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 57.1,
+        "Clinton": 38.0
     },
     {
         "value": 5,
         "State": "Montana",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 56.5,
+        "Clinton": 36.0
     },
     {
         "value": 5,
         "State": "Nebraska",
-        "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "Yes", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Right to Carry Law": "Permit Required",
+        "Trump": 60.3,
+        "Clinton": 34.0
     },
     {
         "value": 1,
         "State": "Nevada",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 45.5,
+        "Clinton": 47.9
     },
     {
         "value": 1,
         "State": "New Hampshire",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 47.2,
+        "Clinton": 47.6
     },
     {
         "value": 1,
         "State": "New Jersey",
         "Right to Carry Law": "Rights Restricted",
-        "PermitToPurchaseHandguns" : "Yes", 
-        "PermitToPurchaseOtherFirearms" : "ID Required",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "ID Required",
-        
-        "RegistrationOfHandguns" : "No*",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 41.8,
+        "Clinton": 55.0
     },
     {
         "value": 1,
         "State": "New Mexico",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 40.0,
+        "Clinton": 48.3
     },
     {
         "value": 1,
         "State": "New York",
         "Right to Carry Law": "Rights Restricted",
-        "PermitToPurchaseHandguns" : "Yes", 
-        "PermitToPurchaseOtherFirearms" : "No*",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No*",
-        
-        "RegistrationOfHandguns" : "Yes",
-        "RegistrationOfOtherFirearms" : "No*"
+        "Trump": 37.5,
+        "Clinton": 58.8
     },
     {
         "value": 5,
         "State": "North Carolina",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "Yes", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No*",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 50.5,
+        "Clinton": 46.7
     },
     {
         "value": 5,
         "State": "North Dakota",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No*",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 64.1,
+        "Clinton": 27.8
     },
     {
         "value": 5,
         "State": "Ohio",
-        "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Right to Carry Law": "Permit Required",
+        "Trump": 52.1,
+        "Clinton": 43.5
     },
     {
         "value": 5,
         "State": "Oklahoma",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 65.3,
+        "Clinton": 28.9
     },
     {
         "value": 1,
         "State": "Oregon",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 41.1,
+        "Clinton": 51.7
     },
     {
         "value": 5,
         "State": "Pennsylvania",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 48.8,
+        "Clinton": 47.6
     },
     {
         "value": 1,
         "State": "Rhode Island",
         "Right to Carry Law": "Rights Restricted",
-        "PermitToPurchaseHandguns" : "No*", 
-        "PermitToPurchaseOtherFirearms" : "No*",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 39.8,
+        "Clinton": 55.4
     },
     {
         "value": 5,
         "State": "South Carolina",
-        "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Right to Carry Law": "Permit Required",
+        "Trump": 54.9,
+        "Clinton": 40.8
     },
     {
         "value": 5,
         "State": "South Dakota",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 61.5,
+        "Clinton": 31.7
     },
     {
         "value": 5,
         "State": "Tennessee",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 61.1,
+        "Clinton": 34.9
     },
     {
         "value": 5,
         "State": "Texas",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 52.6,
+        "Clinton": 43.4
     },
     {
         "value": 5,
         "State": "Utah",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 45.9,
+        "Clinton": 27.8
     },
     {
         "value": 1,
         "State": "Vermont",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 39.7,
+        "Clinton": 61.1
     },
     {
         "value": 1,
         "State": "Virginia",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 45.0,
+        "Clinton": 49.9
     },
     {
         "value": 1,
         "State": "Washington",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "No*", 
-        "PermitToPurchaseOtherFirearms" : "No*",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No*",
-        "RegistrationOfOtherFirearms" : "No*"
+        "Trump": 4.1,
+        "Clinton": 92.8
     },
     {
         "value": 5,
         "State": "Wisconsin",
         "Right to Carry Law": "Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "Yes",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 68.7,
+        "Clinton": 26.5
     },
     {
         "value": 5,
         "State": "West Virginia",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 47.9,
+        "Clinton": 46.9
     },
     {
         "value": 5,
         "State": "Wyoming",
         "Right to Carry Law": "No Permit Required",
-        "PermitToPurchaseHandguns" : "No", 
-        "PermitToPurchaseOtherFirearms" : "No",
-        
-        "PermitToCarryHandgun" : "No",
-        "PermitToCarryOtherFirearms" : "No",
-        
-        "RegistrationOfHandguns" : "No",
-        "RegistrationOfOtherFirearms" : "No"
+        "Trump": 70.1,
+        "Clinton": 22.5
     }
 ]
