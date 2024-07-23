@@ -5,7 +5,7 @@ const Footer = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center pt-2 text-gray-400 text-sm pb-8">
         <span>© 2024 Appy. All rights reserved.</span>
-        <a href="#" className="font-medium text-red-600 dark:text-red-500 underline">View Disclaimer</a>
+        <a href="#" className="font-medium text-gray-400 dark:text-red-500 underline">View Disclaimer</a>
         <span>Terms · Privacy Policy</span>
         <div className="flex flex-col items-center gap-2 ">
           <h1 className="underline">Contact us</h1>
