@@ -28,7 +28,7 @@ const AddCard = ({ onAddCard }) =>
         <>
             <button 
                 onClick={handleAddCard}
-                className="rounded-lg border-0 border-solid border-black h-16 w-fit p-4 text-white font-medium bg-gray-600 mr-10 py-2"
+                className="rounded-lg border-0 border-solid border-black h-16 w-fit p-4 text-white font-medium bg-gray-600 hover:bg-gray-700 mr-10 py-2"
             >
                 {plusIcon}
                 <br></br>

@@ -42,7 +42,6 @@ const NewCardForm = ({ onAddCard }) =>
         onAddCard(card);
         
         const url = 'http://localhost:5000/api/armory';
-        // const token = localStorage.getItem('jwtToken');
 
         const getToken = () => localStorage.getItem('jwtToken'); // Function to get the JWT token from local storage
 
@@ -173,7 +172,7 @@ const NewCardForm = ({ onAddCard }) =>
                 </div>
                 <div className="flex justify-center">
                     <button
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                         type="submit"
                     >
                         Add

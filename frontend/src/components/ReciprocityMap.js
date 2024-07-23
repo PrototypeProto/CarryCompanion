@@ -21,11 +21,11 @@ const SAMPLE_CSS = `
 
    e-ddl.e-input-group .e-input-group-icon,.e-ddl.e-input-group.e-control-wrapper .e-input-group-icon:hover 
    {
-      color: gray;
+      color: #dc2626;
       font-size: 13px;
    }
    .e-ddl.e-input-group.e-control-wrapper.e-input-focus::before, .e-ddl.e-input-group.e-control-wrapper.e-input-focus::after {
-    background: #c000ff;
+      background: #dc2626;
    }   
    `;
 
@@ -118,7 +118,7 @@ function ReciprocityMap() {
                      dataSource={stateData} 
                      tooltipSettings={{ visible: true, valuePath: 'State' }} 
                      highlightSettings={{ enable: true, fill: '', opacity: .7, border: { color: 'white', width: 2 }}} 
-                     selectionSettings={{ enable: true, fill: 'gold', opacity: 1 }} 
+                     selectionSettings={{ enable: true, fill: '', opacity: 1 }} 
                      shapeSettings={shapeSettings} 
                   >
                   </LayerDirective>
@@ -126,7 +126,7 @@ function ReciprocityMap() {
             </MapsComponent>
 
          </div>
-         <div className="bg-white w-52 absolute top-44 right-4 bg-white p-4 rounded-md shadow-md">
+         <div className="bg-white w-52 absolute top-44 right-4 p-4 rounded-md shadow-md">
             <label className="font-semibold text-xl">Permit State</label>
             <DropDownListComponent 
                allowFiltering={true}

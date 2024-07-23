@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../images/bearLogo.png';
+import profilePicture from '../images/profPic.png'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 // import { FaPlus, FaEdit, FaTrash, FaInfo } from 'react-icons/fa';
 import '../index.css'; // Ensure TailwindCSS and custom CSS is imported here
@@ -46,7 +47,8 @@ function ArmoryNavbar()
                         <span className="sr-only">Open user menu</span>
                         <img
                             alt=""
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            src={profilePicture}
                             className="h-14 w-14 rounded-full"
                         />
                         </MenuButton>

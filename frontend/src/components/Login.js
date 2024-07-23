@@ -126,7 +126,7 @@ function Login()
                             Password
                             </label>
                             <div className="text-sm">
-                                <a href="#" className="font-semibold text-blue-500 hover:text-indigo-500">
+                                <a href="#" className="font-semibold text-blue-500 hover:text-indigo-500" onClick={handleForgotPassword}>
                                     Forgot password?
                                 </a>
                             </div>
