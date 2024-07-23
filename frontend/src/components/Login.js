@@ -6,7 +6,7 @@ function Login()
     var loginPassword;
     const [message,setMessage] = useState('');
 
-    const app_name = 'https://www.thisisforourclass.xyz'
+    const app_name = 'https://www.thisisforourclass.xyz/'
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
