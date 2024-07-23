@@ -21,7 +21,7 @@ const NewCardForm = ({ onAddCard }) =>
     const [model, setModel] = useState('');
     const [datePurchased, setDatePurchased] = useState('');
     const [description, setDescription] = useState('');
-    const [itemType, setItemType] = useState('Handgun');
+    const [itemType, setItemType] = useState('');
     const [ammoType, setAmmoType] = useState('');
     const [attachments, setAttachments] = useState('');
 
@@ -34,14 +34,15 @@ const NewCardForm = ({ onAddCard }) =>
         setModel('');
         setDatePurchased('');
         setDescription('');
-        setItemType('Handgun');
+        setItemType('');
         setAttachments('');
         setAmmoType('');
 
         const card ={ make, model, datePurchased, itemType, ammoType, attachments, description };
         onAddCard(card);
         
-        const url = 'http://localhost:5000/api/armory';
+        // const url = 'http://localhost:5000/api/armory';
+        const url = 'https://www.thisisforourclass.xyz/api/armory';
 
         const getToken = () => localStorage.getItem('jwtToken'); // Function to get the JWT token from local storage
 

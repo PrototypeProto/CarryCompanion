@@ -1,7 +1,5 @@
 import React from "react";
-import Footer from './Footer'
-import { Confetti } from 'react-confetti';
-
+import Footer from './Footer';
 
 const EmailSent = () => {
   return (

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { validatePassword } from './passwordValidation';
+
 
 // Add "Already have an account? Log in" at the top of the form below Sign up
 
@@ -11,13 +13,22 @@ function Signup()
     var signupEmail;
     var signupPassword;
     const [message,setMessage] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [passwordRules, setPasswordRules] = useState({
+        length: false,
+        uppercase: false,
+        lowercase: false,
+        digit: false,
+        special: false,
+    });
 
-    const app_name = 'carry-companion-02c287317f3a'
+    // const app_name = 'carry-companion-02c287317f3a'
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
         {
-            return 'https://' + app_name + '.herokuapp.com/' + route;
+            // return 'https://' + app_name + '.herokuapp.com/' + route;
+            return 'https://www.thisisforourclass.xyz/' + route;
         }
         else
         {
@@ -25,9 +36,28 @@ function Signup()
         }
     }
 
+    // Define password complexity rule
+    const passwordComplexity = (password) => {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return regex.test(password);
+    }
+
     const doSignup = async event =>
     {
         event.preventDefault();
+
+        const password = signupPassword.value;
+
+        // if (!passwordComplexity(password)) {
+        //     setPasswordError('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.');
+        //     return;
+        // }
+
+        if (!Object.values(passwordRules).every(rule => rule)) {
+            setPasswordError('Password must meet all the requirements.');
+            return;
+        }
+
         // var obj = {signup:username.value,password:signupPassword.value};
         var obj = {username:username.value, password:signupPassword.value, firstName:firstName, lastName:lastName, email:signupEmail.value};
         var js = JSON.stringify(obj);
@@ -50,15 +80,27 @@ function Signup()
                 {firstName:res.firstName,lastName:res.lastName,id:res.id}
                 localStorage.setItem('user_data', JSON.stringify(user));
                 setMessage('');
-                window.location.href = '/Home';
+                // window.location.href = '/Home';
+                window.location.href = '/EmailSent';
             }
         }
         catch(e)
         {
-            alert(e.toString());
-            return;
+            // alert(e.toString());
+            // return;
+            setMessage('An error occurred during signup.');
+            console.error(e);
         }
     };
+
+    const handlePasswordChange = (e) => {
+        const password = e.target.value;
+        signupPassword = e.target;
+        const rules = validatePassword(password);
+        setPasswordRules(rules);
+        setPasswordError(Object.values(rules).every(rule => rule) ? '' : 'Password must meet all the requirements.');
+    };
+
 
     return (
         <div className="bg-white-800 border-1 border-solid border-red-800 justify-items-center">
@@ -129,8 +171,31 @@ function Signup()
                             text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:text-lg focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
                             // className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             ref={(c) => signupPassword = c} // not sure if this is the best practice to get reference
+                            onChange={handlePasswordChange}
                             />
                         </div>
+                        {/* Passowrd complexity */}
+                        {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
+                        <p className="text-xs text-gray-500 mt-1">
+                            Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.
+                        </p>
+                        <ul className="list-disc pl-5 mt-2 text-sm text-gray-600">
+                            <li className={passwordRules.length ? 'text-green-500' : 'text-red-500'}>
+                                At least 8 characters
+                            </li>
+                            <li className={passwordRules.uppercase ? 'text-green-500' : 'text-red-500'}>
+                                At least one uppercase letter
+                            </li>
+                            <li className={passwordRules.lowercase ? 'text-green-500' : 'text-red-500'}>
+                                At least one lowercase letter
+                            </li>
+                            <li className={passwordRules.digit ? 'text-green-500' : 'text-red-500'}>
+                                At least one digit
+                            </li>
+                            <li className={passwordRules.special ? 'text-green-500' : 'text-red-500'}>
+                                At least one special character (@, $, !, %, *, ?, &)
+                            </li>
+                        </ul>
                     </div>
 
                     <div className="py-6">

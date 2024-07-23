@@ -13,7 +13,8 @@ const WeaponsTabs = ({ onSearchResults, onAddCard }) =>
     {
         if (process.env.NODE_ENV === 'production')
         {
-            return 'https://' + app_name + '.herokuapp.com/' + route;
+            // return 'https://' + app_name + '.herokuapp.com/' + route;
+            return 'https://www.thisisforourclass.xyz/' + route;
         }
         else
         {
@@ -38,7 +39,7 @@ const WeaponsTabs = ({ onSearchResults, onAddCard }) =>
         const getToken = () => localStorage.getItem('jwtToken'); // Function to get the JWT token from local storage
 
         // Get the api url and query value
-        const url = 'http://localhost:5000/api/armory/search?query=' + search.value;
+        // const url = 'http://localhost:5000/api/armory/search?query=' + search.value;
 
         try 
         {

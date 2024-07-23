@@ -6,12 +6,14 @@ function Login()
     var loginPassword;
     const [message,setMessage] = useState('');
 
-    const app_name = 'https://www.thisisforourclass.xyz/'
+    const app_name = 'carry-companion-02c287317f3a'
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
         {
-            return app_name + route;
+            // return 'https://' + app_name + '.herokuapp.com/' + route;
+            return 'https://www.thisisforourclass.xyz/' + route;
+
         }
         else
         {
@@ -71,7 +73,8 @@ function Login()
         if (!email) return;
 
         try {
-            const response = await fetch(buildPath('api/request-password-reset'), {
+            // const response = await fetch(buildPath('api/request-password-reset'), {
+            const response = await fetch(buildPath('api/request-forgot-password'), {
                 method: 'POST',
                 body: JSON.stringify({ email }),
                 headers: { 'Content-Type': 'application/json' },

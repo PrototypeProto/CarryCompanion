@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 function AboutWebsite()
 {
     return(
-        // <div className="relative border border-solid border-red-600">
-            <div className="grid grid-cols-12 border border-solid border-green-600 bg-slate-900 w-full">
+        // <div className="relative border border-solid border-red-600 bg-slate-900">
+            <div className="grid grid-cols-12 border border-solid border-green-600 bg-neutral-800  w-full">
                 <div className="text-white">01</div>
                 <div className="text-white">02</div>
                 <div className="border border-solid border-white col-start-5 col-span-4 ">

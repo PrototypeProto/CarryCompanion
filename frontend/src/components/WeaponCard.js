@@ -18,7 +18,9 @@ const WeaponCard = ({ card, onDelete }) =>
     {
         if (process.env.NODE_ENV === 'production')
         {
-            return 'https://' + app_name + '.herokuapp.com/' + route;
+            // return 'https://' + app_name + '.herokuapp.com/' + route;
+            return 'https://www.thisisforourclass.xyz/' + route;
+
         }
         else
         {
