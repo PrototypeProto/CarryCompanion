@@ -28,8 +28,8 @@ void main(List<String> args) async {
   };
 
 /* VARIABLES USED FOR TESTING */
-  String validUser = 'a';
-  String validPass = '11111111';
+  String validUser = 'RickL';
+  String validPass = 'COP4331';
 /* Change current password VARIABLES */
   String curPass = "11111111";
   String newPass = '1111111';
@@ -71,7 +71,8 @@ void main(List<String> args) async {
 
   // deleteWeapon(weaponID, jwt);
   // searchWeapon("", jwt);
-  forgotPassword("carrycompanion@gmail.com");
+  // forgotPassword("carrycompanion@gmail.com");
+  requestDeleteAccount(jwt);
 }
 
 Future<void> resetPassword(String curPass, String newPass, String jwt) async {
@@ -170,6 +171,25 @@ void addWeapon(Map<String, dynamic> weaponData, String jwt) async {
   print('');
 }
 
+void requestDeleteAccount(String jwt) async {
+  // ApiService serv =
+  //     ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+
+  try {
+    print('');
+    Map<String, dynamic> ret = await serv.deleteAccount(jwt);
+    if (ret['success']) {
+      print('${ret['data']['message']}');
+    } else {
+      print('${ret['message']}');
+    }
+  } catch (e) {
+    print('Error: $e');
+  }
+  print('');
+}
+
 /* edit user weapon  */
 void editWeapon(
     String weaponID, Map<String, dynamic> newWeaponData, String jwt) async {
@@ -190,19 +210,6 @@ void editWeapon(
     } else {
       print('Failed to edit weapon: ${ret["message"]}');
     }
-  } catch (e) {
-    print('Error: $e');
-  }
-  print('');
-}
-
-void requestDeleteAccount(String jwt) async {
-  ApiService serv =
-      ApiService(baseUrl: "http://www.thisisforourclass.xyz");
-  try {
-    print('');
-    await serv.deleteAccount(jwt);
-    print('Account deleted successfully.');
   } catch (e) {
     print('Error: $e');
   }
