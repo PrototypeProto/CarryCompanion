@@ -9,5 +9,4 @@ const EmailSentPage = () =>
     );
 };
 
-
 export default EmailSentPage;
