@@ -19,7 +19,7 @@ router.post('/request-forgot-password', async (req, res) => {
         }
 
         const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '1h' });
-        const resetUrl = `https://www.thisisforourclass.xyz/api/forgot/reset-password?token=${token}`;
+        const resetUrl = `https://www.thisisforourclass.xyz/api/forgot-password?token=${token}`;
         await sendPasswordResetEmail(email, resetUrl);
 
         res.status(200).json({ message: 'Password reset email sent' });
