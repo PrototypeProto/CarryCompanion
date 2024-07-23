@@ -161,8 +161,10 @@ class PreferencesHelper {
 
       // Store values if they are not null or empty
       if (token.isNotEmpty) {
-        ApiService serv = ApiService(
-            baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+        ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
+
+        // ApiService serv = ApiService(
+            // baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
 
         // Fetch and store weapons
         try {

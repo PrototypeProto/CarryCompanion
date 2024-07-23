@@ -35,7 +35,9 @@ Future<void> requestPasswordChange(
     String? token = await _prefsHelper.getJwt();
     // token ??= '';
 
-    ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+    // ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+    ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
+
     Map<String, dynamic> auth = await serv.resetPassword({"currentPassword": curPass, "newPassword": newPass1,}, token!);
     auth['success'] ? passwordChanged = true : false;
     auth['success'] ? invalidPasswordMessage = auth['data']['message'] : invalidPasswordMessage = auth['message'];

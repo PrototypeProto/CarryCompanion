@@ -5,9 +5,11 @@ import 'package:gun/api/persist.dart';
 
 Future<void> addGun(String newType, String newMake, String newModel, Function(Map<String, dynamic>) addItem, String jwt) async {
   log(jwt);
-  ApiService serv = ApiService(
-    baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com",
-  );
+  // ApiService serv = ApiService(
+  //   baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com",
+  // );
+  ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
+
   final PreferencesHelper prefsHelper = PreferencesHelper();
   String token = await prefsHelper.getJwt();
 

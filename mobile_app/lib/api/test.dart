@@ -6,7 +6,7 @@ import 'api.dart';
 void main(List<String> args) async {
   // ApiService serv = ApiService(baseUrl: "http://localhost:5000");
   // ApiService serv = ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
-  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+  ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
   String jwt = '';
 
@@ -35,11 +35,11 @@ void main(List<String> args) async {
   String newPass = '1111111';
 
   /* SIGN UP VARIABLES */
-  String newUsername = 'aaaaaaa';
+  String newUsername = 'aaaaaaaa';
   String fname = 'hey';
   String lname = 'mam';
-  String email = 'bobbbdl@dsaffi.com';
-  String newEmail = "genoamedsdsgalul@gmail.com";
+  String email = 'bobbbdsddl@dsaffi.com';
+  String newEmail = "genoamedcsscsdsgalul@gmail.com";
   String pwd = 'Test123!';
 
   /* Test LOGIN, REQUIRED*/
@@ -63,7 +63,7 @@ void main(List<String> args) async {
     print('');
   }
 
-  // signup(newUsername, newPass, fname, lname, newEmail);
+  signup(newUsername, newPass, fname, lname, newEmail);
   // resetPassword(curPass, newPass, jwt);
   // forgotPassword(email);
   // addWeapon(weaponData, jwt);
@@ -72,11 +72,11 @@ void main(List<String> args) async {
   // deleteWeapon(weaponID, jwt);
   // searchWeapon("", jwt);
   // forgotPassword("carrycompanion@gmail.com");
-  requestDeleteAccount(jwt);
+  // requestDeleteAccount(jwt);
 }
 
 Future<void> resetPassword(String curPass, String newPass, String jwt) async {
-    ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+    ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
   try {
     print('');
@@ -98,7 +98,7 @@ Future<void> resetPassword(String curPass, String newPass, String jwt) async {
 Future<void> signup(String username, String newPass, String fname, String lname,
     String email) async {
   print('');
-    ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+    ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
 
   try {
@@ -127,7 +127,7 @@ Future<void> signup(String username, String newPass, String fname, String lname,
 void forgotPassword(String email) async {
   // ApiService serv =
   // ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
-  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+  ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
   try {
     print('');
@@ -147,7 +147,7 @@ void forgotPassword(String email) async {
 
 /* Add weapon to user  */
 void addWeapon(Map<String, dynamic> weaponData, String jwt) async {
-    ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+    ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
 
   try {
@@ -174,7 +174,7 @@ void addWeapon(Map<String, dynamic> weaponData, String jwt) async {
 void requestDeleteAccount(String jwt) async {
   // ApiService serv =
   //     ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
-  ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+  ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
   try {
     print('');
@@ -193,7 +193,7 @@ void requestDeleteAccount(String jwt) async {
 /* edit user weapon  */
 void editWeapon(
     String weaponID, Map<String, dynamic> newWeaponData, String jwt) async {
-    ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+    ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
 
   try {
@@ -217,7 +217,7 @@ void editWeapon(
 }
 
 void deleteWeapon(String weaponID, String jwt) async {
-    ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+    ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
   try {
     print('');
@@ -233,7 +233,7 @@ void deleteWeapon(String weaponID, String jwt) async {
 
 // /* works  */
 void searchWeapon(String query, String jwt) async {
-    ApiService serv = ApiService(baseUrl: "http://www.thisisforourclass.xyz");
+    ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
   print('');
   try {

@@ -112,9 +112,11 @@ class _ArmoryState extends State<Armory> {
           await showConfirmDeleteDialog(context, _items[itemSelected]['model']);
       if (confirmDelete == true) {
         setState(() {
-          ApiService serv = ApiService(
-            baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com",
-          );
+          // ApiService serv = ApiService(
+          //   baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com",
+          // );
+        ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
+
 
           log("DELETING\n");
           log(_items[itemSelected]['_id']);
