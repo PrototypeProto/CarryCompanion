@@ -68,10 +68,7 @@ router.get('/armory/search', verifyToken, async (req, res) => {
         const weapons = user.arsenal.filter(weapon =>
             weapon.type.match(new RegExp(query, 'i')) ||
             weapon.manufacturer.match(new RegExp(query, 'i')) ||
-            weapon.model.match(new RegExp(query, 'i')) ||
-            weapon.ammoType.match(new RegExp(query, 'i')) ||
-            weapon.attachments.match(new RegExp(query, 'i')) ||
-            weapon.datePurchased.match(new RegExp(query, 'i'))
+            weapon.model.match(new RegExp(query, 'i'))
         );
 
         console.log('Found Weapons:', weapons);
