@@ -17,8 +17,7 @@ class _SignUpState extends State<SignUp> {
   final _confirmPasswordController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
-  ApiService serv =
-      ApiService(baseUrl: "https://carry-companion-02c287317f3a.herokuapp.com");
+  ApiService serv = ApiService(baseUrl: "https://www.thisisforourclass.xyz");
 
   InputDecoration _inputDecoration(String hintText) {
     return InputDecoration(
