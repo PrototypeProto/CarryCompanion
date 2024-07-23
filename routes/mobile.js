@@ -46,14 +46,14 @@ router.post('/mobile/login', (req, res) => {
 });
 
 // Forward forgot password requests
-router.post('/mobile/request-password-reset', (req, res) => {
+router.post('/mobile/request-forgot-password', (req, res) => {
     console.log('Received request at /mobile/request-password-reset'); 
-    forwardRequest(req, res, 'request-password-reset', 'POST');
+    forwardRequest(req, res, 'request-forgot-password', 'POST');
 });
 
 // Forward email reset requests
-router.post('/mobile/reset-email', (req, res) => {
-    console.log('Received request at /mobile/reset-email'); 
+router.post('forgot/mobile/reset-email', (req, res) => {
+    console.log('Received request at forgot/mobile/reset-email'); 
     forwardRequest(req, res, 'reset-email', 'POST');
 });
 
