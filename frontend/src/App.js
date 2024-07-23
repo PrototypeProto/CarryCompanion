@@ -11,6 +11,8 @@ import AccountSettingsPage from './pages/AccountSettingsPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import SuccessfulVerificationPage from './pages/SuccessfulVerificationPage';
 import EmailSentPage from './pages/EmailSentPage';
+import ForgotPass from './components/ForgotPass';
+
 
 
 
@@ -28,6 +30,8 @@ function App()
         <Route path="/ChangePasswordPage" element={<ChangePasswordPage />} />
         <Route path="/SuccessfulVerification" element={<SuccessfulVerificationPage />} />
         <Route path="/EmailSent" element={<EmailSentPage />} />
+        <Route path="/forgot-password" component={ForgotPass} />
+
 
       </Routes>
     </BrowserRouter>
